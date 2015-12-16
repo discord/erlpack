@@ -23,7 +23,7 @@ ext_modules = [packer]
 
 setup(
     name='erlpack',
-    version='0.1',
+    version='0.1.2',
     author='Jake Heinz',
     author_email='jh@hammerandchisel.com',
     url="http://github.com/hammerandchisel/erlpack",
@@ -31,7 +31,7 @@ setup(
     license='Apache 2.0',
     cmdclass={'build_ext': build_ext},
     zip_safe=False,
-    py_modules=['erlpack'],
+    packages=['erlpack'],
     ext_modules=ext_modules,
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
