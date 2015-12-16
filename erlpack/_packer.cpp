@@ -243,8 +243,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE___packer
-#define __PYX_HAVE_API___packer
+#define __PYX_HAVE__erlpack___packer
+#define __PYX_HAVE_API__erlpack___packer
 #include "string.h"
 #include "stdio.h"
 #include "pythread.h"
@@ -467,31 +467,31 @@ static const char *__pyx_f[] = {
 };
 
 /*--- Type declarations ---*/
-struct __pyx_obj_7_packer_ErlangTermEncoder;
-struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack;
+struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder;
+struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack;
 
-/* "_packer.pyx":102
- *         free(self.pk.buf)
+/* "erlpack/_packer.pyx":112
+ *             free(self.pk.buf)
  * 
  *     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:             # <<<<<<<<<<<<<<
  *         cdef int ret
  *         cdef long long llval
  */
-struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack {
+struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack {
   int __pyx_n;
   int nest_limit;
 };
 
-/* "_packer.pyx":44
+/* "erlpack/_packer.pyx":44
  * 
  * 
  * cdef class ErlangTermEncoder(object):             # <<<<<<<<<<<<<<
  *     cdef erlpack_buffer pk
  *     cdef char*_encoding
  */
-struct __pyx_obj_7_packer_ErlangTermEncoder {
+struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder {
   PyObject_HEAD
-  struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *__pyx_vtab;
+  struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *__pyx_vtab;
   struct erlpack_buffer pk;
   char *_encoding;
   char *_unicode_errors;
@@ -501,14 +501,14 @@ struct __pyx_obj_7_packer_ErlangTermEncoder {
 
 
 
-struct __pyx_vtabstruct_7_packer_ErlangTermEncoder {
-  PyObject *(*_ensure_buf)(struct __pyx_obj_7_packer_ErlangTermEncoder *);
-  PyObject *(*_free_big_buf)(struct __pyx_obj_7_packer_ErlangTermEncoder *);
-  int (*_pack)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *, struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args);
-  PyObject *(*_encode_unicode)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *);
-  PyObject *(*pack)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *, int __pyx_skip_dispatch);
+struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder {
+  PyObject *(*_ensure_buf)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *);
+  PyObject *(*_free_big_buf)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *);
+  int (*_pack)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *, struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args);
+  PyObject *(*_encode_unicode)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *);
+  PyObject *(*pack)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *, int __pyx_skip_dispatch);
 };
-static struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *__pyx_vtabptr_7_packer_ErlangTermEncoder;
+static struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *__pyx_vtabptr_7erlpack_7_packer_ErlangTermEncoder;
 
 /* --- Runtime support code (head) --- */
 #ifndef CYTHON_REFNANNY
@@ -748,11 +748,11 @@ static PyTypeObject *__Pyx_ImportType(const char *module_name, const char *class
 
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto*/
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto*/
-static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_o, struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args); /* proto*/
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj); /* proto*/
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj, int __pyx_skip_dispatch); /* proto*/
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto*/
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto*/
+static int __pyx_f_7erlpack_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_o, struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args); /* proto*/
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__encode_unicode(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj); /* proto*/
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from 'cpython.version' */
 
@@ -843,16 +843,16 @@ static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
 
 /* Module declarations from 'libc.stdint' */
 
-/* Module declarations from '_packer' */
-static PyTypeObject *__pyx_ptype_7_packer_ErlangTermEncoder = 0;
-static int __pyx_v_7_packer_DEFAULT_RECURSE_LIMIT;
-static size_t __pyx_v_7_packer_BIG_BUF_SIZE;
-static size_t __pyx_v_7_packer_INITIAL_BUFFER_SIZE;
-static size_t __pyx_v_7_packer_MAX_SIZE;
-#define __Pyx_MODULE_NAME "_packer"
-int __pyx_module_is_main__packer = 0;
+/* Module declarations from 'erlpack._packer' */
+static PyTypeObject *__pyx_ptype_7erlpack_7_packer_ErlangTermEncoder = 0;
+static int __pyx_v_7erlpack_7_packer_DEFAULT_RECURSE_LIMIT;
+static size_t __pyx_v_7erlpack_7_packer_BIG_BUF_SIZE;
+static size_t __pyx_v_7erlpack_7_packer_INITIAL_BUFFER_SIZE;
+static size_t __pyx_v_7erlpack_7_packer_MAX_SIZE;
+#define __Pyx_MODULE_NAME "erlpack._packer"
+int __pyx_module_is_main_erlpack___packer = 0;
 
-/* Implementation of '_packer' */
+/* Implementation of 'erlpack._packer' */
 static PyObject *__pyx_builtin_Exception;
 static PyObject *__pyx_builtin_MemoryError;
 static PyObject *__pyx_builtin_ValueError;
@@ -871,7 +871,6 @@ static char __pyx_k_binary[] = "binary";
 static char __pyx_k_encode[] = "encode";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_module[] = "__module__";
-static char __pyx_k_packer[] = "_packer";
 static char __pyx_k_strict[] = "strict";
 static char __pyx_k_erlpack[] = "__erlpack__";
 static char __pyx_k_prepare[] = "__prepare__";
@@ -889,6 +888,7 @@ static char __pyx_k_unicode_type[] = "unicode_type";
 static char __pyx_k_EncodingError[] = "EncodingError";
 static char __pyx_k_erlpack_types[] = "erlpack.types";
 static char __pyx_k_unicode_errors[] = "unicode_errors";
+static char __pyx_k_erlpack__packer[] = "erlpack._packer";
 static char __pyx_k_dict_is_too_large[] = "dict is too large";
 static char __pyx_k_list_is_too_large[] = "list is too large";
 static char __pyx_k_tuple_is_too_large[] = "tuple is too large";
@@ -919,6 +919,7 @@ static PyObject *__pyx_n_s_encode;
 static PyObject *__pyx_n_s_encode_hook;
 static PyObject *__pyx_n_s_encoding;
 static PyObject *__pyx_n_s_erlpack;
+static PyObject *__pyx_n_s_erlpack__packer;
 static PyObject *__pyx_n_s_erlpack_types;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_items;
@@ -929,7 +930,6 @@ static PyObject *__pyx_n_s_metaclass;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_pack;
 static PyObject *__pyx_kp_s_pack_returned_code_s;
-static PyObject *__pyx_n_s_packer;
 static PyObject *__pyx_n_s_prepare;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_qualname;
@@ -942,11 +942,11 @@ static PyObject *__pyx_kp_s_unicode_string_is_too_large_usin;
 static PyObject *__pyx_kp_s_unicode_string_is_too_large_usin_2;
 static PyObject *__pyx_n_s_unicode_type;
 static PyObject *__pyx_kp_s_utf_8;
-static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto */
-static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_unicode_errors, PyObject *__pyx_v_unicode_type, PyObject *__pyx_v_encode_hook); /* proto */
-static void __pyx_pf_7_packer_17ErlangTermEncoder_4__dealloc__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj); /* proto */
-static PyObject *__pyx_tp_new_7_packer_ErlangTermEncoder(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static int __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto */
+static int __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_unicode_errors, PyObject *__pyx_v_unicode_type, PyObject *__pyx_v_encode_hook); /* proto */
+static void __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_4__dealloc__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj); /* proto */
+static PyObject *__pyx_tp_new_7erlpack_7_packer_ErlangTermEncoder(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_255;
 static PyObject *__pyx_int_2147483647;
@@ -963,7 +963,7 @@ static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_tuple__10;
 static PyObject *__pyx_tuple__11;
 
-/* "_packer.pyx":51
+/* "erlpack/_packer.pyx":51
  *     cdef object _encode_hook
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -972,22 +972,22 @@ static PyObject *__pyx_tuple__11;
  */
 
 /* Python wrapper */
-static int __pyx_pw_7_packer_17ErlangTermEncoder_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_7_packer_17ErlangTermEncoder_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_1__cinit__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__cinit__ (wrapper)", 0);
   if (unlikely(PyTuple_GET_SIZE(__pyx_args) > 0)) {
     __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 0, 0, PyTuple_GET_SIZE(__pyx_args)); return -1;}
   if (unlikely(__pyx_kwds) && unlikely(PyDict_Size(__pyx_kwds) > 0) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__cinit__", 0))) return -1;
-  __pyx_r = __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(((struct __pyx_obj_7_packer_ErlangTermEncoder *)__pyx_v_self));
+  __pyx_r = __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder___cinit__(((struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self) {
+static int __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -996,7 +996,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_pa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "_packer.pyx":52
+  /* "erlpack/_packer.pyx":52
  * 
  *     def __cinit__(self):
  *         self.pk.buf = NULL             # <<<<<<<<<<<<<<
@@ -1005,18 +1005,18 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_pa
  */
   __pyx_v_self->pk.buf = NULL;
 
-  /* "_packer.pyx":53
+  /* "erlpack/_packer.pyx":53
  *     def __cinit__(self):
  *         self.pk.buf = NULL
  *         self._ensure_buf()             # <<<<<<<<<<<<<<
  * 
  *     def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_ensure_buf(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_ensure_buf(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "_packer.pyx":51
+  /* "erlpack/_packer.pyx":51
  *     cdef object _encode_hook
  * 
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
@@ -1029,14 +1029,14 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_pa
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "_packer.pyx":55
+/* "erlpack/_packer.pyx":55
  *         self._ensure_buf()
  * 
  *     def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):             # <<<<<<<<<<<<<<
@@ -1045,8 +1045,8 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder___cinit__(struct __pyx_obj_7_pa
  */
 
 /* Python wrapper */
-static int __pyx_pw_7_packer_17ErlangTermEncoder_3__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_7_packer_17ErlangTermEncoder_3__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_3__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_3__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_encoding = 0;
   PyObject *__pyx_v_unicode_errors = 0;
   PyObject *__pyx_v_unicode_type = 0;
@@ -1120,18 +1120,18 @@ static int __pyx_pw_7_packer_17ErlangTermEncoder_3__init__(PyObject *__pyx_v_sel
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 0, 0, 4, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 55; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(((struct __pyx_obj_7_packer_ErlangTermEncoder *)__pyx_v_self), __pyx_v_encoding, __pyx_v_unicode_errors, __pyx_v_unicode_type, __pyx_v_encode_hook);
+  __pyx_r = __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_2__init__(((struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self), __pyx_v_encoding, __pyx_v_unicode_errors, __pyx_v_unicode_type, __pyx_v_encode_hook);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_unicode_errors, PyObject *__pyx_v_unicode_type, PyObject *__pyx_v_encode_hook) {
+static int __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_encoding, PyObject *__pyx_v_unicode_errors, PyObject *__pyx_v_unicode_type, PyObject *__pyx_v_encode_hook) {
   PyObject *__pyx_v__encoding = 0;
   PyObject *__pyx_v__unicode_errors = 0;
   int __pyx_r;
@@ -1146,7 +1146,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "_packer.pyx":59
+  /* "erlpack/_packer.pyx":59
  *         cdef object _unicode_errors
  * 
  *         if encoding is None:             # <<<<<<<<<<<<<<
@@ -1157,7 +1157,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "_packer.pyx":60
+    /* "erlpack/_packer.pyx":60
  * 
  *         if encoding is None:
  *             self._encoding = NULL             # <<<<<<<<<<<<<<
@@ -1166,7 +1166,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
  */
     __pyx_v_self->_encoding = NULL;
 
-    /* "_packer.pyx":61
+    /* "erlpack/_packer.pyx":61
  *         if encoding is None:
  *             self._encoding = NULL
  *             self._unicode_errors = NULL             # <<<<<<<<<<<<<<
@@ -1175,7 +1175,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
  */
     __pyx_v_self->_unicode_errors = NULL;
 
-    /* "_packer.pyx":59
+    /* "erlpack/_packer.pyx":59
  *         cdef object _unicode_errors
  * 
  *         if encoding is None:             # <<<<<<<<<<<<<<
@@ -1185,7 +1185,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     goto __pyx_L3;
   }
 
-  /* "_packer.pyx":63
+  /* "erlpack/_packer.pyx":63
  *             self._unicode_errors = NULL
  *         else:
  *             if isinstance(encoding, unicode):             # <<<<<<<<<<<<<<
@@ -1197,7 +1197,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     __pyx_t_1 = (__pyx_t_2 != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":64
+      /* "erlpack/_packer.pyx":64
  *         else:
  *             if isinstance(encoding, unicode):
  *                 _encoding = encoding.encode('ascii')             # <<<<<<<<<<<<<<
@@ -1212,7 +1212,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
       __pyx_v__encoding = __pyx_t_4;
       __pyx_t_4 = 0;
 
-      /* "_packer.pyx":63
+      /* "erlpack/_packer.pyx":63
  *             self._unicode_errors = NULL
  *         else:
  *             if isinstance(encoding, unicode):             # <<<<<<<<<<<<<<
@@ -1222,7 +1222,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
       goto __pyx_L4;
     }
 
-    /* "_packer.pyx":66
+    /* "erlpack/_packer.pyx":66
  *                 _encoding = encoding.encode('ascii')
  *             else:
  *                 _encoding = encoding             # <<<<<<<<<<<<<<
@@ -1235,7 +1235,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     }
     __pyx_L4:;
 
-    /* "_packer.pyx":68
+    /* "erlpack/_packer.pyx":68
  *                 _encoding = encoding
  * 
  *             if isinstance(unicode_errors, unicode):             # <<<<<<<<<<<<<<
@@ -1246,7 +1246,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     __pyx_t_2 = (__pyx_t_1 != 0);
     if (__pyx_t_2) {
 
-      /* "_packer.pyx":69
+      /* "erlpack/_packer.pyx":69
  * 
  *             if isinstance(unicode_errors, unicode):
  *                 _unicode_errors = unicode_errors.encode('ascii')             # <<<<<<<<<<<<<<
@@ -1261,7 +1261,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
       __pyx_v__unicode_errors = __pyx_t_3;
       __pyx_t_3 = 0;
 
-      /* "_packer.pyx":68
+      /* "erlpack/_packer.pyx":68
  *                 _encoding = encoding
  * 
  *             if isinstance(unicode_errors, unicode):             # <<<<<<<<<<<<<<
@@ -1271,7 +1271,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
       goto __pyx_L5;
     }
 
-    /* "_packer.pyx":71
+    /* "erlpack/_packer.pyx":71
  *                 _unicode_errors = unicode_errors.encode('ascii')
  *             else:
  *                 _unicode_errors = unicode_errors             # <<<<<<<<<<<<<<
@@ -1284,7 +1284,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     }
     __pyx_L5:;
 
-    /* "_packer.pyx":73
+    /* "erlpack/_packer.pyx":73
  *                 _unicode_errors = unicode_errors
  * 
  *             self._encoding = PyString_AsString(_encoding)             # <<<<<<<<<<<<<<
@@ -1294,7 +1294,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
     __pyx_t_5 = PyString_AsString(__pyx_v__encoding); if (unlikely(__pyx_t_5 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 73; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_self->_encoding = __pyx_t_5;
 
-    /* "_packer.pyx":74
+    /* "erlpack/_packer.pyx":74
  * 
  *             self._encoding = PyString_AsString(_encoding)
  *             self._unicode_errors = PyString_AsString(_unicode_errors)             # <<<<<<<<<<<<<<
@@ -1306,7 +1306,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   }
   __pyx_L3:;
 
-  /* "_packer.pyx":76
+  /* "erlpack/_packer.pyx":76
  *             self._unicode_errors = PyString_AsString(_unicode_errors)
  * 
  *         self._unicode_type = unicode_type             # <<<<<<<<<<<<<<
@@ -1319,7 +1319,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   __Pyx_DECREF(__pyx_v_self->_unicode_type);
   __pyx_v_self->_unicode_type = __pyx_v_unicode_type;
 
-  /* "_packer.pyx":77
+  /* "erlpack/_packer.pyx":77
  * 
  *         self._unicode_type = unicode_type
  *         self._encode_hook = encode_hook             # <<<<<<<<<<<<<<
@@ -1332,7 +1332,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   __Pyx_DECREF(__pyx_v_self->_encode_hook);
   __pyx_v_self->_encode_hook = __pyx_v_encode_hook;
 
-  /* "_packer.pyx":55
+  /* "erlpack/_packer.pyx":55
  *         self._ensure_buf()
  * 
  *     def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):             # <<<<<<<<<<<<<<
@@ -1346,7 +1346,7 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v__encoding);
@@ -1355,15 +1355,15 @@ static int __pyx_pf_7_packer_17ErlangTermEncoder_2__init__(struct __pyx_obj_7_pa
   return __pyx_r;
 }
 
-/* "_packer.pyx":79
+/* "erlpack/_packer.pyx":79
  *         self._encode_hook = encode_hook
  * 
  *     cdef _ensure_buf(self):             # <<<<<<<<<<<<<<
- * 
- *         if self.pk.buf != NULL:
+ *         """
+ *         Ensures that a buffer is available to be written to when serializing data.
  */
 
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self) {
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -1373,9 +1373,9 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_ensure_buf", 0);
 
-  /* "_packer.pyx":81
- *     cdef _ensure_buf(self):
- * 
+  /* "erlpack/_packer.pyx":86
+ *         fails, raise a MemoryError.
+ *         """
  *         if self.pk.buf != NULL:             # <<<<<<<<<<<<<<
  *             self.pk.length = 0
  * 
@@ -1383,8 +1383,8 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
   __pyx_t_1 = ((__pyx_v_self->pk.buf != NULL) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":82
- * 
+    /* "erlpack/_packer.pyx":87
+ *         """
  *         if self.pk.buf != NULL:
  *             self.pk.length = 0             # <<<<<<<<<<<<<<
  * 
@@ -1392,9 +1392,9 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
  */
     __pyx_v_self->pk.length = 0;
 
-    /* "_packer.pyx":81
- *     cdef _ensure_buf(self):
- * 
+    /* "erlpack/_packer.pyx":86
+ *         fails, raise a MemoryError.
+ *         """
  *         if self.pk.buf != NULL:             # <<<<<<<<<<<<<<
  *             self.pk.length = 0
  * 
@@ -1402,7 +1402,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
     goto __pyx_L3;
   }
 
-  /* "_packer.pyx":85
+  /* "erlpack/_packer.pyx":90
  * 
  *         else:
  *             self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)             # <<<<<<<<<<<<<<
@@ -1410,9 +1410,9 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
  *                 raise MemoryError('Unable to allocate buffer')
  */
   /*else*/ {
-    __pyx_v_self->pk.buf = ((char *)malloc(__pyx_v_7_packer_INITIAL_BUFFER_SIZE));
+    __pyx_v_self->pk.buf = ((char *)malloc(__pyx_v_7erlpack_7_packer_INITIAL_BUFFER_SIZE));
 
-    /* "_packer.pyx":86
+    /* "erlpack/_packer.pyx":91
  *         else:
  *             self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)
  *             if self.pk.buf == NULL:             # <<<<<<<<<<<<<<
@@ -1422,20 +1422,20 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
     __pyx_t_1 = ((__pyx_v_self->pk.buf == NULL) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":87
+      /* "erlpack/_packer.pyx":92
  *             self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)
  *             if self.pk.buf == NULL:
  *                 raise MemoryError('Unable to allocate buffer')             # <<<<<<<<<<<<<<
  * 
  *             self.pk.allocated_size = INITIAL_BUFFER_SIZE
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":86
+      /* "erlpack/_packer.pyx":91
  *         else:
  *             self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)
  *             if self.pk.buf == NULL:             # <<<<<<<<<<<<<<
@@ -1444,16 +1444,16 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
  */
     }
 
-    /* "_packer.pyx":89
+    /* "erlpack/_packer.pyx":94
  *                 raise MemoryError('Unable to allocate buffer')
  * 
  *             self.pk.allocated_size = INITIAL_BUFFER_SIZE             # <<<<<<<<<<<<<<
  *             self.pk.length = 0
  * 
  */
-    __pyx_v_self->pk.allocated_size = __pyx_v_7_packer_INITIAL_BUFFER_SIZE;
+    __pyx_v_self->pk.allocated_size = __pyx_v_7erlpack_7_packer_INITIAL_BUFFER_SIZE;
 
-    /* "_packer.pyx":90
+    /* "erlpack/_packer.pyx":95
  * 
  *             self.pk.allocated_size = INITIAL_BUFFER_SIZE
  *             self.pk.length = 0             # <<<<<<<<<<<<<<
@@ -1464,12 +1464,12 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
   }
   __pyx_L3:;
 
-  /* "_packer.pyx":79
+  /* "erlpack/_packer.pyx":79
  *         self._encode_hook = encode_hook
  * 
  *     cdef _ensure_buf(self):             # <<<<<<<<<<<<<<
- * 
- *         if self.pk.buf != NULL:
+ *         """
+ *         Ensures that a buffer is available to be written to when serializing data.
  */
 
   /* function exit code */
@@ -1477,7 +1477,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder._ensure_buf", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder._ensure_buf", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1485,32 +1485,32 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf(struct __pyx_o
   return __pyx_r;
 }
 
-/* "_packer.pyx":92
+/* "erlpack/_packer.pyx":97
  *             self.pk.length = 0
  * 
  *     cdef _free_big_buf(self):             # <<<<<<<<<<<<<<
- *         if self.pk.allocated_size >= BIG_BUF_SIZE:
- *             free(self.pk.buf)
+ *         """
+ *         If the buffer is larger than `BIG_BUF_SIZE`, free it, so that packing large data does not hold onto
  */
 
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self) {
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   __Pyx_RefNannySetupContext("_free_big_buf", 0);
 
-  /* "_packer.pyx":93
- * 
- *     cdef _free_big_buf(self):
+  /* "erlpack/_packer.pyx":102
+ *         the big buffer after the serialization is complete.
+ *         """
  *         if self.pk.allocated_size >= BIG_BUF_SIZE:             # <<<<<<<<<<<<<<
  *             free(self.pk.buf)
  *             self.pk.buf = NULL
  */
-  __pyx_t_1 = ((__pyx_v_self->pk.allocated_size >= __pyx_v_7_packer_BIG_BUF_SIZE) != 0);
+  __pyx_t_1 = ((__pyx_v_self->pk.allocated_size >= __pyx_v_7erlpack_7_packer_BIG_BUF_SIZE) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":94
- *     cdef _free_big_buf(self):
+    /* "erlpack/_packer.pyx":103
+ *         """
  *         if self.pk.allocated_size >= BIG_BUF_SIZE:
  *             free(self.pk.buf)             # <<<<<<<<<<<<<<
  *             self.pk.buf = NULL
@@ -1518,7 +1518,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx
  */
     free(__pyx_v_self->pk.buf);
 
-    /* "_packer.pyx":95
+    /* "erlpack/_packer.pyx":104
  *         if self.pk.allocated_size >= BIG_BUF_SIZE:
  *             free(self.pk.buf)
  *             self.pk.buf = NULL             # <<<<<<<<<<<<<<
@@ -1527,7 +1527,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx
  */
     __pyx_v_self->pk.buf = NULL;
 
-    /* "_packer.pyx":96
+    /* "erlpack/_packer.pyx":105
  *             free(self.pk.buf)
  *             self.pk.buf = NULL
  *             self.pk.length = 0             # <<<<<<<<<<<<<<
@@ -1536,7 +1536,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx
  */
     __pyx_v_self->pk.length = 0;
 
-    /* "_packer.pyx":97
+    /* "erlpack/_packer.pyx":106
  *             self.pk.buf = NULL
  *             self.pk.length = 0
  *             self.pk.allocated_size = 0             # <<<<<<<<<<<<<<
@@ -1545,21 +1545,21 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx
  */
     __pyx_v_self->pk.allocated_size = 0;
 
-    /* "_packer.pyx":93
- * 
- *     cdef _free_big_buf(self):
+    /* "erlpack/_packer.pyx":102
+ *         the big buffer after the serialization is complete.
+ *         """
  *         if self.pk.allocated_size >= BIG_BUF_SIZE:             # <<<<<<<<<<<<<<
  *             free(self.pk.buf)
  *             self.pk.buf = NULL
  */
   }
 
-  /* "_packer.pyx":92
+  /* "erlpack/_packer.pyx":97
  *             self.pk.length = 0
  * 
  *     cdef _free_big_buf(self):             # <<<<<<<<<<<<<<
- *         if self.pk.allocated_size >= BIG_BUF_SIZE:
- *             free(self.pk.buf)
+ *         """
+ *         If the buffer is larger than `BIG_BUF_SIZE`, free it, so that packing large data does not hold onto
  */
 
   /* function exit code */
@@ -1569,59 +1569,79 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf(struct __pyx
   return __pyx_r;
 }
 
-/* "_packer.pyx":99
+/* "erlpack/_packer.pyx":108
  *             self.pk.allocated_size = 0
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         free(self.pk.buf)
- * 
+ *         if self.pk.buf != NULL:
+ *             free(self.pk.buf)
  */
 
 /* Python wrapper */
-static void __pyx_pw_7_packer_17ErlangTermEncoder_5__dealloc__(PyObject *__pyx_v_self); /*proto*/
-static void __pyx_pw_7_packer_17ErlangTermEncoder_5__dealloc__(PyObject *__pyx_v_self) {
+static void __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_5__dealloc__(PyObject *__pyx_v_self); /*proto*/
+static void __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_5__dealloc__(PyObject *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__ (wrapper)", 0);
-  __pyx_pf_7_packer_17ErlangTermEncoder_4__dealloc__(((struct __pyx_obj_7_packer_ErlangTermEncoder *)__pyx_v_self));
+  __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_4__dealloc__(((struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-static void __pyx_pf_7_packer_17ErlangTermEncoder_4__dealloc__(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self) {
+static void __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_4__dealloc__(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self) {
   __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "_packer.pyx":100
+  /* "erlpack/_packer.pyx":109
  * 
  *     def __dealloc__(self):
- *         free(self.pk.buf)             # <<<<<<<<<<<<<<
+ *         if self.pk.buf != NULL:             # <<<<<<<<<<<<<<
+ *             free(self.pk.buf)
+ * 
+ */
+  __pyx_t_1 = ((__pyx_v_self->pk.buf != NULL) != 0);
+  if (__pyx_t_1) {
+
+    /* "erlpack/_packer.pyx":110
+ *     def __dealloc__(self):
+ *         if self.pk.buf != NULL:
+ *             free(self.pk.buf)             # <<<<<<<<<<<<<<
  * 
  *     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:
  */
-  free(__pyx_v_self->pk.buf);
+    free(__pyx_v_self->pk.buf);
 
-  /* "_packer.pyx":99
+    /* "erlpack/_packer.pyx":109
+ * 
+ *     def __dealloc__(self):
+ *         if self.pk.buf != NULL:             # <<<<<<<<<<<<<<
+ *             free(self.pk.buf)
+ * 
+ */
+  }
+
+  /* "erlpack/_packer.pyx":108
  *             self.pk.allocated_size = 0
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
- *         free(self.pk.buf)
- * 
+ *         if self.pk.buf != NULL:
+ *             free(self.pk.buf)
  */
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
 }
 
-/* "_packer.pyx":102
- *         free(self.pk.buf)
+/* "erlpack/_packer.pyx":112
+ *             free(self.pk.buf)
  * 
  *     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:             # <<<<<<<<<<<<<<
  *         cdef int ret
  *         cdef long long llval
  */
 
-static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_o, struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args) {
+static int __pyx_f_7erlpack_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_o, struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args) {
   int __pyx_v_nest_limit = __pyx_k__4;
   int __pyx_v_ret;
   PY_LONG_LONG __pyx_v_llval;
@@ -1647,7 +1667,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   int __pyx_t_10;
   Py_ssize_t __pyx_t_11;
   PyObject *(*__pyx_t_12)(PyObject *);
-  struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack __pyx_t_13;
+  struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack __pyx_t_13;
   Py_ssize_t __pyx_t_14;
   PyObject *__pyx_t_15 = NULL;
   int __pyx_t_16;
@@ -1664,7 +1684,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
   }
 
-  /* "_packer.pyx":112
+  /* "erlpack/_packer.pyx":122
  *         cdef object obj
  * 
  *         if nest_limit < 0:             # <<<<<<<<<<<<<<
@@ -1674,23 +1694,23 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = ((__pyx_v_nest_limit < 0) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":113
+    /* "erlpack/_packer.pyx":123
  * 
  *         if nest_limit < 0:
  *             raise EncodingError('Exceeded recursion limit')             # <<<<<<<<<<<<<<
  * 
  *         if o is None:
  */
-    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_EncodingError); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_EncodingError); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "_packer.pyx":112
+    /* "erlpack/_packer.pyx":122
  *         cdef object obj
  * 
  *         if nest_limit < 0:             # <<<<<<<<<<<<<<
@@ -1699,7 +1719,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
   }
 
-  /* "_packer.pyx":115
+  /* "erlpack/_packer.pyx":125
  *             raise EncodingError('Exceeded recursion limit')
  * 
  *         if o is None:             # <<<<<<<<<<<<<<
@@ -1710,7 +1730,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_4 = (__pyx_t_1 != 0);
   if (__pyx_t_4) {
 
-    /* "_packer.pyx":116
+    /* "erlpack/_packer.pyx":126
  * 
  *         if o is None:
  *             ret = erlpack_append_nil(&self.pk)             # <<<<<<<<<<<<<<
@@ -1719,7 +1739,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_nil((&__pyx_v_self->pk));
 
-    /* "_packer.pyx":115
+    /* "erlpack/_packer.pyx":125
  *             raise EncodingError('Exceeded recursion limit')
  * 
  *         if o is None:             # <<<<<<<<<<<<<<
@@ -1729,7 +1749,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":118
+  /* "erlpack/_packer.pyx":128
  *             ret = erlpack_append_nil(&self.pk)
  * 
  *         elif o is True:             # <<<<<<<<<<<<<<
@@ -1740,7 +1760,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":119
+    /* "erlpack/_packer.pyx":129
  * 
  *         elif o is True:
  *             ret = erlpack_append_true(&self.pk)             # <<<<<<<<<<<<<<
@@ -1749,7 +1769,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_true((&__pyx_v_self->pk));
 
-    /* "_packer.pyx":118
+    /* "erlpack/_packer.pyx":128
  *             ret = erlpack_append_nil(&self.pk)
  * 
  *         elif o is True:             # <<<<<<<<<<<<<<
@@ -1759,7 +1779,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":121
+  /* "erlpack/_packer.pyx":131
  *             ret = erlpack_append_true(&self.pk)
  * 
  *         elif o is False:             # <<<<<<<<<<<<<<
@@ -1770,7 +1790,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_4 = (__pyx_t_1 != 0);
   if (__pyx_t_4) {
 
-    /* "_packer.pyx":122
+    /* "erlpack/_packer.pyx":132
  * 
  *         elif o is False:
  *             ret = erlpack_append_false(&self.pk)             # <<<<<<<<<<<<<<
@@ -1779,7 +1799,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_false((&__pyx_v_self->pk));
 
-    /* "_packer.pyx":121
+    /* "erlpack/_packer.pyx":131
  *             ret = erlpack_append_true(&self.pk)
  * 
  *         elif o is False:             # <<<<<<<<<<<<<<
@@ -1789,7 +1809,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":124
+  /* "erlpack/_packer.pyx":134
  *             ret = erlpack_append_false(&self.pk)
  * 
  *         elif PyLong_Check(o) or PyInt_Check(o):             # <<<<<<<<<<<<<<
@@ -1807,33 +1827,33 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_4) {
 
-    /* "_packer.pyx":125
+    /* "erlpack/_packer.pyx":135
  * 
  *         elif PyLong_Check(o) or PyInt_Check(o):
  *             if 0 <= o <= 255:             # <<<<<<<<<<<<<<
  *                 ret = erlpack_append_small_integer(&self.pk, <unsigned char> o)
  * 
  */
-    __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_v_o, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_RichCompare(__pyx_int_0, __pyx_v_o, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
       __Pyx_DECREF(__pyx_t_3);
-      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_255, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_255, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 135; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "_packer.pyx":126
+      /* "erlpack/_packer.pyx":136
  *         elif PyLong_Check(o) or PyInt_Check(o):
  *             if 0 <= o <= 255:
  *                 ret = erlpack_append_small_integer(&self.pk, <unsigned char> o)             # <<<<<<<<<<<<<<
  * 
  *             elif -2147483648 <= o <= 2147483647:
  */
-      __pyx_t_5 = __Pyx_PyInt_As_unsigned_char(__pyx_v_o); if (unlikely((__pyx_t_5 == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 126; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyInt_As_unsigned_char(__pyx_v_o); if (unlikely((__pyx_t_5 == (unsigned char)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 136; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = erlpack_append_small_integer((&__pyx_v_self->pk), ((unsigned char)__pyx_t_5));
 
-      /* "_packer.pyx":125
+      /* "erlpack/_packer.pyx":135
  * 
  *         elif PyLong_Check(o) or PyInt_Check(o):
  *             if 0 <= o <= 255:             # <<<<<<<<<<<<<<
@@ -1843,33 +1863,33 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       goto __pyx_L7;
     }
 
-    /* "_packer.pyx":128
+    /* "erlpack/_packer.pyx":138
  *                 ret = erlpack_append_small_integer(&self.pk, <unsigned char> o)
  * 
  *             elif -2147483648 <= o <= 2147483647:             # <<<<<<<<<<<<<<
  *                 ret = erlpack_append_integer(&self.pk, <int32_t> o)
  * 
  */
-    __pyx_t_3 = PyObject_RichCompare(__pyx_int_neg_2147483648, __pyx_v_o, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyObject_RichCompare(__pyx_int_neg_2147483648, __pyx_v_o, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__Pyx_PyObject_IsTrue(__pyx_t_3)) {
       __Pyx_DECREF(__pyx_t_3);
-      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_2147483647, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_2147483647, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 128; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 138; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_4) {
 
-      /* "_packer.pyx":129
+      /* "erlpack/_packer.pyx":139
  * 
  *             elif -2147483648 <= o <= 2147483647:
  *                 ret = erlpack_append_integer(&self.pk, <int32_t> o)             # <<<<<<<<<<<<<<
  * 
  *             else:
  */
-      __pyx_t_6 = __Pyx_PyInt_As_int32_t(__pyx_v_o); if (unlikely((__pyx_t_6 == (int32_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 129; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyInt_As_int32_t(__pyx_v_o); if (unlikely((__pyx_t_6 == (int32_t)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 139; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = erlpack_append_integer((&__pyx_v_self->pk), ((int32_t)__pyx_t_6));
 
-      /* "_packer.pyx":128
+      /* "erlpack/_packer.pyx":138
  *                 ret = erlpack_append_small_integer(&self.pk, <unsigned char> o)
  * 
  *             elif -2147483648 <= o <= 2147483647:             # <<<<<<<<<<<<<<
@@ -1879,7 +1899,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       goto __pyx_L7;
     }
 
-    /* "_packer.pyx":132
+    /* "erlpack/_packer.pyx":142
  * 
  *             else:
  *                 if o > 0:             # <<<<<<<<<<<<<<
@@ -1887,22 +1907,22 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  *                     ret = erlpack_append_unsigned_long_long(&self.pk, ullval)
  */
     /*else*/ {
-      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 132; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyObject_RichCompare(__pyx_v_o, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_4 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 142; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_4) {
 
-        /* "_packer.pyx":133
+        /* "erlpack/_packer.pyx":143
  *             else:
  *                 if o > 0:
  *                     ullval = o             # <<<<<<<<<<<<<<
  *                     ret = erlpack_append_unsigned_long_long(&self.pk, ullval)
  * 
  */
-        __pyx_t_7 = __Pyx_PyInt_As_unsigned_PY_LONG_LONG(__pyx_v_o); if (unlikely((__pyx_t_7 == (unsigned PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 133; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyInt_As_unsigned_PY_LONG_LONG(__pyx_v_o); if (unlikely((__pyx_t_7 == (unsigned PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_v_ullval = __pyx_t_7;
 
-        /* "_packer.pyx":134
+        /* "erlpack/_packer.pyx":144
  *                 if o > 0:
  *                     ullval = o
  *                     ret = erlpack_append_unsigned_long_long(&self.pk, ullval)             # <<<<<<<<<<<<<<
@@ -1911,7 +1931,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
         __pyx_v_ret = erlpack_append_unsigned_long_long((&__pyx_v_self->pk), __pyx_v_ullval);
 
-        /* "_packer.pyx":132
+        /* "erlpack/_packer.pyx":142
  * 
  *             else:
  *                 if o > 0:             # <<<<<<<<<<<<<<
@@ -1921,7 +1941,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         goto __pyx_L8;
       }
 
-      /* "_packer.pyx":137
+      /* "erlpack/_packer.pyx":147
  * 
  *                 else:
  *                     llval = o             # <<<<<<<<<<<<<<
@@ -1929,10 +1949,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  * 
  */
       /*else*/ {
-        __pyx_t_8 = __Pyx_PyInt_As_PY_LONG_LONG(__pyx_v_o); if (unlikely((__pyx_t_8 == (PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 137; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = __Pyx_PyInt_As_PY_LONG_LONG(__pyx_v_o); if (unlikely((__pyx_t_8 == (PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 147; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_v_llval = __pyx_t_8;
 
-        /* "_packer.pyx":138
+        /* "erlpack/_packer.pyx":148
  *                 else:
  *                     llval = o
  *                     ret = erlpack_append_long_long(&self.pk, llval)             # <<<<<<<<<<<<<<
@@ -1945,7 +1965,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
     __pyx_L7:;
 
-    /* "_packer.pyx":124
+    /* "erlpack/_packer.pyx":134
  *             ret = erlpack_append_false(&self.pk)
  * 
  *         elif PyLong_Check(o) or PyInt_Check(o):             # <<<<<<<<<<<<<<
@@ -1955,7 +1975,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":140
+  /* "erlpack/_packer.pyx":150
  *                     ret = erlpack_append_long_long(&self.pk, llval)
  * 
  *         elif PyFloat_Check(o):             # <<<<<<<<<<<<<<
@@ -1965,17 +1985,17 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_4 = (PyFloat_Check(__pyx_v_o) != 0);
   if (__pyx_t_4) {
 
-    /* "_packer.pyx":141
+    /* "erlpack/_packer.pyx":151
  * 
  *         elif PyFloat_Check(o):
  *             doubleval = o             # <<<<<<<<<<<<<<
  *             ret = erlpack_append_double(&self.pk, doubleval)
  * 
  */
-    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_o); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 141; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_9 = __pyx_PyFloat_AsDouble(__pyx_v_o); if (unlikely((__pyx_t_9 == (double)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_doubleval = __pyx_t_9;
 
-    /* "_packer.pyx":142
+    /* "erlpack/_packer.pyx":152
  *         elif PyFloat_Check(o):
  *             doubleval = o
  *             ret = erlpack_append_double(&self.pk, doubleval)             # <<<<<<<<<<<<<<
@@ -1984,7 +2004,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_double((&__pyx_v_self->pk), __pyx_v_doubleval);
 
-    /* "_packer.pyx":140
+    /* "erlpack/_packer.pyx":150
  *                     ret = erlpack_append_long_long(&self.pk, llval)
  * 
  *         elif PyFloat_Check(o):             # <<<<<<<<<<<<<<
@@ -1994,21 +2014,21 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":144
+  /* "erlpack/_packer.pyx":154
  *             ret = erlpack_append_double(&self.pk, doubleval)
  * 
  *         elif PyObject_IsInstance(o, Atom):             # <<<<<<<<<<<<<<
  *             ret = erlpack_append_atom(&self.pk, <PyObject *> o)
  * 
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Atom); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_Atom); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyObject_IsInstance(__pyx_v_o, __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 144; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyObject_IsInstance(__pyx_v_o, __pyx_t_3); if (unlikely(__pyx_t_4 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_1 = (__pyx_t_4 != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":145
+    /* "erlpack/_packer.pyx":155
  * 
  *         elif PyObject_IsInstance(o, Atom):
  *             ret = erlpack_append_atom(&self.pk, <PyObject *> o)             # <<<<<<<<<<<<<<
@@ -2017,7 +2037,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_atom((&__pyx_v_self->pk), ((PyObject *)__pyx_v_o));
 
-    /* "_packer.pyx":144
+    /* "erlpack/_packer.pyx":154
  *             ret = erlpack_append_double(&self.pk, doubleval)
  * 
  *         elif PyObject_IsInstance(o, Atom):             # <<<<<<<<<<<<<<
@@ -2027,7 +2047,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":147
+  /* "erlpack/_packer.pyx":157
  *             ret = erlpack_append_atom(&self.pk, <PyObject *> o)
  * 
  *         elif PyString_Check(o):             # <<<<<<<<<<<<<<
@@ -2037,7 +2057,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyString_Check(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":148
+    /* "erlpack/_packer.pyx":158
  * 
  *         elif PyString_Check(o):
  *             ret = erlpack_append_binary(&self.pk, <PyObject *> o)             # <<<<<<<<<<<<<<
@@ -2046,7 +2066,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_binary((&__pyx_v_self->pk), ((PyObject *)__pyx_v_o));
 
-    /* "_packer.pyx":147
+    /* "erlpack/_packer.pyx":157
  *             ret = erlpack_append_atom(&self.pk, <PyObject *> o)
  * 
  *         elif PyString_Check(o):             # <<<<<<<<<<<<<<
@@ -2056,7 +2076,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":150
+  /* "erlpack/_packer.pyx":160
  *             ret = erlpack_append_binary(&self.pk, <PyObject *> o)
  * 
  *         elif PyUnicode_Check(o):             # <<<<<<<<<<<<<<
@@ -2066,20 +2086,20 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":151
+    /* "erlpack/_packer.pyx":161
  * 
  *         elif PyUnicode_Check(o):
  *             ret = self._encode_unicode(o)             # <<<<<<<<<<<<<<
  * 
  *         elif PyTuple_Check(o):
  */
-    __pyx_t_3 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_encode_unicode(__pyx_v_self, __pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_encode_unicode(__pyx_v_self, __pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 151; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 161; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_ret = __pyx_t_10;
 
-    /* "_packer.pyx":150
+    /* "erlpack/_packer.pyx":160
  *             ret = erlpack_append_binary(&self.pk, <PyObject *> o)
  * 
  *         elif PyUnicode_Check(o):             # <<<<<<<<<<<<<<
@@ -2089,7 +2109,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":153
+  /* "erlpack/_packer.pyx":163
  *             ret = self._encode_unicode(o)
  * 
  *         elif PyTuple_Check(o):             # <<<<<<<<<<<<<<
@@ -2099,40 +2119,40 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyTuple_Check(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":154
+    /* "erlpack/_packer.pyx":164
  * 
  *         elif PyTuple_Check(o):
  *             sizeval = PyTuple_Size(o)             # <<<<<<<<<<<<<<
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError('tuple is too large')
  */
-    __pyx_t_11 = PyTuple_Size(__pyx_v_o); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 154; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = PyTuple_Size(__pyx_v_o); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 164; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_sizeval = __pyx_t_11;
 
-    /* "_packer.pyx":155
+    /* "erlpack/_packer.pyx":165
  *         elif PyTuple_Check(o):
  *             sizeval = PyTuple_Size(o)
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
  *                 raise ValueError('tuple is too large')
  * 
  */
-    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7_packer_MAX_SIZE) != 0);
+    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7erlpack_7_packer_MAX_SIZE) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":156
+      /* "erlpack/_packer.pyx":166
  *             sizeval = PyTuple_Size(o)
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError('tuple is too large')             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":155
+      /* "erlpack/_packer.pyx":165
  *         elif PyTuple_Check(o):
  *             sizeval = PyTuple_Size(o)
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -2141,7 +2161,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":158
+    /* "erlpack/_packer.pyx":168
  *                 raise ValueError('tuple is too large')
  * 
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)             # <<<<<<<<<<<<<<
@@ -2150,7 +2170,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_tuple_header((&__pyx_v_self->pk), __pyx_v_sizeval);
 
-    /* "_packer.pyx":159
+    /* "erlpack/_packer.pyx":169
  * 
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2160,7 +2180,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":160
+      /* "erlpack/_packer.pyx":170
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)
  *             if ret != 0:
  *                 return ret             # <<<<<<<<<<<<<<
@@ -2170,7 +2190,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_r = __pyx_v_ret;
       goto __pyx_L0;
 
-      /* "_packer.pyx":159
+      /* "erlpack/_packer.pyx":169
  * 
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2179,7 +2199,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":162
+    /* "erlpack/_packer.pyx":172
  *                 return ret
  * 
  *             for item in o:             # <<<<<<<<<<<<<<
@@ -2190,26 +2210,26 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_3 = __pyx_v_o; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -2219,7 +2239,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 162; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 172; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -2228,7 +2248,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "_packer.pyx":163
+      /* "erlpack/_packer.pyx":173
  * 
  *             for item in o:
  *                 ret = self._pack(item, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -2237,10 +2257,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-      __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_item, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 163; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_item, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = __pyx_t_10;
 
-      /* "_packer.pyx":164
+      /* "erlpack/_packer.pyx":174
  *             for item in o:
  *                 ret = self._pack(item, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2250,7 +2270,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":165
+        /* "erlpack/_packer.pyx":175
  *                 ret = self._pack(item, nest_limit - 1)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -2261,7 +2281,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "_packer.pyx":164
+        /* "erlpack/_packer.pyx":174
  *             for item in o:
  *                 ret = self._pack(item, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2270,7 +2290,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":162
+      /* "erlpack/_packer.pyx":172
  *                 return ret
  * 
  *             for item in o:             # <<<<<<<<<<<<<<
@@ -2280,7 +2300,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "_packer.pyx":153
+    /* "erlpack/_packer.pyx":163
  *             ret = self._encode_unicode(o)
  * 
  *         elif PyTuple_Check(o):             # <<<<<<<<<<<<<<
@@ -2290,7 +2310,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":167
+  /* "erlpack/_packer.pyx":177
  *                     return ret
  * 
  *         elif PyList_Check(o):             # <<<<<<<<<<<<<<
@@ -2300,17 +2320,17 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyList_Check(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":168
+    /* "erlpack/_packer.pyx":178
  * 
  *         elif PyList_Check(o):
  *             sizeval = PyList_Size(o)             # <<<<<<<<<<<<<<
  *             if sizeval == 0:
  *                 ret = erlpack_append_nil_ext(&self.pk)
  */
-    __pyx_t_11 = PyList_Size(__pyx_v_o); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = PyList_Size(__pyx_v_o); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 178; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_sizeval = __pyx_t_11;
 
-    /* "_packer.pyx":169
+    /* "erlpack/_packer.pyx":179
  *         elif PyList_Check(o):
  *             sizeval = PyList_Size(o)
  *             if sizeval == 0:             # <<<<<<<<<<<<<<
@@ -2320,7 +2340,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_t_1 = ((__pyx_v_sizeval == 0) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":170
+      /* "erlpack/_packer.pyx":180
  *             sizeval = PyList_Size(o)
  *             if sizeval == 0:
  *                 ret = erlpack_append_nil_ext(&self.pk)             # <<<<<<<<<<<<<<
@@ -2329,7 +2349,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_v_ret = erlpack_append_nil_ext((&__pyx_v_self->pk));
 
-      /* "_packer.pyx":169
+      /* "erlpack/_packer.pyx":179
  *         elif PyList_Check(o):
  *             sizeval = PyList_Size(o)
  *             if sizeval == 0:             # <<<<<<<<<<<<<<
@@ -2339,7 +2359,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       goto __pyx_L14;
     }
 
-    /* "_packer.pyx":173
+    /* "erlpack/_packer.pyx":183
  *             else:
  * 
  *                 if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -2347,23 +2367,23 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  * 
  */
     /*else*/ {
-      __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7_packer_MAX_SIZE) != 0);
+      __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7erlpack_7_packer_MAX_SIZE) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":174
+        /* "erlpack/_packer.pyx":184
  * 
  *                 if sizeval > MAX_SIZE:
  *                     raise ValueError("list is too large")             # <<<<<<<<<<<<<<
  * 
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)
  */
-        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_Raise(__pyx_t_3, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-        /* "_packer.pyx":173
+        /* "erlpack/_packer.pyx":183
  *             else:
  * 
  *                 if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -2372,7 +2392,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":176
+      /* "erlpack/_packer.pyx":186
  *                     raise ValueError("list is too large")
  * 
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)             # <<<<<<<<<<<<<<
@@ -2381,7 +2401,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_v_ret = erlpack_append_list_header((&__pyx_v_self->pk), __pyx_v_sizeval);
 
-      /* "_packer.pyx":177
+      /* "erlpack/_packer.pyx":187
  * 
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2391,7 +2411,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":178
+        /* "erlpack/_packer.pyx":188
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -2401,7 +2421,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __pyx_r = __pyx_v_ret;
         goto __pyx_L0;
 
-        /* "_packer.pyx":177
+        /* "erlpack/_packer.pyx":187
  * 
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2410,7 +2430,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":180
+      /* "erlpack/_packer.pyx":190
  *                     return ret
  * 
  *                 for item in o:             # <<<<<<<<<<<<<<
@@ -2421,26 +2441,26 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __pyx_t_3 = __pyx_v_o; __Pyx_INCREF(__pyx_t_3); __pyx_t_11 = 0;
         __pyx_t_12 = NULL;
       } else {
-        __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_11 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_o); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_12 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       }
       for (;;) {
         if (likely(!__pyx_t_12)) {
           if (likely(PyList_CheckExact(__pyx_t_3))) {
             if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_COMPILING_IN_CPYTHON
-            __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             #else
-            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_2);
             #endif
           } else {
             if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
             #if CYTHON_COMPILING_IN_CPYTHON
-            __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_11); __Pyx_INCREF(__pyx_t_2); __pyx_t_11++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             #else
-            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_2);
             #endif
           }
@@ -2450,7 +2470,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
             PyObject* exc_type = PyErr_Occurred();
             if (exc_type) {
               if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-              else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 180; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+              else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 190; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             }
             break;
           }
@@ -2459,7 +2479,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
         __pyx_t_2 = 0;
 
-        /* "_packer.pyx":181
+        /* "erlpack/_packer.pyx":191
  * 
  *                 for item in o:
  *                     ret = self._pack(item, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -2468,10 +2488,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
         __pyx_t_13.__pyx_n = 1;
         __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-        __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_item, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 181; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_item, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 191; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_v_ret = __pyx_t_10;
 
-        /* "_packer.pyx":182
+        /* "erlpack/_packer.pyx":192
  *                 for item in o:
  *                     ret = self._pack(item, nest_limit - 1)
  *                     if ret != 0:             # <<<<<<<<<<<<<<
@@ -2481,7 +2501,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
         if (__pyx_t_1) {
 
-          /* "_packer.pyx":183
+          /* "erlpack/_packer.pyx":193
  *                     ret = self._pack(item, nest_limit - 1)
  *                     if ret != 0:
  *                         return ret             # <<<<<<<<<<<<<<
@@ -2492,7 +2512,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           goto __pyx_L0;
 
-          /* "_packer.pyx":182
+          /* "erlpack/_packer.pyx":192
  *                 for item in o:
  *                     ret = self._pack(item, nest_limit - 1)
  *                     if ret != 0:             # <<<<<<<<<<<<<<
@@ -2501,7 +2521,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
         }
 
-        /* "_packer.pyx":180
+        /* "erlpack/_packer.pyx":190
  *                     return ret
  * 
  *                 for item in o:             # <<<<<<<<<<<<<<
@@ -2511,7 +2531,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "_packer.pyx":185
+      /* "erlpack/_packer.pyx":195
  *                         return ret
  * 
  *                 ret = erlpack_append_nil_ext(&self.pk)             # <<<<<<<<<<<<<<
@@ -2522,7 +2542,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
     __pyx_L14:;
 
-    /* "_packer.pyx":167
+    /* "erlpack/_packer.pyx":177
  *                     return ret
  * 
  *         elif PyList_Check(o):             # <<<<<<<<<<<<<<
@@ -2532,7 +2552,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":187
+  /* "erlpack/_packer.pyx":197
  *                 ret = erlpack_append_nil_ext(&self.pk)
  * 
  *         elif PyDict_CheckExact(o):             # <<<<<<<<<<<<<<
@@ -2542,7 +2562,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyDict_CheckExact(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":188
+    /* "erlpack/_packer.pyx":198
  * 
  *         elif PyDict_CheckExact(o):
  *             d = <dict> o             # <<<<<<<<<<<<<<
@@ -2554,40 +2574,40 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_v_d = ((PyObject*)__pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "_packer.pyx":189
+    /* "erlpack/_packer.pyx":199
  *         elif PyDict_CheckExact(o):
  *             d = <dict> o
  *             sizeval = PyDict_Size(d)             # <<<<<<<<<<<<<<
  * 
  *             if sizeval > MAX_SIZE:
  */
-    __pyx_t_11 = PyDict_Size(__pyx_v_d); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 189; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_11 = PyDict_Size(__pyx_v_d); if (unlikely(__pyx_t_11 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_sizeval = __pyx_t_11;
 
-    /* "_packer.pyx":191
+    /* "erlpack/_packer.pyx":201
  *             sizeval = PyDict_Size(d)
  * 
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
  *                 raise ValueError("dict is too large")
  * 
  */
-    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7_packer_MAX_SIZE) != 0);
+    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7erlpack_7_packer_MAX_SIZE) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":192
+      /* "erlpack/_packer.pyx":202
  * 
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError("dict is too large")             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":191
+      /* "erlpack/_packer.pyx":201
  *             sizeval = PyDict_Size(d)
  * 
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -2596,7 +2616,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":194
+    /* "erlpack/_packer.pyx":204
  *                 raise ValueError("dict is too large")
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)             # <<<<<<<<<<<<<<
@@ -2605,7 +2625,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_map_header((&__pyx_v_self->pk), __pyx_v_sizeval);
 
-    /* "_packer.pyx":195
+    /* "erlpack/_packer.pyx":205
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2615,7 +2635,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":196
+      /* "erlpack/_packer.pyx":206
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:
  *                 return ret             # <<<<<<<<<<<<<<
@@ -2625,7 +2645,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_r = __pyx_v_ret;
       goto __pyx_L0;
 
-      /* "_packer.pyx":195
+      /* "erlpack/_packer.pyx":205
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2634,7 +2654,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":198
+    /* "erlpack/_packer.pyx":208
  *                 return ret
  * 
  *             for k, v in d.iteritems():             # <<<<<<<<<<<<<<
@@ -2644,9 +2664,9 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_t_11 = 0;
     if (unlikely(__pyx_v_d == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%s'", "iteritems");
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
-    __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_d, 1, __pyx_n_s_iteritems, (&__pyx_t_14), (&__pyx_t_10)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_dict_iterator(__pyx_v_d, 1, __pyx_n_s_iteritems, (&__pyx_t_14), (&__pyx_t_10)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF(__pyx_t_3);
     __pyx_t_3 = __pyx_t_2;
@@ -2654,7 +2674,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     while (1) {
       __pyx_t_16 = __Pyx_dict_iter_next(__pyx_t_3, __pyx_t_14, &__pyx_t_11, &__pyx_t_2, &__pyx_t_15, NULL, __pyx_t_10);
       if (unlikely(__pyx_t_16 == 0)) break;
-      if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 198; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_GOTREF(__pyx_t_15);
       __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_2);
@@ -2662,7 +2682,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_15);
       __pyx_t_15 = 0;
 
-      /* "_packer.pyx":199
+      /* "erlpack/_packer.pyx":209
  * 
  *             for k, v in d.iteritems():
  *                 ret = self._pack(k, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -2671,10 +2691,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-      __pyx_t_16 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_k, &__pyx_t_13); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 199; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_16 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_k, &__pyx_t_13); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = __pyx_t_16;
 
-      /* "_packer.pyx":200
+      /* "erlpack/_packer.pyx":210
  *             for k, v in d.iteritems():
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2684,7 +2704,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":201
+        /* "erlpack/_packer.pyx":211
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -2695,7 +2715,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "_packer.pyx":200
+        /* "erlpack/_packer.pyx":210
  *             for k, v in d.iteritems():
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2704,7 +2724,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":203
+      /* "erlpack/_packer.pyx":213
  *                     return ret
  * 
  *                 ret = self._pack(v, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -2713,10 +2733,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-      __pyx_t_16 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_v, &__pyx_t_13); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 203; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_16 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_v, &__pyx_t_13); if (unlikely(__pyx_t_16 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 213; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = __pyx_t_16;
 
-      /* "_packer.pyx":204
+      /* "erlpack/_packer.pyx":214
  * 
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2726,7 +2746,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":205
+        /* "erlpack/_packer.pyx":215
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -2737,7 +2757,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L0;
 
-        /* "_packer.pyx":204
+        /* "erlpack/_packer.pyx":214
  * 
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2748,7 +2768,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "_packer.pyx":187
+    /* "erlpack/_packer.pyx":197
  *                 ret = erlpack_append_nil_ext(&self.pk)
  * 
  *         elif PyDict_CheckExact(o):             # <<<<<<<<<<<<<<
@@ -2758,7 +2778,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":208
+  /* "erlpack/_packer.pyx":218
  * 
  *         # For user dict types, safer to use .items() # via msgpack-python
  *         elif PyDict_Check(o):             # <<<<<<<<<<<<<<
@@ -2768,40 +2788,40 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyDict_Check(__pyx_v_o) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":209
+    /* "erlpack/_packer.pyx":219
  *         # For user dict types, safer to use .items() # via msgpack-python
  *         elif PyDict_Check(o):
  *             sizeval = PyDict_Size(o)             # <<<<<<<<<<<<<<
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError("dict is too large")
  */
-    __pyx_t_14 = PyDict_Size(__pyx_v_o); if (unlikely(__pyx_t_14 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 209; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_14 = PyDict_Size(__pyx_v_o); if (unlikely(__pyx_t_14 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 219; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_v_sizeval = __pyx_t_14;
 
-    /* "_packer.pyx":210
+    /* "erlpack/_packer.pyx":220
  *         elif PyDict_Check(o):
  *             sizeval = PyDict_Size(o)
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
  *                 raise ValueError("dict is too large")
  * 
  */
-    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7_packer_MAX_SIZE) != 0);
+    __pyx_t_1 = ((__pyx_v_sizeval > __pyx_v_7erlpack_7_packer_MAX_SIZE) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":211
+      /* "erlpack/_packer.pyx":221
  *             sizeval = PyDict_Size(o)
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError("dict is too large")             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  */
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_Raise(__pyx_t_3, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":210
+      /* "erlpack/_packer.pyx":220
  *         elif PyDict_Check(o):
  *             sizeval = PyDict_Size(o)
  *             if sizeval > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -2810,7 +2830,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":213
+    /* "erlpack/_packer.pyx":223
  *                 raise ValueError("dict is too large")
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)             # <<<<<<<<<<<<<<
@@ -2819,7 +2839,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_v_ret = erlpack_append_map_header((&__pyx_v_self->pk), __pyx_v_sizeval);
 
-    /* "_packer.pyx":214
+    /* "erlpack/_packer.pyx":224
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2829,7 +2849,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":215
+      /* "erlpack/_packer.pyx":225
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:
  *                 return ret             # <<<<<<<<<<<<<<
@@ -2839,7 +2859,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_r = __pyx_v_ret;
       goto __pyx_L0;
 
-      /* "_packer.pyx":214
+      /* "erlpack/_packer.pyx":224
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  *             if ret != 0:             # <<<<<<<<<<<<<<
@@ -2848,14 +2868,14 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":217
+    /* "erlpack/_packer.pyx":227
  *                 return ret
  * 
  *             for k, v in o.items():             # <<<<<<<<<<<<<<
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:
  */
-    __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_o, __pyx_n_s_items); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_o, __pyx_n_s_items); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_15);
     __pyx_t_2 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_15))) {
@@ -2868,10 +2888,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       }
     }
     if (__pyx_t_2) {
-      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_t_15, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     } else {
-      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_15); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_15); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
@@ -2879,9 +2899,9 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_15 = __pyx_t_3; __Pyx_INCREF(__pyx_t_15); __pyx_t_14 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_14 = -1; __pyx_t_15 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_14 = -1; __pyx_t_15 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_15);
-      __pyx_t_12 = Py_TYPE(__pyx_t_15)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_12 = Py_TYPE(__pyx_t_15)->tp_iternext; if (unlikely(!__pyx_t_12)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
@@ -2889,17 +2909,17 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         if (likely(PyList_CheckExact(__pyx_t_15))) {
           if (__pyx_t_14 >= PyList_GET_SIZE(__pyx_t_15)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_15, __pyx_t_14); __Pyx_INCREF(__pyx_t_3); __pyx_t_14++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_15, __pyx_t_14); __Pyx_INCREF(__pyx_t_3); __pyx_t_14++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_15, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_15, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_14 >= PyTuple_GET_SIZE(__pyx_t_15)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_15, __pyx_t_14); __Pyx_INCREF(__pyx_t_3); __pyx_t_14++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_15, __pyx_t_14); __Pyx_INCREF(__pyx_t_3); __pyx_t_14++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_15, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_15, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -2909,7 +2929,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -2925,7 +2945,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         #if CYTHON_COMPILING_IN_CPYTHON
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -2938,15 +2958,15 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_17);
         #else
-        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_17 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_17 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_17)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_17);
         #endif
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_18 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_18 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_18)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_18);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_19 = Py_TYPE(__pyx_t_18)->tp_iternext;
@@ -2954,7 +2974,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_GOTREF(__pyx_t_2);
         index = 1; __pyx_t_17 = __pyx_t_19(__pyx_t_18); if (unlikely(!__pyx_t_17)) goto __pyx_L30_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_17);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_19(__pyx_t_18), 2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_19(__pyx_t_18), 2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_t_19 = NULL;
         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
         goto __pyx_L31_unpacking_done;
@@ -2962,7 +2982,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
         __pyx_t_19 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 217; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_L31_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_2);
@@ -2970,7 +2990,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __Pyx_XDECREF_SET(__pyx_v_v, __pyx_t_17);
       __pyx_t_17 = 0;
 
-      /* "_packer.pyx":218
+      /* "erlpack/_packer.pyx":228
  * 
  *             for k, v in o.items():
  *                 ret = self._pack(k, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -2979,10 +2999,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-      __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_k, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 218; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_k, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = __pyx_t_10;
 
-      /* "_packer.pyx":219
+      /* "erlpack/_packer.pyx":229
  *             for k, v in o.items():
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -2992,7 +3012,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":220
+        /* "erlpack/_packer.pyx":230
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -3003,7 +3023,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         goto __pyx_L0;
 
-        /* "_packer.pyx":219
+        /* "erlpack/_packer.pyx":229
  *             for k, v in o.items():
  *                 ret = self._pack(k, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -3012,7 +3032,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":222
+      /* "erlpack/_packer.pyx":232
  *                     return ret
  * 
  *                 ret = self._pack(v, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -3021,10 +3041,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       __pyx_t_13.__pyx_n = 1;
       __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-      __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_v, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 222; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_v, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_v_ret = __pyx_t_10;
 
-      /* "_packer.pyx":223
+      /* "erlpack/_packer.pyx":233
  * 
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -3034,7 +3054,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_1 = ((__pyx_v_ret != 0) != 0);
       if (__pyx_t_1) {
 
-        /* "_packer.pyx":224
+        /* "erlpack/_packer.pyx":234
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:
  *                     return ret             # <<<<<<<<<<<<<<
@@ -3045,7 +3065,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         goto __pyx_L0;
 
-        /* "_packer.pyx":223
+        /* "erlpack/_packer.pyx":233
  * 
  *                 ret = self._pack(v, nest_limit - 1)
  *                 if ret != 0:             # <<<<<<<<<<<<<<
@@ -3054,7 +3074,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":217
+      /* "erlpack/_packer.pyx":227
  *                 return ret
  * 
  *             for k, v in o.items():             # <<<<<<<<<<<<<<
@@ -3064,7 +3084,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     }
     __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
 
-    /* "_packer.pyx":208
+    /* "erlpack/_packer.pyx":218
  * 
  *         # For user dict types, safer to use .items() # via msgpack-python
  *         elif PyDict_Check(o):             # <<<<<<<<<<<<<<
@@ -3074,7 +3094,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
     goto __pyx_L4;
   }
 
-  /* "_packer.pyx":226
+  /* "erlpack/_packer.pyx":236
  *                     return ret
  * 
  *         elif PyObject_HasAttrString(o, '__erlpack__'):             # <<<<<<<<<<<<<<
@@ -3084,14 +3104,14 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_t_1 = (PyObject_HasAttrString(__pyx_v_o, __pyx_k_erlpack) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":227
+    /* "erlpack/_packer.pyx":237
  * 
  *         elif PyObject_HasAttrString(o, '__erlpack__'):
  *             obj = o.__erlpack__()             # <<<<<<<<<<<<<<
  *             return self._pack(obj, nest_limit - 1)
  * 
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_o, __pyx_n_s_erlpack); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_o, __pyx_n_s_erlpack); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_17 = NULL;
     if (CYTHON_COMPILING_IN_CPYTHON && likely(PyMethod_Check(__pyx_t_3))) {
@@ -3104,17 +3124,17 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       }
     }
     if (__pyx_t_17) {
-      __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_17); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_17); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
     } else {
-      __pyx_t_15 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 227; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_15 = __Pyx_PyObject_CallNoArg(__pyx_t_3); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 237; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     __Pyx_GOTREF(__pyx_t_15);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_v_obj = __pyx_t_15;
     __pyx_t_15 = 0;
 
-    /* "_packer.pyx":228
+    /* "erlpack/_packer.pyx":238
  *         elif PyObject_HasAttrString(o, '__erlpack__'):
  *             obj = o.__erlpack__()
  *             return self._pack(obj, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -3123,11 +3143,11 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     __pyx_t_13.__pyx_n = 1;
     __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-    __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 228; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 238; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __pyx_r = __pyx_t_10;
     goto __pyx_L0;
 
-    /* "_packer.pyx":226
+    /* "erlpack/_packer.pyx":236
  *                     return ret
  * 
  *         elif PyObject_HasAttrString(o, '__erlpack__'):             # <<<<<<<<<<<<<<
@@ -3136,7 +3156,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
   }
 
-  /* "_packer.pyx":231
+  /* "erlpack/_packer.pyx":241
  * 
  *         else:
  *             if self._encode_hook:             # <<<<<<<<<<<<<<
@@ -3144,10 +3164,10 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  *                 if obj is not None:
  */
   /*else*/ {
-    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_self->_encode_hook); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 231; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_self->_encode_hook); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 241; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":232
+      /* "erlpack/_packer.pyx":242
  *         else:
  *             if self._encode_hook:
  *                 obj = self._encode_hook(o)             # <<<<<<<<<<<<<<
@@ -3166,16 +3186,16 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
         }
       }
       if (!__pyx_t_17) {
-        __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_o); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_15 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_o); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_15);
       } else {
-        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyTuple_New(1+1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_GIVEREF(__pyx_t_17); PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_17); __pyx_t_17 = NULL;
         __Pyx_INCREF(__pyx_v_o);
         __Pyx_GIVEREF(__pyx_v_o);
         PyTuple_SET_ITEM(__pyx_t_2, 0+1, __pyx_v_o);
-        __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 232; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, NULL); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_15);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       }
@@ -3183,7 +3203,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_v_obj = __pyx_t_15;
       __pyx_t_15 = 0;
 
-      /* "_packer.pyx":233
+      /* "erlpack/_packer.pyx":243
  *             if self._encode_hook:
  *                 obj = self._encode_hook(o)
  *                 if obj is not None:             # <<<<<<<<<<<<<<
@@ -3194,7 +3214,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
       __pyx_t_4 = (__pyx_t_1 != 0);
       if (__pyx_t_4) {
 
-        /* "_packer.pyx":234
+        /* "erlpack/_packer.pyx":244
  *                 obj = self._encode_hook(o)
  *                 if obj is not None:
  *                     return self._pack(obj, nest_limit - 1)             # <<<<<<<<<<<<<<
@@ -3203,11 +3223,11 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
         __pyx_t_13.__pyx_n = 1;
         __pyx_t_13.nest_limit = (__pyx_v_nest_limit - 1);
-        __pyx_t_10 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 234; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_10 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_13); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __pyx_r = __pyx_t_10;
         goto __pyx_L0;
 
-        /* "_packer.pyx":233
+        /* "erlpack/_packer.pyx":243
  *             if self._encode_hook:
  *                 obj = self._encode_hook(o)
  *                 if obj is not None:             # <<<<<<<<<<<<<<
@@ -3216,7 +3236,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
       }
 
-      /* "_packer.pyx":231
+      /* "erlpack/_packer.pyx":241
  * 
  *         else:
  *             if self._encode_hook:             # <<<<<<<<<<<<<<
@@ -3225,30 +3245,30 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  */
     }
 
-    /* "_packer.pyx":236
+    /* "erlpack/_packer.pyx":246
  *                     return self._pack(obj, nest_limit - 1)
  * 
  *             raise NotImplementedError('Unable to serialize %r' % o)             # <<<<<<<<<<<<<<
  * 
  *         return ret
  */
-    __pyx_t_15 = __Pyx_PyString_Format(__pyx_kp_s_Unable_to_serialize_r, __pyx_v_o); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_15 = __Pyx_PyString_Format(__pyx_kp_s_Unable_to_serialize_r, __pyx_v_o); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_15);
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_15);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_15);
     __pyx_t_15 = 0;
-    __pyx_t_15 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_15 = __Pyx_PyObject_Call(__pyx_builtin_NotImplementedError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_15)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_15);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_15, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   __pyx_L4:;
 
-  /* "_packer.pyx":238
+  /* "erlpack/_packer.pyx":248
  *             raise NotImplementedError('Unable to serialize %r' % o)
  * 
  *         return ret             # <<<<<<<<<<<<<<
@@ -3258,8 +3278,8 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "_packer.pyx":102
- *         free(self.pk.buf)
+  /* "erlpack/_packer.pyx":112
+ *             free(self.pk.buf)
  * 
  *     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:             # <<<<<<<<<<<<<<
  *         cdef int ret
@@ -3273,7 +3293,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   __Pyx_XDECREF(__pyx_t_15);
   __Pyx_XDECREF(__pyx_t_17);
   __Pyx_XDECREF(__pyx_t_18);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder._pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder._pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_d);
@@ -3285,7 +3305,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
   return __pyx_r;
 }
 
-/* "_packer.pyx":240
+/* "erlpack/_packer.pyx":250
  *         return ret
  * 
  *     cdef _encode_unicode(self, object obj):             # <<<<<<<<<<<<<<
@@ -3293,7 +3313,7 @@ static int __pyx_f_7_packer_17ErlangTermEncoder__pack(struct __pyx_obj_7_packer_
  *             return self._pack([ord(x) for x in obj])
  */
 
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj) {
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__encode_unicode(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj) {
   PyObject *__pyx_v_st = 0;
   size_t __pyx_v_size;
   PyObject *__pyx_v_x = NULL;
@@ -3312,7 +3332,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_encode_unicode", 0);
 
-  /* "_packer.pyx":241
+  /* "erlpack/_packer.pyx":251
  * 
  *     cdef _encode_unicode(self, object obj):
  *         if not self._encoding:             # <<<<<<<<<<<<<<
@@ -3322,7 +3342,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
   __pyx_t_1 = ((!(__pyx_v_self->_encoding != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":242
+    /* "erlpack/_packer.pyx":252
  *     cdef _encode_unicode(self, object obj):
  *         if not self._encoding:
  *             return self._pack([ord(x) for x in obj])             # <<<<<<<<<<<<<<
@@ -3330,32 +3350,32 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  *         cdef object st = PyUnicode_AsEncodedString(obj, self._encoding, self._unicode_errors)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(PyList_CheckExact(__pyx_v_obj)) || PyTuple_CheckExact(__pyx_v_obj)) {
       __pyx_t_3 = __pyx_v_obj; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
       __pyx_t_5 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_obj); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_obj); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
     for (;;) {
       if (likely(!__pyx_t_5)) {
         if (likely(PyList_CheckExact(__pyx_t_3))) {
           if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_6); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_6); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
           #endif
         } else {
           if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
           #if CYTHON_COMPILING_IN_CPYTHON
-          __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_6); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_6); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           #else
-          __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
           #endif
         }
@@ -3365,7 +3385,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -3373,22 +3393,22 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
       }
       __Pyx_XDECREF_SET(__pyx_v_x, __pyx_t_6);
       __pyx_t_6 = 0;
-      __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_x); if (unlikely(__pyx_t_7 == (long)(Py_UCS4)-1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_6 = __Pyx_PyInt_From_long(__pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = __Pyx_PyObject_Ord(__pyx_v_x); if (unlikely(__pyx_t_7 == (long)(Py_UCS4)-1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyInt_From_long(__pyx_t_7); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_6);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_6))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_6))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_8 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_t_2, NULL); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_8 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_t_2, NULL); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 242; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_t_8); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 252; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "_packer.pyx":241
+    /* "erlpack/_packer.pyx":251
  * 
  *     cdef _encode_unicode(self, object obj):
  *         if not self._encoding:             # <<<<<<<<<<<<<<
@@ -3397,62 +3417,62 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  */
   }
 
-  /* "_packer.pyx":244
+  /* "erlpack/_packer.pyx":254
  *             return self._pack([ord(x) for x in obj])
  * 
  *         cdef object st = PyUnicode_AsEncodedString(obj, self._encoding, self._unicode_errors)             # <<<<<<<<<<<<<<
  *         cdef size_t size = PyString_Size(st)
  * 
  */
-  __pyx_t_2 = PyUnicode_AsEncodedString(__pyx_v_obj, __pyx_v_self->_encoding, __pyx_v_self->_unicode_errors); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyUnicode_AsEncodedString(__pyx_v_obj, __pyx_v_self->_encoding, __pyx_v_self->_unicode_errors); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_st = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "_packer.pyx":245
+  /* "erlpack/_packer.pyx":255
  * 
  *         cdef object st = PyUnicode_AsEncodedString(obj, self._encoding, self._unicode_errors)
  *         cdef size_t size = PyString_Size(st)             # <<<<<<<<<<<<<<
  * 
  *         if self._unicode_type == 'binary':
  */
-  __pyx_t_4 = PyString_Size(__pyx_v_st); if (unlikely(__pyx_t_4 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 245; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_4 = PyString_Size(__pyx_v_st); if (unlikely(__pyx_t_4 == -1L)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_size = __pyx_t_4;
 
-  /* "_packer.pyx":247
+  /* "erlpack/_packer.pyx":257
  *         cdef size_t size = PyString_Size(st)
  * 
  *         if self._unicode_type == 'binary':             # <<<<<<<<<<<<<<
  *             if size > MAX_SIZE:
  *                 raise ValueError('unicode string is too large using unicode type binary')
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_self->_unicode_type, __pyx_n_s_binary, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 247; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_self->_unicode_type, __pyx_n_s_binary, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":248
+    /* "erlpack/_packer.pyx":258
  * 
  *         if self._unicode_type == 'binary':
  *             if size > MAX_SIZE:             # <<<<<<<<<<<<<<
  *                 raise ValueError('unicode string is too large using unicode type binary')
  * 
  */
-    __pyx_t_1 = ((__pyx_v_size > __pyx_v_7_packer_MAX_SIZE) != 0);
+    __pyx_t_1 = ((__pyx_v_size > __pyx_v_7erlpack_7_packer_MAX_SIZE) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":249
+      /* "erlpack/_packer.pyx":259
  *         if self._unicode_type == 'binary':
  *             if size > MAX_SIZE:
  *                 raise ValueError('unicode string is too large using unicode type binary')             # <<<<<<<<<<<<<<
  * 
  *             return erlpack_append_binary(&self.pk, <PyObject*> st)
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":248
+      /* "erlpack/_packer.pyx":258
  * 
  *         if self._unicode_type == 'binary':
  *             if size > MAX_SIZE:             # <<<<<<<<<<<<<<
@@ -3461,7 +3481,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  */
     }
 
-    /* "_packer.pyx":251
+    /* "erlpack/_packer.pyx":261
  *                 raise ValueError('unicode string is too large using unicode type binary')
  * 
  *             return erlpack_append_binary(&self.pk, <PyObject*> st)             # <<<<<<<<<<<<<<
@@ -3469,13 +3489,13 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  *         elif self._unicode_type == 'str':
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyInt_From_int(erlpack_append_binary((&__pyx_v_self->pk), ((PyObject *)__pyx_v_st))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 251; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_int(erlpack_append_binary((&__pyx_v_self->pk), ((PyObject *)__pyx_v_st))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 261; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "_packer.pyx":247
+    /* "erlpack/_packer.pyx":257
  *         cdef size_t size = PyString_Size(st)
  * 
  *         if self._unicode_type == 'binary':             # <<<<<<<<<<<<<<
@@ -3484,17 +3504,17 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  */
   }
 
-  /* "_packer.pyx":253
+  /* "erlpack/_packer.pyx":263
  *             return erlpack_append_binary(&self.pk, <PyObject*> st)
  * 
  *         elif self._unicode_type == 'str':             # <<<<<<<<<<<<<<
  *             if size > 0xFFF:
  *                 raise ValueError('unicode string is too large using unicode type str')
  */
-  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_self->_unicode_type, __pyx_n_s_str, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = (__Pyx_PyString_Equals(__pyx_v_self->_unicode_type, __pyx_n_s_str, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 263; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "_packer.pyx":254
+    /* "erlpack/_packer.pyx":264
  * 
  *         elif self._unicode_type == 'str':
  *             if size > 0xFFF:             # <<<<<<<<<<<<<<
@@ -3504,20 +3524,20 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
     __pyx_t_1 = ((__pyx_v_size > 0xFFF) != 0);
     if (__pyx_t_1) {
 
-      /* "_packer.pyx":255
+      /* "erlpack/_packer.pyx":265
  *         elif self._unicode_type == 'str':
  *             if size > 0xFFF:
  *                 raise ValueError('unicode string is too large using unicode type str')             # <<<<<<<<<<<<<<
  * 
  *             return erlpack_append_string(&self.pk, <PyObject*> st)
  */
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_Raise(__pyx_t_2, 0, 0, 0);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-      /* "_packer.pyx":254
+      /* "erlpack/_packer.pyx":264
  * 
  *         elif self._unicode_type == 'str':
  *             if size > 0xFFF:             # <<<<<<<<<<<<<<
@@ -3526,7 +3546,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  */
     }
 
-    /* "_packer.pyx":257
+    /* "erlpack/_packer.pyx":267
  *                 raise ValueError('unicode string is too large using unicode type str')
  * 
  *             return erlpack_append_string(&self.pk, <PyObject*> st)             # <<<<<<<<<<<<<<
@@ -3534,13 +3554,13 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  *         else:
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __Pyx_PyInt_From_int(erlpack_append_string((&__pyx_v_self->pk), ((PyObject *)__pyx_v_st))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 257; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_int(erlpack_append_string((&__pyx_v_self->pk), ((PyObject *)__pyx_v_st))); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 267; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "_packer.pyx":253
+    /* "erlpack/_packer.pyx":263
  *             return erlpack_append_binary(&self.pk, <PyObject*> st)
  * 
  *         elif self._unicode_type == 'str':             # <<<<<<<<<<<<<<
@@ -3549,7 +3569,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  */
   }
 
-  /* "_packer.pyx":260
+  /* "erlpack/_packer.pyx":270
  * 
  *         else:
  *             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)             # <<<<<<<<<<<<<<
@@ -3557,22 +3577,22 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  *     cpdef pack(self, object obj):
  */
   /*else*/ {
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Unknown_unicode_encoding_type_s, __pyx_v_self->_unicode_type); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Unknown_unicode_encoding_type_s, __pyx_v_self->_unicode_type); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "_packer.pyx":240
+  /* "erlpack/_packer.pyx":250
  *         return ret
  * 
  *     cdef _encode_unicode(self, object obj):             # <<<<<<<<<<<<<<
@@ -3585,7 +3605,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder._encode_unicode", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder._encode_unicode", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_st);
@@ -3595,7 +3615,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
   return __pyx_r;
 }
 
-/* "_packer.pyx":262
+/* "erlpack/_packer.pyx":272
  *             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)
  * 
  *     cpdef pack(self, object obj):             # <<<<<<<<<<<<<<
@@ -3603,8 +3623,8 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode(struct __p
  *         self._ensure_buf()
  */
 
-static PyObject *__pyx_pw_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /*proto*/
-static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /*proto*/
+static PyObject *__pyx_f_7erlpack_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj, int __pyx_skip_dispatch) {
   int __pyx_v_ret;
   PyObject *__pyx_v_buf = NULL;
   PyObject *__pyx_r = NULL;
@@ -3616,7 +3636,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   PyObject *__pyx_t_5 = NULL;
   int __pyx_t_6;
   int __pyx_t_7;
-  struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack __pyx_t_8;
+  struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3625,9 +3645,9 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pack); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7_packer_17ErlangTermEncoder_7pack)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_7pack)) {
       __Pyx_XDECREF(__pyx_r);
       __Pyx_INCREF(__pyx_t_1);
       __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -3641,16 +3661,16 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
         }
       }
       if (!__pyx_t_4) {
-        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_obj); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_obj); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
       } else {
-        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(1+1); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4); __pyx_t_4 = NULL;
         __Pyx_INCREF(__pyx_v_obj);
         __Pyx_GIVEREF(__pyx_v_obj);
         PyTuple_SET_ITEM(__pyx_t_5, 0+1, __pyx_v_obj);
-        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_5, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       }
@@ -3663,18 +3683,18 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "_packer.pyx":264
+  /* "erlpack/_packer.pyx":274
  *     cpdef pack(self, object obj):
  *         cdef int ret
  *         self._ensure_buf()             # <<<<<<<<<<<<<<
  * 
  *         ret = erlpack_append_version(&self.pk)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_ensure_buf(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 264; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_ensure_buf(__pyx_v_self); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "_packer.pyx":266
+  /* "erlpack/_packer.pyx":276
  *         self._ensure_buf()
  * 
  *         ret = erlpack_append_version(&self.pk)             # <<<<<<<<<<<<<<
@@ -3683,7 +3703,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
  */
   __pyx_v_ret = erlpack_append_version((&__pyx_v_self->pk));
 
-  /* "_packer.pyx":267
+  /* "erlpack/_packer.pyx":277
  * 
  *         ret = erlpack_append_version(&self.pk)
  *         if ret == -1:             # <<<<<<<<<<<<<<
@@ -3693,16 +3713,16 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   __pyx_t_6 = ((__pyx_v_ret == -1L) != 0);
   if (__pyx_t_6) {
 
-    /* "_packer.pyx":268
+    /* "erlpack/_packer.pyx":278
  *         ret = erlpack_append_version(&self.pk)
  *         if ret == -1:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  * 
  *         ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 268; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 278; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "_packer.pyx":267
+    /* "erlpack/_packer.pyx":277
  * 
  *         ret = erlpack_append_version(&self.pk)
  *         if ret == -1:             # <<<<<<<<<<<<<<
@@ -3711,7 +3731,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
  */
   }
 
-  /* "_packer.pyx":270
+  /* "erlpack/_packer.pyx":280
  *             raise MemoryError
  * 
  *         ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)             # <<<<<<<<<<<<<<
@@ -3719,11 +3739,11 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
  *             raise MemoryError
  */
   __pyx_t_8.__pyx_n = 1;
-  __pyx_t_8.nest_limit = __pyx_v_7_packer_DEFAULT_RECURSE_LIMIT;
-  __pyx_t_7 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_8); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8.nest_limit = __pyx_v_7erlpack_7_packer_DEFAULT_RECURSE_LIMIT;
+  __pyx_t_7 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_pack(__pyx_v_self, __pyx_v_obj, &__pyx_t_8); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 280; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_v_ret = __pyx_t_7;
 
-  /* "_packer.pyx":271
+  /* "erlpack/_packer.pyx":281
  * 
  *         ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
  *         if ret == -1:             # <<<<<<<<<<<<<<
@@ -3733,16 +3753,16 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   __pyx_t_6 = ((__pyx_v_ret == -1L) != 0);
   if (__pyx_t_6) {
 
-    /* "_packer.pyx":272
+    /* "erlpack/_packer.pyx":282
  *         ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
  *         if ret == -1:
  *             raise MemoryError             # <<<<<<<<<<<<<<
  *         elif ret:  # should not happen.
  *             raise TypeError('_pack returned code(%s)' % ret)
  */
-    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyErr_NoMemory(); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 282; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "_packer.pyx":271
+    /* "erlpack/_packer.pyx":281
  * 
  *         ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
  *         if ret == -1:             # <<<<<<<<<<<<<<
@@ -3751,7 +3771,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
  */
   }
 
-  /* "_packer.pyx":273
+  /* "erlpack/_packer.pyx":283
  *         if ret == -1:
  *             raise MemoryError
  *         elif ret:  # should not happen.             # <<<<<<<<<<<<<<
@@ -3761,31 +3781,31 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   __pyx_t_6 = (__pyx_v_ret != 0);
   if (__pyx_t_6) {
 
-    /* "_packer.pyx":274
+    /* "erlpack/_packer.pyx":284
  *             raise MemoryError
  *         elif ret:  # should not happen.
  *             raise TypeError('_pack returned code(%s)' % ret)             # <<<<<<<<<<<<<<
  * 
  *         buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)
  */
-    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_ret); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_ret); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_pack_returned_code_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_pack_returned_code_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
     __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 274; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 284; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-    /* "_packer.pyx":273
+    /* "erlpack/_packer.pyx":283
  *         if ret == -1:
  *             raise MemoryError
  *         elif ret:  # should not happen.             # <<<<<<<<<<<<<<
@@ -3794,30 +3814,30 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
  */
   }
 
-  /* "_packer.pyx":276
+  /* "erlpack/_packer.pyx":286
  *             raise TypeError('_pack returned code(%s)' % ret)
  * 
  *         buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)             # <<<<<<<<<<<<<<
  *         self._free_big_buf()
  * 
  */
-  __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_self->pk.buf, __pyx_v_self->pk.length); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 276; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_self->pk.buf, __pyx_v_self->pk.length); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_buf = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "_packer.pyx":277
+  /* "erlpack/_packer.pyx":287
  * 
  *         buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)
  *         self._free_big_buf()             # <<<<<<<<<<<<<<
  * 
  *         return buf
  */
-  __pyx_t_2 = ((struct __pyx_vtabstruct_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_free_big_buf(__pyx_v_self); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 277; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = ((struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self->__pyx_vtab)->_free_big_buf(__pyx_v_self); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 287; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "_packer.pyx":279
+  /* "erlpack/_packer.pyx":289
  *         self._free_big_buf()
  * 
  *         return buf             # <<<<<<<<<<<<<<
@@ -3827,7 +3847,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   __pyx_r = __pyx_v_buf;
   goto __pyx_L0;
 
-  /* "_packer.pyx":262
+  /* "erlpack/_packer.pyx":272
  *             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)
  * 
  *     cpdef pack(self, object obj):             # <<<<<<<<<<<<<<
@@ -3842,7 +3862,7 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder.pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder.pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_buf);
@@ -3852,20 +3872,20 @@ static PyObject *__pyx_f_7_packer_17ErlangTermEncoder_pack(struct __pyx_obj_7_pa
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /*proto*/
-static char __pyx_doc_7_packer_17ErlangTermEncoder_6pack[] = "ErlangTermEncoder.pack(self, obj)";
-static PyObject *__pyx_pw_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj) {
+static PyObject *__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj); /*proto*/
+static char __pyx_doc_7erlpack_7_packer_17ErlangTermEncoder_6pack[] = "ErlangTermEncoder.pack(self, obj)";
+static PyObject *__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_7pack(PyObject *__pyx_v_self, PyObject *__pyx_v_obj) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("pack (wrapper)", 0);
-  __pyx_r = __pyx_pf_7_packer_17ErlangTermEncoder_6pack(((struct __pyx_obj_7_packer_ErlangTermEncoder *)__pyx_v_self), ((PyObject *)__pyx_v_obj));
+  __pyx_r = __pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_6pack(((struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)__pyx_v_self), ((PyObject *)__pyx_v_obj));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj) {
+static PyObject *__pyx_pf_7erlpack_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *__pyx_v_self, PyObject *__pyx_v_obj) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3874,7 +3894,7 @@ static PyObject *__pyx_pf_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("pack", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_7_packer_17ErlangTermEncoder_pack(__pyx_v_self, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 262; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_7erlpack_7_packer_17ErlangTermEncoder_pack(__pyx_v_self, __pyx_v_obj, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 272; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3883,17 +3903,17 @@ static PyObject *__pyx_pf_7_packer_17ErlangTermEncoder_6pack(struct __pyx_obj_7_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("_packer.ErlangTermEncoder.pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("erlpack._packer.ErlangTermEncoder.pack", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_7_packer_ErlangTermEncoder __pyx_vtable_7_packer_ErlangTermEncoder;
+static struct __pyx_vtabstruct_7erlpack_7_packer_ErlangTermEncoder __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder;
 
-static PyObject *__pyx_tp_new_7_packer_ErlangTermEncoder(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_7_packer_ErlangTermEncoder *p;
+static PyObject *__pyx_tp_new_7erlpack_7_packer_ErlangTermEncoder(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -3901,18 +3921,18 @@ static PyObject *__pyx_tp_new_7_packer_ErlangTermEncoder(PyTypeObject *t, CYTHON
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_7_packer_ErlangTermEncoder *)o);
-  p->__pyx_vtab = __pyx_vtabptr_7_packer_ErlangTermEncoder;
+  p = ((struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)o);
+  p->__pyx_vtab = __pyx_vtabptr_7erlpack_7_packer_ErlangTermEncoder;
   p->_unicode_type = Py_None; Py_INCREF(Py_None);
   p->_encode_hook = Py_None; Py_INCREF(Py_None);
-  if (unlikely(__pyx_pw_7_packer_17ErlangTermEncoder_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) {
+  if (unlikely(__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) {
     Py_DECREF(o); o = 0;
   }
   return o;
 }
 
-static void __pyx_tp_dealloc_7_packer_ErlangTermEncoder(PyObject *o) {
-  struct __pyx_obj_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7_packer_ErlangTermEncoder *)o;
+static void __pyx_tp_dealloc_7erlpack_7_packer_ErlangTermEncoder(PyObject *o) {
+  struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)o;
   #if PY_VERSION_HEX >= 0x030400a1
   if (unlikely(Py_TYPE(o)->tp_finalize) && !_PyGC_FINALIZED(o)) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -3923,7 +3943,7 @@ static void __pyx_tp_dealloc_7_packer_ErlangTermEncoder(PyObject *o) {
     PyObject *etype, *eval, *etb;
     PyErr_Fetch(&etype, &eval, &etb);
     ++Py_REFCNT(o);
-    __pyx_pw_7_packer_17ErlangTermEncoder_5__dealloc__(o);
+    __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_5__dealloc__(o);
     --Py_REFCNT(o);
     PyErr_Restore(etype, eval, etb);
   }
@@ -3932,9 +3952,9 @@ static void __pyx_tp_dealloc_7_packer_ErlangTermEncoder(PyObject *o) {
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static int __pyx_tp_traverse_7_packer_ErlangTermEncoder(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_7erlpack_7_packer_ErlangTermEncoder(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7_packer_ErlangTermEncoder *)o;
+  struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)o;
   if (p->_unicode_type) {
     e = (*v)(p->_unicode_type, a); if (e) return e;
   }
@@ -3944,9 +3964,9 @@ static int __pyx_tp_traverse_7_packer_ErlangTermEncoder(PyObject *o, visitproc v
   return 0;
 }
 
-static int __pyx_tp_clear_7_packer_ErlangTermEncoder(PyObject *o) {
+static int __pyx_tp_clear_7erlpack_7_packer_ErlangTermEncoder(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7_packer_ErlangTermEncoder *)o;
+  struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *p = (struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *)o;
   tmp = ((PyObject*)p->_unicode_type);
   p->_unicode_type = Py_None; Py_INCREF(Py_None);
   Py_XDECREF(tmp);
@@ -3956,17 +3976,17 @@ static int __pyx_tp_clear_7_packer_ErlangTermEncoder(PyObject *o) {
   return 0;
 }
 
-static PyMethodDef __pyx_methods_7_packer_ErlangTermEncoder[] = {
-  {"pack", (PyCFunction)__pyx_pw_7_packer_17ErlangTermEncoder_7pack, METH_O, __pyx_doc_7_packer_17ErlangTermEncoder_6pack},
+static PyMethodDef __pyx_methods_7erlpack_7_packer_ErlangTermEncoder[] = {
+  {"pack", (PyCFunction)__pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_7pack, METH_O, __pyx_doc_7erlpack_7_packer_17ErlangTermEncoder_6pack},
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_7_packer_ErlangTermEncoder = {
+static PyTypeObject __pyx_type_7erlpack_7_packer_ErlangTermEncoder = {
   PyVarObject_HEAD_INIT(0, 0)
-  "_packer.ErlangTermEncoder", /*tp_name*/
-  sizeof(struct __pyx_obj_7_packer_ErlangTermEncoder), /*tp_basicsize*/
+  "erlpack._packer.ErlangTermEncoder", /*tp_name*/
+  sizeof(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_7_packer_ErlangTermEncoder, /*tp_dealloc*/
+  __pyx_tp_dealloc_7erlpack_7_packer_ErlangTermEncoder, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -3988,13 +4008,13 @@ static PyTypeObject __pyx_type_7_packer_ErlangTermEncoder = {
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   "ErlangTermEncoder(encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None)", /*tp_doc*/
-  __pyx_tp_traverse_7_packer_ErlangTermEncoder, /*tp_traverse*/
-  __pyx_tp_clear_7_packer_ErlangTermEncoder, /*tp_clear*/
+  __pyx_tp_traverse_7erlpack_7_packer_ErlangTermEncoder, /*tp_traverse*/
+  __pyx_tp_clear_7erlpack_7_packer_ErlangTermEncoder, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_7_packer_ErlangTermEncoder, /*tp_methods*/
+  __pyx_methods_7erlpack_7_packer_ErlangTermEncoder, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -4002,9 +4022,9 @@ static PyTypeObject __pyx_type_7_packer_ErlangTermEncoder = {
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   0, /*tp_dictoffset*/
-  __pyx_pw_7_packer_17ErlangTermEncoder_3__init__, /*tp_init*/
+  __pyx_pw_7erlpack_7_packer_17ErlangTermEncoder_3__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_7_packer_ErlangTermEncoder, /*tp_new*/
+  __pyx_tp_new_7erlpack_7_packer_ErlangTermEncoder, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -4061,6 +4081,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_encode_hook, __pyx_k_encode_hook, sizeof(__pyx_k_encode_hook), 0, 0, 1, 1},
   {&__pyx_n_s_encoding, __pyx_k_encoding, sizeof(__pyx_k_encoding), 0, 0, 1, 1},
   {&__pyx_n_s_erlpack, __pyx_k_erlpack, sizeof(__pyx_k_erlpack), 0, 0, 1, 1},
+  {&__pyx_n_s_erlpack__packer, __pyx_k_erlpack__packer, sizeof(__pyx_k_erlpack__packer), 0, 0, 1, 1},
   {&__pyx_n_s_erlpack_types, __pyx_k_erlpack_types, sizeof(__pyx_k_erlpack_types), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
@@ -4071,7 +4092,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_pack, __pyx_k_pack, sizeof(__pyx_k_pack), 0, 0, 1, 1},
   {&__pyx_kp_s_pack_returned_code_s, __pyx_k_pack_returned_code_s, sizeof(__pyx_k_pack_returned_code_s), 0, 0, 1, 0},
-  {&__pyx_n_s_packer, __pyx_k_packer, sizeof(__pyx_k_packer), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
@@ -4088,10 +4108,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_Exception = __Pyx_GetBuiltinName(__pyx_n_s_Exception); if (!__pyx_builtin_Exception) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 40; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 236; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 260; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 246; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 270; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -4101,7 +4121,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "_packer.pyx":64
+  /* "erlpack/_packer.pyx":64
  *         else:
  *             if isinstance(encoding, unicode):
  *                 _encoding = encoding.encode('ascii')             # <<<<<<<<<<<<<<
@@ -4112,7 +4132,7 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "_packer.pyx":69
+  /* "erlpack/_packer.pyx":69
  * 
  *             if isinstance(unicode_errors, unicode):
  *                 _unicode_errors = unicode_errors.encode('ascii')             # <<<<<<<<<<<<<<
@@ -4123,91 +4143,91 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "_packer.pyx":87
+  /* "erlpack/_packer.pyx":92
  *             self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)
  *             if self.pk.buf == NULL:
  *                 raise MemoryError('Unable to allocate buffer')             # <<<<<<<<<<<<<<
  * 
  *             self.pk.allocated_size = INITIAL_BUFFER_SIZE
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_allocate_buffer); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 87; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_Unable_to_allocate_buffer); if (unlikely(!__pyx_tuple__3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 92; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "_packer.pyx":113
+  /* "erlpack/_packer.pyx":123
  * 
  *         if nest_limit < 0:
  *             raise EncodingError('Exceeded recursion limit')             # <<<<<<<<<<<<<<
  * 
  *         if o is None:
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Exceeded_recursion_limit); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 113; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Exceeded_recursion_limit); if (unlikely(!__pyx_tuple__5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 123; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "_packer.pyx":156
+  /* "erlpack/_packer.pyx":166
  *             sizeval = PyTuple_Size(o)
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError('tuple is too large')             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_tuple_header(&self.pk, sizeval)
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_tuple_is_too_large); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 156; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_tuple_is_too_large); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 166; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "_packer.pyx":174
+  /* "erlpack/_packer.pyx":184
  * 
  *                 if sizeval > MAX_SIZE:
  *                     raise ValueError("list is too large")             # <<<<<<<<<<<<<<
  * 
  *                 ret = erlpack_append_list_header(&self.pk, sizeval)
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_list_is_too_large); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_s_list_is_too_large); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 184; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "_packer.pyx":192
+  /* "erlpack/_packer.pyx":202
  * 
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError("dict is too large")             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_dict_is_too_large); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 192; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_s_dict_is_too_large); if (unlikely(!__pyx_tuple__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 202; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "_packer.pyx":211
+  /* "erlpack/_packer.pyx":221
  *             sizeval = PyDict_Size(o)
  *             if sizeval > MAX_SIZE:
  *                 raise ValueError("dict is too large")             # <<<<<<<<<<<<<<
  * 
  *             ret = erlpack_append_map_header(&self.pk, sizeval)
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_dict_is_too_large); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 211; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_s_dict_is_too_large); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 221; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "_packer.pyx":249
+  /* "erlpack/_packer.pyx":259
  *         if self._unicode_type == 'binary':
  *             if size > MAX_SIZE:
  *                 raise ValueError('unicode string is too large using unicode type binary')             # <<<<<<<<<<<<<<
  * 
  *             return erlpack_append_binary(&self.pk, <PyObject*> st)
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_unicode_string_is_too_large_usin); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 249; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_unicode_string_is_too_large_usin); if (unlikely(!__pyx_tuple__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 259; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "_packer.pyx":255
+  /* "erlpack/_packer.pyx":265
  *         elif self._unicode_type == 'str':
  *             if size > 0xFFF:
  *                 raise ValueError('unicode string is too large using unicode type str')             # <<<<<<<<<<<<<<
  * 
  *             return erlpack_append_string(&self.pk, <PyObject*> st)
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_unicode_string_is_too_large_usin_2); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 255; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_s_unicode_string_is_too_large_usin_2); if (unlikely(!__pyx_tuple__11)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 265; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
   __Pyx_RefNannyFinishContext();
@@ -4298,14 +4318,14 @@ PyMODINIT_FUNC PyInit__packer(void)
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
-  if (__pyx_module_is_main__packer) {
+  if (__pyx_module_is_main_erlpack___packer) {
     if (PyObject_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (!PyDict_GetItemString(modules, "_packer")) {
-      if (unlikely(PyDict_SetItemString(modules, "_packer", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyDict_GetItemString(modules, "erlpack._packer")) {
+      if (unlikely(PyDict_SetItemString(modules, "erlpack._packer", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
@@ -4317,17 +4337,17 @@ PyMODINIT_FUNC PyInit__packer(void)
   /*--- Variable export code ---*/
   /*--- Function export code ---*/
   /*--- Type init code ---*/
-  __pyx_vtabptr_7_packer_ErlangTermEncoder = &__pyx_vtable_7_packer_ErlangTermEncoder;
-  __pyx_vtable_7_packer_ErlangTermEncoder._ensure_buf = (PyObject *(*)(struct __pyx_obj_7_packer_ErlangTermEncoder *))__pyx_f_7_packer_17ErlangTermEncoder__ensure_buf;
-  __pyx_vtable_7_packer_ErlangTermEncoder._free_big_buf = (PyObject *(*)(struct __pyx_obj_7_packer_ErlangTermEncoder *))__pyx_f_7_packer_17ErlangTermEncoder__free_big_buf;
-  __pyx_vtable_7_packer_ErlangTermEncoder._pack = (int (*)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *, struct __pyx_opt_args_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args))__pyx_f_7_packer_17ErlangTermEncoder__pack;
-  __pyx_vtable_7_packer_ErlangTermEncoder._encode_unicode = (PyObject *(*)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *))__pyx_f_7_packer_17ErlangTermEncoder__encode_unicode;
-  __pyx_vtable_7_packer_ErlangTermEncoder.pack = (PyObject *(*)(struct __pyx_obj_7_packer_ErlangTermEncoder *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7_packer_17ErlangTermEncoder_pack;
-  if (PyType_Ready(&__pyx_type_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_type_7_packer_ErlangTermEncoder.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_7_packer_ErlangTermEncoder.tp_dict, __pyx_vtabptr_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (PyObject_SetAttrString(__pyx_m, "ErlangTermEncoder", (PyObject *)&__pyx_type_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_7_packer_ErlangTermEncoder = &__pyx_type_7_packer_ErlangTermEncoder;
+  __pyx_vtabptr_7erlpack_7_packer_ErlangTermEncoder = &__pyx_vtable_7erlpack_7_packer_ErlangTermEncoder;
+  __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder._ensure_buf = (PyObject *(*)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *))__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__ensure_buf;
+  __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder._free_big_buf = (PyObject *(*)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *))__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__free_big_buf;
+  __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder._pack = (int (*)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *, struct __pyx_opt_args_7erlpack_7_packer_17ErlangTermEncoder__pack *__pyx_optional_args))__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__pack;
+  __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder._encode_unicode = (PyObject *(*)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *))__pyx_f_7erlpack_7_packer_17ErlangTermEncoder__encode_unicode;
+  __pyx_vtable_7erlpack_7_packer_ErlangTermEncoder.pack = (PyObject *(*)(struct __pyx_obj_7erlpack_7_packer_ErlangTermEncoder *, PyObject *, int __pyx_skip_dispatch))__pyx_f_7erlpack_7_packer_17ErlangTermEncoder_pack;
+  if (PyType_Ready(&__pyx_type_7erlpack_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_type_7erlpack_7_packer_ErlangTermEncoder.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_7erlpack_7_packer_ErlangTermEncoder.tp_dict, __pyx_vtabptr_7erlpack_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyObject_SetAttrString(__pyx_m, "ErlangTermEncoder", (PyObject *)&__pyx_type_7erlpack_7_packer_ErlangTermEncoder) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 44; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_7erlpack_7_packer_ErlangTermEncoder = &__pyx_type_7erlpack_7_packer_ErlangTermEncoder;
   /*--- Type import code ---*/
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__Pyx_BUILTIN_MODULE_NAME, "type", 
   #if CYTHON_COMPILING_IN_PYPY
@@ -4345,7 +4365,7 @@ PyMODINIT_FUNC PyInit__packer(void)
   if (__Pyx_patch_abc() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
 
-  /* "_packer.pyx":9
+  /* "erlpack/_packer.pyx":9
  * from libc.limits cimport *
  * from libc.stdint cimport *
  * from erlpack.types import Atom             # <<<<<<<<<<<<<<
@@ -4366,43 +4386,43 @@ PyMODINIT_FUNC PyInit__packer(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "_packer.pyx":11
+  /* "erlpack/_packer.pyx":11
  * from erlpack.types import Atom
  * 
  * cdef int DEFAULT_RECURSE_LIMIT = 256             # <<<<<<<<<<<<<<
  * cdef size_t BIG_BUF_SIZE = 1024 * 1024 * 2
  * cdef size_t INITIAL_BUFFER_SIZE = 1024 * 1024
  */
-  __pyx_v_7_packer_DEFAULT_RECURSE_LIMIT = 0x100;
+  __pyx_v_7erlpack_7_packer_DEFAULT_RECURSE_LIMIT = 0x100;
 
-  /* "_packer.pyx":12
+  /* "erlpack/_packer.pyx":12
  * 
  * cdef int DEFAULT_RECURSE_LIMIT = 256
  * cdef size_t BIG_BUF_SIZE = 1024 * 1024 * 2             # <<<<<<<<<<<<<<
  * cdef size_t INITIAL_BUFFER_SIZE = 1024 * 1024
  * cdef size_t MAX_SIZE = (2 ** 32) - 1;
  */
-  __pyx_v_7_packer_BIG_BUF_SIZE = 0x200000;
+  __pyx_v_7erlpack_7_packer_BIG_BUF_SIZE = 0x200000;
 
-  /* "_packer.pyx":13
+  /* "erlpack/_packer.pyx":13
  * cdef int DEFAULT_RECURSE_LIMIT = 256
  * cdef size_t BIG_BUF_SIZE = 1024 * 1024 * 2
  * cdef size_t INITIAL_BUFFER_SIZE = 1024 * 1024             # <<<<<<<<<<<<<<
  * cdef size_t MAX_SIZE = (2 ** 32) - 1;
  * 
  */
-  __pyx_v_7_packer_INITIAL_BUFFER_SIZE = 0x100000;
+  __pyx_v_7erlpack_7_packer_INITIAL_BUFFER_SIZE = 0x100000;
 
-  /* "_packer.pyx":14
+  /* "erlpack/_packer.pyx":14
  * cdef size_t BIG_BUF_SIZE = 1024 * 1024 * 2
  * cdef size_t INITIAL_BUFFER_SIZE = 1024 * 1024
  * cdef size_t MAX_SIZE = (2 ** 32) - 1;             # <<<<<<<<<<<<<<
  * 
  * cdef extern from "encoder.h":
  */
-  __pyx_v_7_packer_MAX_SIZE = 0xFFFFFFFF;
+  __pyx_v_7erlpack_7_packer_MAX_SIZE = 0xFFFFFFFF;
 
-  /* "_packer.pyx":40
+  /* "erlpack/_packer.pyx":40
  *     int erlpack_append_map_header(erlpack_buffer *pk, size_t size)
  * 
  * class EncodingError(Exception):             # <<<<<<<<<<<<<<
@@ -4416,7 +4436,7 @@ PyMODINIT_FUNC PyInit__packer(void)
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_builtin_Exception);
   __pyx_t_1 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 40; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_EncodingError, __pyx_n_s_EncodingError, (PyObject *) NULL, __pyx_n_s_packer, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 40; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare(__pyx_t_1, __pyx_t_2, __pyx_n_s_EncodingError, __pyx_n_s_EncodingError, (PyObject *) NULL, __pyx_n_s_erlpack__packer, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 40; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_EncodingError, __pyx_t_2, __pyx_t_3, NULL, 0, 1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 40; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_4);
@@ -4426,16 +4446,16 @@ PyMODINIT_FUNC PyInit__packer(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "_packer.pyx":102
- *         free(self.pk.buf)
+  /* "erlpack/_packer.pyx":112
+ *             free(self.pk.buf)
  * 
  *     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:             # <<<<<<<<<<<<<<
  *         cdef int ret
  *         cdef long long llval
  */
-  __pyx_k__4 = __pyx_v_7_packer_DEFAULT_RECURSE_LIMIT;
+  __pyx_k__4 = __pyx_v_7erlpack_7_packer_DEFAULT_RECURSE_LIMIT;
 
-  /* "_packer.pyx":1
+  /* "erlpack/_packer.pyx":1
  * #coding: utf-8             # <<<<<<<<<<<<<<
  * #cython: embedsignature=True
  * 
@@ -4455,11 +4475,11 @@ PyMODINIT_FUNC PyInit__packer(void)
   __Pyx_XDECREF(__pyx_t_4);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init _packer", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init erlpack._packer", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_DECREF(__pyx_m); __pyx_m = 0;
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init _packer");
+    PyErr_SetString(PyExc_ImportError, "init erlpack._packer");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

@@ -11,13 +11,13 @@ except ImportError:
 
 if have_cython:
     packer = Extension(
-        "_packer",
+        "erlpack._packer",
         cython_cplus=True,
         extra_compile_args=['-O3'],
         sources=["erlpack/_packer.pyx"]
     )
 else:
-    packer = Extension('_packer', sources=['erlpack/_packer.cpp'], extra_compile_args=['-O3'])
+    packer = Extension('erlpack._packer', sources=['erlpack/_packer.cpp'], extra_compile_args=['-O3'])
 
 ext_modules = [packer]
 
