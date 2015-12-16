@@ -9,7 +9,9 @@ from libc.stdint cimport *
 from erlpack.types import Atom
 
 cdef int DEFAULT_RECURSE_LIMIT = 256
-cdef size_t max_size = (2 ** 32) - 1;
+cdef size_t BIG_BUF_SIZE = 1024 * 1024 * 2
+cdef size_t INITIAL_BUFFER_SIZE = 1024 * 1024
+cdef size_t MAX_SIZE = (2 ** 32) - 1;
 
 cdef extern from "encoder.h":
     struct erlpack_buffer:
@@ -41,20 +43,14 @@ class EncodingError(Exception):
 
 cdef class ErlangTermEncoder(object):
     cdef erlpack_buffer pk
-    cdef char* _encoding
-    cdef char* _unicode_errors
+    cdef char*_encoding
+    cdef char*_unicode_errors
     cdef object _unicode_type
     cdef object _encode_hook
 
     def __cinit__(self):
-        cdef int buf_size = 1024 * 1024
-        cdef char*buf = <char*> malloc(buf_size)
-        if buf == NULL:
-            raise MemoryError('Unable to allocate buffer')
-
-        self.pk.buf = buf
-        self.pk.allocated_size = buf_size
-        self.pk.length = 0
+        self.pk.buf = NULL
+        self._ensure_buf()
 
     def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):
         cdef object _encoding
@@ -80,8 +76,38 @@ cdef class ErlangTermEncoder(object):
         self._unicode_type = unicode_type
         self._encode_hook = encode_hook
 
+    cdef _ensure_buf(self):
+        """
+        Ensures that a buffer is available to be written to when serializing data.
+
+        If there is no buffer, allocate one sized to `INITIAL_BUFFER_SIZE`. If allocation
+        fails, raise a MemoryError.
+        """
+        if self.pk.buf != NULL:
+            self.pk.length = 0
+
+        else:
+            self.pk.buf = <char*> malloc(INITIAL_BUFFER_SIZE)
+            if self.pk.buf == NULL:
+                raise MemoryError('Unable to allocate buffer')
+
+            self.pk.allocated_size = INITIAL_BUFFER_SIZE
+            self.pk.length = 0
+
+    cdef _free_big_buf(self):
+        """
+        If the buffer is larger than `BIG_BUF_SIZE`, free it, so that packing large data does not hold onto
+        the big buffer after the serialization is complete.
+        """
+        if self.pk.allocated_size >= BIG_BUF_SIZE:
+            free(self.pk.buf)
+            self.pk.buf = NULL
+            self.pk.length = 0
+            self.pk.allocated_size = 0
+
     def __dealloc__(self):
-        free(self.pk.buf)
+        if self.pk.buf != NULL:
+            free(self.pk.buf)
 
     cdef int _pack(self, object o, int nest_limit=DEFAULT_RECURSE_LIMIT) except -1:
         cdef int ret
@@ -116,6 +142,7 @@ cdef class ErlangTermEncoder(object):
                 if o > 0:
                     ullval = o
                     ret = erlpack_append_unsigned_long_long(&self.pk, ullval)
+
                 else:
                     llval = o
                     ret = erlpack_append_long_long(&self.pk, llval)
@@ -135,7 +162,7 @@ cdef class ErlangTermEncoder(object):
 
         elif PyTuple_Check(o):
             sizeval = PyTuple_Size(o)
-            if sizeval > max_size:
+            if sizeval > MAX_SIZE:
                 raise ValueError('tuple is too large')
 
             ret = erlpack_append_tuple_header(&self.pk, sizeval)
@@ -153,7 +180,7 @@ cdef class ErlangTermEncoder(object):
                 ret = erlpack_append_nil_ext(&self.pk)
             else:
 
-                if sizeval > max_size:
+                if sizeval > MAX_SIZE:
                     raise ValueError("list is too large")
 
                 ret = erlpack_append_list_header(&self.pk, sizeval)
@@ -171,7 +198,7 @@ cdef class ErlangTermEncoder(object):
             d = <dict> o
             sizeval = PyDict_Size(d)
 
-            if sizeval > max_size:
+            if sizeval > MAX_SIZE:
                 raise ValueError("dict is too large")
 
             ret = erlpack_append_map_header(&self.pk, sizeval)
@@ -182,6 +209,7 @@ cdef class ErlangTermEncoder(object):
                 ret = self._pack(k, nest_limit - 1)
                 if ret != 0:
                     return ret
+
                 ret = self._pack(v, nest_limit - 1)
                 if ret != 0:
                     return ret
@@ -189,7 +217,7 @@ cdef class ErlangTermEncoder(object):
         # For user dict types, safer to use .items() # via msgpack-python
         elif PyDict_Check(o):
             sizeval = PyDict_Size(o)
-            if sizeval > max_size:
+            if sizeval > MAX_SIZE:
                 raise ValueError("dict is too large")
 
             ret = erlpack_append_map_header(&self.pk, sizeval)
@@ -200,8 +228,8 @@ cdef class ErlangTermEncoder(object):
                 ret = self._pack(k, nest_limit - 1)
                 if ret != 0:
                     return ret
-                ret = self._pack(v, nest_limit - 1)
 
+                ret = self._pack(v, nest_limit - 1)
                 if ret != 0:
                     return ret
 
@@ -227,7 +255,7 @@ cdef class ErlangTermEncoder(object):
         cdef size_t size = PyString_Size(st)
 
         if self._unicode_type == 'binary':
-            if size > max_size:
+            if size > MAX_SIZE:
                 raise ValueError('unicode string is too large using unicode type binary')
 
             return erlpack_append_binary(&self.pk, <PyObject*> st)
@@ -241,10 +269,9 @@ cdef class ErlangTermEncoder(object):
         else:
             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)
 
-
     cpdef pack(self, object obj):
         cdef int ret
-        self.pk.length = 0
+        self._ensure_buf()
 
         ret = erlpack_append_version(&self.pk)
         if ret == -1:
@@ -257,5 +284,6 @@ cdef class ErlangTermEncoder(object):
             raise TypeError('_pack returned code(%s)' % ret)
 
         buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)
-        self.pk.length = 0
+        self._free_big_buf()
+
         return buf

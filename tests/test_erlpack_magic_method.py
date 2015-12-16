@@ -16,4 +16,4 @@ class User(object):
 
 def test_erlpack_magic_method():
     u = User('jake', 23)
-    assert pack(u) == '\x83t\x00\x00\x00\x02d\x00\x03agea\x17d\x00\x04namem\x00\x00\x00\x04jake'
+    assert pack(u) == '\x83t\x00\x00\x00\x02s\x03agea\x17s\x04namem\x00\x00\x00\x04jake'

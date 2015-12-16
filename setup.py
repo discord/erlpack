@@ -23,7 +23,7 @@ ext_modules = [packer]
 
 setup(
     name='erlpack',
-    version='0.1.2',
+    version='0.1.3',
     author='Jake Heinz',
     author_email='jh@hammerandchisel.com',
     url="http://github.com/hammerandchisel/erlpack",
