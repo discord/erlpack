@@ -50,7 +50,6 @@ cdef class ErlangTermEncoder(object):
 
     def __cinit__(self):
         self.pk.buf = NULL
-        self._ensure_buf()
 
     def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):
         cdef object _encoding
