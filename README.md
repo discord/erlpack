@@ -1,8 +1,8 @@
-== Erlpack
+# Erlpack
 
 Erlpack is a fast encoder (and soon decoder) for the Erlang Term Format (version 131) for Python.
 
-=== Things that can be packed:
+## Things that can be packed:
 
 - [X] None
 - [X] Booleans
@@ -23,14 +23,14 @@ Erlpack is a fast encoder (and soon decoder) for the Erlang Term Format (version
 - [ ] References
 
 
-=== How to pack:
+## How to pack:
 ```py
 from erlpack import pack
 
 packed = pack(["thing", "to", "pack"])
 ```
 
-=== How to pack an atom:
+## How to pack an atom:
 
 ```py
 from erlpack import Atom, pack
@@ -38,7 +38,7 @@ from erlpack import Atom, pack
 packed = pack(Atom('hello'))
 ```
 
-=== How to use an encode hook.
+## How to use an encode hook.
 
 ```py
 from erlpack import ErlangTermEncoder
@@ -52,7 +52,7 @@ packed = encoder.pack(datetime.datetime(2015, 12, 25, 12, 23, 55))
 
 ```
 
-=== How to make custom types packable.
+## How to make custom types packable.
 
 ```py
 from erlpack import pack, Atom
