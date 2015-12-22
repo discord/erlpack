@@ -1,3 +1,7 @@
+"""
+Unpacker based on work from Samuel Stauffer's `python-erlastic` library. See COPYING.
+"""
+
 from __future__ import division
 import struct
 import zlib

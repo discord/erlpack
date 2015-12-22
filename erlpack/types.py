@@ -1,3 +1,7 @@
+"""
+Types based on work from Samuel Stauffer's `python-erlastic` library. See COPYING.
+"""
+
 __all__ = ['Atom', 'Reference', 'Port', 'PID', 'Export']
 
 
@@ -7,9 +11,12 @@ class Atom(str):
 
 
 class Reference(object):
+    __slots__ = ['node', 'ref_id', 'creation']
+
     def __init__(self, node, ref_id, creation):
         if not isinstance(ref_id, tuple):
             ref_id = tuple(ref_id)
+
         self.node = node
         self.ref_id = ref_id
         self.creation = creation
@@ -22,13 +29,15 @@ class Reference(object):
         return -1
 
     def __str__(self):
-        return '#Ref<%d.%s' % (self.creation, '.'.join(str(i) for i in self.ref_id))
+        return '#Ref<%d.%s>' % (self.creation, '.'.join(str(i) for i in self.ref_id))
 
     def __repr__(self):
-        return '%s::%s' % (self.__str__(), self.node)
+        return '%s::%s' % (self, self.node)
 
 
 class Port(object):
+    __slots__ = ['node', 'port_id', 'creation']
+
     def __init__(self, node, port_id, creation):
         self.node = node
         self.port_id = port_id
@@ -45,10 +54,12 @@ class Port(object):
         return '#Port<%d.%d>' % (self.creation, self.port_id)
 
     def __repr__(self):
-        return '%s::%s' % (self.__str__(), self.node)
+        return '%s::%s' % (self, self.node)
 
 
 class PID(object):
+    __slots__ = ['node', 'pid_id', 'serial', 'creation']
+
     def __init__(self, node, pid_id, serial, creation):
         self.node = node
         self.pid_id = pid_id
@@ -66,10 +77,12 @@ class PID(object):
         return '<%d.%d.%d>' % (self.creation, self.pid_id, self.serial)
 
     def __repr__(self):
-        return '%s::%s' % (self.__str__(), self.node)
+        return '%s::%s' % (self, self.node)
 
 
 class Export(object):
+    __slots__ = ['module', 'function', 'arity']
+
     def __init__(self, module, function, arity):
         self.module = module
         self.function = function
@@ -86,4 +99,4 @@ class Export(object):
         return '#Fun<%s.%s.%d>' % (self.module, self.function, self.arity)
 
     def __repr__(self):
-        return self.__str__()
+        return str(self)
