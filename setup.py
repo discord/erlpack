@@ -16,10 +16,17 @@ if have_cython:
         extra_compile_args=['-O3'],
         sources=["erlpack/_packer.pyx"]
     )
+    unpacker = Extension(
+        "erlpack._unpacker",
+        cython_cplus=True,
+        extra_compile_args=['-O3'],
+        sources=["erlpack/_unpacker.pyx"]
+    )
 else:
     packer = Extension('erlpack._packer', sources=['erlpack/_packer.cpp'], extra_compile_args=['-O3'])
+    unpacker = Extension('erlpack._unpacker', sources=['erlpack/_unpacker.cpp'], extra_compile_args=['-O3'])
 
-ext_modules = [packer]
+ext_modules = [packer, unpacker]
 
 setup(
     name='erlpack',
