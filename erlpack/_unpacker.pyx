@@ -217,7 +217,7 @@ cdef class ErlangTermDecoder(object):
     cdef object decode_bigint(self, n, bytes, unsigned int offset):
         cdef unsigned char* cd = <unsigned char*>PyString_AsString(bytes)
         cpdef unsigned long long ull
-        cpdef unsigned char pos = 1
+        cpdef unsigned char pos = 0
 
         if offset + 1 + n > PyString_Size(bytes):
             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))
@@ -228,7 +228,7 @@ cdef class ErlangTermDecoder(object):
         if sign == 0 and n <= 8:
             ull = 0
             for i in range(n):
-                ull |= cd[offset] << pos
+                ull |= <unsigned long long>(cd[offset]) << pos
                 pos += 8
                 offset += 1
 
