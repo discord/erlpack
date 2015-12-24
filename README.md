@@ -1,6 +1,6 @@
 # Erlpack
 
-Erlpack is a fast encoder (and soon decoder) for the Erlang Term Format (version 131) for Python.
+Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python.
 
 ## Things that can be packed:
 
@@ -28,6 +28,13 @@ Erlpack is a fast encoder (and soon decoder) for the Erlang Term Format (version
 from erlpack import pack
 
 packed = pack(["thing", "to", "pack"])
+```
+
+## How to unpack:
+```py
+from erlpack import unpack
+
+unpacked = unpack(pack)
 ```
 
 ## How to pack an atom:
