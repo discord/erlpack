@@ -34,7 +34,7 @@ packed = pack(["thing", "to", "pack"])
 ```py
 from erlpack import unpack
 
-unpacked = unpack(pack)
+unpacked = unpack(packed)
 ```
 
 ## How to pack an atom:
