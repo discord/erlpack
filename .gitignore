@@ -140,3 +140,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+## For Native Node Modules ##
+js/build
+js/node_modules
