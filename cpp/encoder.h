@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "sysdep.h"
 #include "constants.h"
-#include "Python.h"
 #include <limits.h>
 #include <string.h>
 
@@ -114,15 +113,15 @@ static inline int erlpack_append_double(erlpack_buffer *b, double f) {
   erlpack_append(b, buf, 1 + 31);
 }
 
-static inline int erlpack_append_atom(erlpack_buffer *b, PyObject *o) {
-  size_t size = PyString_Size(o);
+static inline int erlpack_append_atom(erlpack_buffer *b, const char *o) {
+  size_t size = strlen(o);
   if (size < 255) {
     unsigned char buf[2] = {SMALL_ATOM_EXT, size};
     int ret = erlpack_buffer_write(b, (const char *)buf, 2);
     if (ret < 0)
       return ret;
 
-    erlpack_append(b, PyString_AsString(o), size);
+    erlpack_append(b, o, size);
   } else {
     unsigned char buf[3];
     buf[0] = ATOM_EXT;
@@ -137,36 +136,36 @@ static inline int erlpack_append_atom(erlpack_buffer *b, PyObject *o) {
     if (ret < 0)
       return ret;
 
-    erlpack_append(b, PyString_AsString(o), size);
+    erlpack_append(b, o, size);
   }
 }
 
-static inline int erlpack_append_binary(erlpack_buffer *b, PyObject *o) {
+static inline int erlpack_append_binary(erlpack_buffer *b, const char *o) {
   unsigned char buf[5];
   buf[0] = BINARY_EXT;
 
-  size_t size = PyString_Size(o);
+  size_t size = strlen(o);
   _erlpack_store32(buf + 1, size);
 
   int ret = erlpack_buffer_write(b, (const char *)buf, 5);
   if (ret < 0)
     return ret;
 
-  erlpack_append(b, PyString_AsString(o), size);
+  erlpack_append(b, o, size);
 }
 
-static inline int erlpack_append_string(erlpack_buffer *b, PyObject *o) {
+static inline int erlpack_append_string(erlpack_buffer *b, const char *o) {
   unsigned char buf[3];
   buf[0] = STRING_EXT;
 
-  size_t size = PyString_Size(o);
+  size_t size = strlen(o);
   _erlpack_store16(buf + 1, size);
 
   int ret = erlpack_buffer_write(b, (const char *)buf, 3);
   if (ret < 0)
     return ret;
 
-  erlpack_append(b, PyString_AsString(o), size);
+  erlpack_append(b, o, size);
 }
 
 static inline int erlpack_append_tuple_header(erlpack_buffer *b, size_t size) {
