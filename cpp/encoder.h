@@ -113,15 +113,14 @@ static inline int erlpack_append_double(erlpack_buffer *b, double f) {
   erlpack_append(b, buf, 1 + 31);
 }
 
-static inline int erlpack_append_atom(erlpack_buffer *b, const char *o) {
-  size_t size = strlen(o);
+static inline int erlpack_append_atom(erlpack_buffer *b, const char *bytes, size_t size) {
   if (size < 255) {
-    unsigned char buf[2] = {SMALL_ATOM_EXT, size};
+    unsigned char buf[2] = {SMALL_ATOM_EXT, (unsigned char)size};
     int ret = erlpack_buffer_write(b, (const char *)buf, 2);
     if (ret < 0)
       return ret;
 
-    erlpack_append(b, o, size);
+    erlpack_append(b, bytes, size);
   } else {
     unsigned char buf[3];
     buf[0] = ATOM_EXT;
@@ -136,36 +135,34 @@ static inline int erlpack_append_atom(erlpack_buffer *b, const char *o) {
     if (ret < 0)
       return ret;
 
-    erlpack_append(b, o, size);
+    erlpack_append(b, bytes, size);
   }
 }
 
-static inline int erlpack_append_binary(erlpack_buffer *b, const char *o) {
+static inline int erlpack_append_binary(erlpack_buffer *b, const char *bytes, size_t size) {
   unsigned char buf[5];
   buf[0] = BINARY_EXT;
 
-  size_t size = strlen(o);
   _erlpack_store32(buf + 1, size);
 
   int ret = erlpack_buffer_write(b, (const char *)buf, 5);
   if (ret < 0)
     return ret;
 
-  erlpack_append(b, o, size);
+  erlpack_append(b, bytes, size);
 }
 
-static inline int erlpack_append_string(erlpack_buffer *b, const char *o) {
+static inline int erlpack_append_string(erlpack_buffer *b, const char *bytes, size_t size) {
   unsigned char buf[3];
   buf[0] = STRING_EXT;
 
-  size_t size = strlen(o);
   _erlpack_store16(buf + 1, size);
 
   int ret = erlpack_buffer_write(b, (const char *)buf, 3);
   if (ret < 0)
     return ret;
 
-  erlpack_append(b, o, size);
+  erlpack_append(b, bytes, size);
 }
 
 static inline int erlpack_append_tuple_header(erlpack_buffer *b, size_t size) {

@@ -29,9 +29,9 @@ cdef extern from "../../cpp/encoder.h":
     int erlpack_append_unsigned_long_long(erlpack_buffer *pk, unsigned long long d)
     int erlpack_append_long_long(erlpack_buffer *pk, long long d)
     int erlpack_append_double(erlpack_buffer *pk, double f)
-    int erlpack_append_atom(erlpack_buffer *pk, const char *o)
-    int erlpack_append_binary(erlpack_buffer *pk, const char *o)
-    int erlpack_append_string(erlpack_buffer *pk, const char *o)
+    int erlpack_append_atom(erlpack_buffer *pk, const char *bytes, unsigned int size)
+    int erlpack_append_binary(erlpack_buffer *pk, const char *bytes, unsigned int size)
+    int erlpack_append_string(erlpack_buffer *pk, const char *bytes, unsigned int size)
     int erlpack_append_tuple_header(erlpack_buffer *pk, size_t size)
     int erlpack_append_nil_ext(erlpack_buffer *pk)
     int erlpack_append_list_header(erlpack_buffer *pk, size_t size)
@@ -151,10 +151,11 @@ cdef class ErlangTermEncoder(object):
             ret = erlpack_append_double(&self.pk, doubleval)
 
         elif PyObject_IsInstance(o, Atom):
-            ret = erlpack_append_atom(&self.pk, str(o))
+            val = str(o)
+            ret = erlpack_append_atom(&self.pk, PyString_AS_STRING(val), PyString_GET_SIZE(val))
 
         elif PyString_Check(o):
-            ret = erlpack_append_binary(&self.pk, o)
+            ret = erlpack_append_binary(&self.pk, PyString_AS_STRING(o), PyString_GET_SIZE(o))
 
         elif PyUnicode_Check(o):
             ret = self._encode_unicode(o)
@@ -257,13 +258,13 @@ cdef class ErlangTermEncoder(object):
             if size > MAX_SIZE:
                 raise ValueError('unicode string is too large using unicode type binary')
 
-            return erlpack_append_binary(&self.pk, st)
+            return erlpack_append_binary(&self.pk, PyString_AS_STRING(st), size)
 
         elif self._unicode_type == 'str':
             if size > 0xFFF:
                 raise ValueError('unicode string is too large using unicode type str')
 
-            return erlpack_append_string(&self.pk, st)
+            return erlpack_append_string(&self.pk, PyString_AS_STRING(st), size)
 
         else:
             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)
