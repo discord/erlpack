@@ -15,14 +15,14 @@ describe('packs', () => {
         expect(packed.equals(expected)).toBeTruthy();
     });
 
-   it('dictionary', () => {
-       const expected = new Buffer(
-           '\x83t\x00\x00\x00\x03a\x02a\x02a\x03l\x00\x00\x00\x03a\x01a\x02a\x03jm\x00\x00\x00\x01aa\x01',
-           'binary'
-       );
-       const packed = erlpack.pack({'a': 1, 2: 2, 3: [1, 2, 3]});
-       expect(packed.equals(expected)).toBeTruthy();
-   });
+    it('dictionary', () => {
+        const expected = new Buffer(
+            '\x83t\x00\x00\x00\x03a\x02a\x02a\x03l\x00\x00\x00\x03a\x01a\x02a\x03jm\x00\x00\x00\x01aa\x01',
+            'binary'
+        );
+        const packed = erlpack.pack({'a': 1, 2: 2, 3: [1, 2, 3]});
+        expect(packed.equals(expected)).toBeTruthy();
+    });
 
     it('false', () => {
         const expected = new Buffer('\x83s\x05false', 'binary');

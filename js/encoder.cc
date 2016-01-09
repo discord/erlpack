@@ -23,9 +23,9 @@ public:
         }
     }
 
-    Nan::MaybeLocal<v8::Object> releaseAsBuffer() {
+    Nan::MaybeLocal<Object> releaseAsBuffer() {
         if (pk.buf == nullptr) {
-            return Nan::MaybeLocal<v8::Object>();
+            return Nan::MaybeLocal<Object>();
         }
 
         auto buffer = Nan::NewBuffer(pk.buf, pk.length);
@@ -45,7 +45,7 @@ public:
         pk.allocated_size = 0;
     }
 
-    int pack(v8::Local<v8::Value> value, Isolate* isolate, const int nestLimit = DEFAULT_RECURSE_LIMIT) {
+    int pack(Local<Value> value, Isolate* isolate, const int nestLimit = DEFAULT_RECURSE_LIMIT) {
         ret = 0;
 
         if (nestLimit < 0) {
@@ -80,7 +80,7 @@ public:
             ret = erlpack_append_false(&pk);
         }
         else if(value->IsString()) {
-            v8::String::Utf8Value string(value->ToString(isolate));
+            String::Utf8Value string(value->ToString(isolate));
             ret = erlpack_append_binary(&pk, *string, string.length());
         }
         else if (value->IsArray()) {
@@ -150,6 +150,199 @@ private:
     erlpack_buffer pk;
 };
 
+int is_big_endian(void)
+{
+    union {
+        uint32_t i;
+        char c[4];
+    } bint = {0x01020304};
+
+    return bint.c[0] == 1;
+}
+
+class Decoder {
+public:
+    Decoder(Local<Value> value, Isolate* isolate_)
+    : isolate(isolate_)
+    , data(node::Buffer::Data(value->ToObject()))
+    , size(node::Buffer::Length(value->ToObject()))
+    , offset(0)
+    {
+        const auto version = read8();
+        if (version != FORMAT_VERSION) {
+            Nan::ThrowError("Bad version number."); // Expected %d found %d", FORMAT_VERSION, version);
+        }
+    }
+
+    uint8_t read8() {
+        auto val = *reinterpret_cast<const uint8_t*>(data + offset);
+        offset += sizeof(uint8_t);
+        return val;
+    }
+
+    uint16_t read16() {
+        uint16_t val = ntohs(*reinterpret_cast<const uint16_t*>(data + offset));
+        offset += sizeof(uint16_t);
+        return val;
+    }
+
+    uint32_t read32() {
+        uint32_t val = ntohl(*reinterpret_cast<const uint32_t*>(data + offset));
+        offset += sizeof(uint32_t);
+        return val;
+    }
+
+    Local<Value> decodeSmallInteger() {
+        return Integer::New(isolate, read8());
+    }
+
+    Local<Value> decodeInteger() {
+        return Integer::New(isolate, read32());
+    }
+
+    Local<Value> decodeList() {
+        const uint32_t length = read32();
+        Local<Object> array = Array::New(isolate, length);
+        for(uint32_t i = 0; i < length; ++i) {
+            array->Set(i, unpack());
+        }
+
+        const auto tailMarker = read8();
+        if (tailMarker != NIL_EXT) {
+            Nan::ThrowError("List doesn't end with a tail marker, but it must!");
+        }
+
+        return array;
+    }
+
+    Local<Value> decodeNil() {
+        return Local<Value>();
+    }
+
+    Local<Value> decodeMap() {
+        const uint32_t length = read32();
+        auto map = Object::New(isolate);
+
+        for(uint32_t i = 0; i < length; ++i) {
+            const auto key = unpack();
+            const auto value = unpack();
+            map->Set(key, value);
+        }
+
+        return map;
+    }
+
+    const char* readString(uint32_t length) {
+        const char* str = data + offset;
+        offset += length;
+        return str;
+    }
+
+    Local<Value> decodeSmallAtom() {
+        auto length = read8();
+        const char* atom = readString(length);
+
+        if (length == 3) { // nil
+            return Nan::Null();
+        }
+        else if (length == 4) { // true or null
+
+            if (atom[0] == 'n') { // null
+                return Nan::Null();
+            }
+
+            return Nan::True();
+        }
+        else if (length == 5) { // false
+            return Nan::False();
+        }
+
+        return Nan::New(atom, length).ToLocalChecked();
+    }
+
+    Local<Value> decodeFloat() {
+        const uint8_t FLOAT_LENGTH = 31;
+        const char* floatStr = readString(FLOAT_LENGTH);
+        double number;
+        char nullTerimated[FLOAT_LENGTH + 1] = {0};
+        memcpy(nullTerimated, floatStr, FLOAT_LENGTH);
+
+        auto count = sscanf(nullTerimated, "%lf", &number);
+        if (count != 1) {
+            Nan::ThrowError("Invalid float encoded.");
+        }
+
+        return Number::New(isolate, number);
+    }
+
+    Local<Value> decodeBinary() {
+        const auto length = read32();
+        const char* str = readString(length);
+        auto binaryString = Nan::New(str, length);
+        return binaryString.ToLocalChecked();
+    }
+    
+    Local<Value> unpack() {
+        while(offset < size) {
+            const auto type = read8();
+            switch(type) {
+                case SMALL_INTEGER_EXT:
+                    return decodeSmallInteger();
+                case INTEGER_EXT:
+                    return decodeInteger();
+                case FLOAT_EXT:
+                    return decodeFloat();
+//                case NEW_FLOAT_EXT:
+//                    return decodeNewFloat();
+//                case ATOM_EXT:
+//                    return decodeAtom();
+                case SMALL_ATOM_EXT:
+                    return decodeSmallAtom();
+//                case SMALL_TUPLE_EXT:
+//                    return decodeSmallTuple();
+//                case LARGE_TUPLE_EXT:
+//                    return decodeLargeTuple();
+                case NIL_EXT:
+                    return decodeNil();
+//                case STRING_EXT:
+//                    return decodeString();
+                case LIST_EXT:
+                    return decodeList();
+                case MAP_EXT:
+                    return decodeMap();
+                case BINARY_EXT:
+                    return decodeBinary();
+//                case SMALL_BIG_EXT:
+//                    return decodeSmallBig();
+//                case LARGE_BIG_EXT:
+//                    return decodeLargeBig();
+//                case REFERENCE_EXT:
+//                    return decodeReference();
+//                case NEW_REFERENCE_EXT:
+//                    return decodeNewReference();
+//                case PORT_EXT:
+//                    return decodePort();
+//                case PID_EXT:
+//                    return decodePID();
+//                case EXPORT_EXT:
+//                    return decodeExport();
+//                case COMPRESSED:
+//                    return decodeCompressed();
+                  default:
+                    Nan::ThrowError("Unsupported erlang term type identifier found");
+            }
+        }
+
+        return Local<Value>();
+    }
+private:
+    Isolate* isolate;
+    const char* const data;
+    const size_t size;
+
+    size_t offset;
+};
+
 NAN_METHOD(Pack) {
     Isolate* isolate = info.GetIsolate();
 
@@ -165,8 +358,21 @@ NAN_METHOD(Pack) {
     info.GetReturnValue().Set(encoder.releaseAsBuffer().ToLocalChecked());
 }
 
+NAN_METHOD(Unpack) {
+    Isolate* isolate = info.GetIsolate();
+
+    if(!info[0]->IsObject()) {
+        Nan::ThrowError("Attempting to unpack a non-object.");
+    }
+
+    Decoder decoder(info[0], isolate);
+    MaybeLocal<Value> value = decoder.unpack();
+    info.GetReturnValue().Set(value.ToLocalChecked());
+}
+
 void Init(Handle<Object> exports) {
     exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
+    exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
 }
 
 NODE_MODULE(erlpackjs, Init);
