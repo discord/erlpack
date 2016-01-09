@@ -1,6 +1,7 @@
 #include <nan.h>
 #include "../cpp/encoder.h"
 #include <cmath>
+#include <limits>
 
 using namespace v8;
 
@@ -150,16 +151,6 @@ private:
     erlpack_buffer pk;
 };
 
-int is_big_endian(void)
-{
-    union {
-        uint32_t i;
-        char c[4];
-    } bint = {0x01020304};
-
-    return bint.c[0] == 1;
-}
-
 class Decoder {
 public:
     Decoder(Local<Value> value, Isolate* isolate_)
@@ -189,6 +180,12 @@ public:
     uint32_t read32() {
         uint32_t val = ntohl(*reinterpret_cast<const uint32_t*>(data + offset));
         offset += sizeof(uint32_t);
+        return val;
+    }
+
+    uint64_t read64() {
+        uint64_t val = ntohll(*reinterpret_cast<const uint64_t*>(data + offset));
+        offset += sizeof(val);
         return val;
     }
 
@@ -275,7 +272,41 @@ public:
         return Number::New(isolate, number);
     }
 
+    Local<Value> decodeNewFloat() {
+        uint64_t val = read64();
+        return Number::New(isolate, *reinterpret_cast<double*>(&val));
+    }
+
+    Local<Value> decodeBig(uint32_t digits) {
+        const uint8_t sign = read8();
+
+        for(uint32_t i = 0; i < digits; ++shift) {
+            uint8_t val = read8();
+            // need to figure out how to convert base 256 representation to a string in base 10?
+        }
+
+        if (sign != 0) {
+            val = val.negate();
+        }
+
+        return val.toString();
+    }
+
+    Local<Value> decodeSmallBig() {
+        const auto bytes = read8();
+        return decodeBig(bytes);
+    }
+
+    Local<Value> decodeLargeBig() {
+        const auto bytes = read32();
+        return decodeBig(bytes);
+    }
+
     Local<Value> decodeBinary() {
+        return decodeString();
+    }
+
+    Local<Value> decodeString() {
         const auto length = read32();
         const char* str = readString(length);
         auto binaryString = Nan::New(str, length);
@@ -292,8 +323,8 @@ public:
                     return decodeInteger();
                 case FLOAT_EXT:
                     return decodeFloat();
-//                case NEW_FLOAT_EXT:
-//                    return decodeNewFloat();
+                case NEW_FLOAT_EXT:
+                    return decodeNewFloat();
 //                case ATOM_EXT:
 //                    return decodeAtom();
                 case SMALL_ATOM_EXT:
@@ -304,16 +335,16 @@ public:
 //                    return decodeLargeTuple();
                 case NIL_EXT:
                     return decodeNil();
-//                case STRING_EXT:
-//                    return decodeString();
+                case STRING_EXT:
+                    return decodeString();
                 case LIST_EXT:
                     return decodeList();
                 case MAP_EXT:
                     return decodeMap();
                 case BINARY_EXT:
                     return decodeBinary();
-//                case SMALL_BIG_EXT:
-//                    return decodeSmallBig();
+                case SMALL_BIG_EXT:
+                    return decodeSmallBig();
 //                case LARGE_BIG_EXT:
 //                    return decodeLargeBig();
 //                case REFERENCE_EXT:
@@ -370,7 +401,36 @@ NAN_METHOD(Unpack) {
     info.GetReturnValue().Set(value.ToLocalChecked());
 }
 
+bool is_big_endian()
+{
+    union {
+        uint32_t i;
+        char c[4];
+    } bint = {0x01020304};
+
+    return bint.c[0] == 1;
+}
+
 void Init(Handle<Object> exports) {
+    printf("\n\nAm II big endian? %s\n\n", is_big_endian() ? "BE!" : "LE!");
+    uint64_t num = std::numeric_limits<uint64_t>::max() / 2;
+    printf("%llu", num);
+
+    uint64_t bytesMax = *((uint64_t*)&num);
+    printf("LE: ");
+    for(int i = 0; i < 8; ++i) {
+        printf("%02hhX", (((const char*)&bytesMax)[i]));
+    }
+    printf("\n");
+
+
+    uint64_t bigEndianBytes = htonll(bytesMax);
+    printf("BE: ");
+    for(int i = 0; i < 8; ++i) {
+        printf("%02hhX", (((const char*)&bigEndianBytes)[i]));
+    }
+    printf("\n");
+
     exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
     exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
 }

@@ -119,7 +119,6 @@ typedef unsigned __int64 uint64_t;
 #define _erlpack_be64(x) (x)
 #endif
 
-
 #define _erlpack_store16(to, num) \
     do { uint16_t val = _erlpack_be16(num); memcpy(to, &val, 2); } while(0)
 #define _erlpack_store32(to, num) \
