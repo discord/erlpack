@@ -4,11 +4,11 @@ const erlpack = require('bindings')('erlpackjs');
 
 describe('unpacks', () => {
     it('string with null byte', () => {
-        expect(erlpack.unpack(new Buffer('\x83k\x00\x00\x00\x0chello\x00 world', 'binary'))).toEqual('hello\x00 world');
+        expect(erlpack.unpack(new Buffer('\x83k\x00\x0chello\x00 world', 'binary'))).toEqual('hello\x00 world');
     });
 
     it('string without byte', () => {
-        expect(erlpack.unpack(new Buffer('\x83k\x00\x00\x00\x0bhello world', 'binary'))).toEqual('hello world');
+        expect(erlpack.unpack(new Buffer('\x83k\x00\x0bhello world', 'binary'))).toEqual('hello world');
     });
 
     it('binary with null byte', () => {
@@ -91,5 +91,10 @@ describe('unpacks', () => {
 
     it('atoms', () => {
         expect(erlpack.unpack(new Buffer('\x83d\x00\x0Dguild members', 'binary'))).toEqual("guild members");
-    })
+    });
+
+    it('tuples', () => {
+        expect(erlpack.unpack(new Buffer('\x83h\x03k\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
+        expect(erlpack.unpack(new Buffer('\x83i\x00\x00\x00\x03k\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
+    });
 });

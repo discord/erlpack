@@ -11,7 +11,7 @@
 #define SMALL_TUPLE_EXT 'h'    // 104 [UInt8:Arity, N:Elements]
 #define LARGE_TUPLE_EXT 'i'    // 105 [UInt32:Arity, N:Elements]
 #define NIL_EXT 'j'            // 106 empty list
-#define STRING_EXT 'k'         // 107 [UInt32:Len, Len:Characters]
+#define STRING_EXT 'k'         // 107 [UInt16:Len, Len:Characters]
 #define LIST_EXT 'l'           // 108 [UInt32:Len, Elements, Tail]
 #define BINARY_EXT 'm'         // 109 [UInt32:Len, Len:Data]
 #define SMALL_BIG_EXT 'n'      // 110 [UInt8:n, UInt8:Sign, n:nums]

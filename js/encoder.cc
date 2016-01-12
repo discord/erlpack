@@ -212,6 +212,14 @@ public:
         return array;
     }
 
+    Local<Value> decodeTuple(uint32_t length) {
+        Local<Object> array = Array::New(isolate, length);
+        for(uint32_t i = 0; i < length; ++i) {
+            array->Set(i, unpack());
+        }
+        return array;
+    }
+
     Local<Value> decodeNil() {
         return Local<Value>();
     }
@@ -332,14 +340,25 @@ public:
     }
 
     Local<Value> decodeBinary() {
-        return decodeString();
-    }
-
-    Local<Value> decodeString() {
         const auto length = read32();
         const char* str = readString(length);
         auto binaryString = Nan::New(str, length);
         return binaryString.ToLocalChecked();
+    }
+
+    Local<Value> decodeString() {
+        const auto length = read16();
+        const char* str = readString(length);
+        auto binaryString = Nan::New(str, length);
+        return binaryString.ToLocalChecked();
+    }
+
+    Local<Value> decodeSmallTuple() {
+        return decodeTuple(read8());
+    }
+
+    Local<Value> decodeLargeTuple() {
+        return decodeTuple(read32());
     }
     
     Local<Value> unpack() {
@@ -358,10 +377,10 @@ public:
                     return decodeAtom();
                 case SMALL_ATOM_EXT:
                     return decodeSmallAtom();
-//                case SMALL_TUPLE_EXT:
-//                    return decodeSmallTuple();
-//                case LARGE_TUPLE_EXT:
-//                    return decodeLargeTuple();
+                case SMALL_TUPLE_EXT:
+                    return decodeSmallTuple();
+                case LARGE_TUPLE_EXT:
+                    return decodeLargeTuple();
                 case NIL_EXT:
                     return decodeNil();
                 case STRING_EXT:
