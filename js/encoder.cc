@@ -424,36 +424,7 @@ NAN_METHOD(Unpack) {
     info.GetReturnValue().Set(value.ToLocalChecked());
 }
 
-bool is_big_endian()
-{
-    union {
-        uint32_t i;
-        char c[4];
-    } bint = {0x01020304};
-
-    return bint.c[0] == 1;
-}
-
 void Init(Handle<Object> exports) {
-    printf("\n\nAm II big endian? %s\n\n", is_big_endian() ? "BE!" : "LE!");
-    uint64_t num = std::numeric_limits<uint64_t>::max() / 2;
-    printf("%llu", num);
-
-    uint64_t bytesMax = *((uint64_t*)&num);
-    printf("LE: ");
-    for(int i = 0; i < 8; ++i) {
-        printf("%02hhX", (((const char*)&bytesMax)[i]));
-    }
-    printf("\n");
-
-
-    uint64_t bigEndianBytes = htonll(bytesMax);
-    printf("BE: ");
-    for(int i = 0; i < 8; ++i) {
-        printf("%02hhX", (((const char*)&bigEndianBytes)[i]));
-    }
-    printf("\n");
-
     exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
     exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
 }
