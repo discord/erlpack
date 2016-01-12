@@ -88,4 +88,8 @@ describe('unpacks', () => {
         expect(erlpack.unpack(new Buffer('\x83o\x00\x00\x00\x08\x00\x01\x02\x03\x04\x05\x06\x07\x08', 'binary'))).toEqual("578437695752307201");
         expect(() => erlpack.unpack(new Buffer('\x83o\x00\x00\x00\x0A\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A', 'binary'))).toThrow("Unable to decode big ints larger than 8 bytes");
     });
+
+    it('atoms', () => {
+        expect(erlpack.unpack(new Buffer('\x83d\x00\x0Dguild members', 'binary'))).toEqual("guild members");
+    })
 });

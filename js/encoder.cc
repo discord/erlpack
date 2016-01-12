@@ -235,6 +235,12 @@ public:
         return str;
     }
 
+    Local<Value> decodeAtom() {
+        auto length = read16();
+        const char* atom = readString(length);
+        return Nan::New(atom, length).ToLocalChecked();
+    }
+
     Local<Value> decodeSmallAtom() {
         auto length = read8();
         const char* atom = readString(length);
@@ -348,8 +354,8 @@ public:
                     return decodeFloat();
                 case NEW_FLOAT_EXT:
                     return decodeNewFloat();
-//                case ATOM_EXT:
-//                    return decodeAtom();
+                case ATOM_EXT:
+                    return decodeAtom();
                 case SMALL_ATOM_EXT:
                     return decodeSmallAtom();
 //                case SMALL_TUPLE_EXT:
