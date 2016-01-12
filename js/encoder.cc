@@ -280,16 +280,39 @@ public:
     Local<Value> decodeBig(uint32_t digits) {
         const uint8_t sign = read8();
 
-        for(uint32_t i = 0; i < digits; ++shift) {
-            uint8_t val = read8();
-            // need to figure out how to convert base 256 representation to a string in base 10?
+        if (digits > 8) {
+            Nan::ThrowError("Unable to decode big ints larger than 8 bytes");
         }
 
-        if (sign != 0) {
-            val = val.negate();
+        uint64_t value = 0;
+        uint64_t b = 1;
+        for(uint32_t i = 0; i < digits; ++i) {
+            uint64_t digit = read8();
+            value += digit * b;
+            b <<= 8;
         }
 
-        return val.toString();
+        if (digits <= 4) {
+            if (sign == 0) {
+                return Integer::New(isolate, static_cast<uint32_t>(value));
+            }
+
+            const bool isSignBitAvailable = (value & (1 << 31)) == 0;
+            if (isSignBitAvailable) {
+                int32_t negativeValue = -static_cast<int32_t>(value);
+                return Integer::New(isolate, negativeValue);
+            }
+        }
+
+        char outBuffer[32] = {0}; // 9223372036854775807
+        const char* const formatString = sign == 0 ? "%llu" : "-%llu";
+        const uint8_t length = sprintf(outBuffer, formatString, value);
+
+        if (length < 0) {
+            Nan::ThrowError("Unable to convert big int to string");
+        }
+
+        return Nan::New(outBuffer, length).ToLocalChecked();
     }
 
     Local<Value> decodeSmallBig() {
@@ -345,8 +368,8 @@ public:
                     return decodeBinary();
                 case SMALL_BIG_EXT:
                     return decodeSmallBig();
-//                case LARGE_BIG_EXT:
-//                    return decodeLargeBig();
+                case LARGE_BIG_EXT:
+                    return decodeLargeBig();
 //                case REFERENCE_EXT:
 //                    return decodeReference();
 //                case NEW_REFERENCE_EXT:
