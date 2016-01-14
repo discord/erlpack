@@ -36,7 +36,11 @@ describe('unpacks', () => {
         expect(erlpack.unpack(new Buffer('\x83s\x04true', 'binary'))).toEqual(true);
     });
 
-    it('nil is null', () => {
+    it('nil token is array', () => {
+        expect(erlpack.unpack(new Buffer('\x83j', 'binary'))).toEqual([]);
+    });
+
+    it('nil atom is null', () => {
         expect(erlpack.unpack(new Buffer('\x83s\x03nil', 'binary'))).toBeNull();
     });
 
