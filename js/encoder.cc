@@ -393,7 +393,62 @@ public:
         MaybeLocal<Value> value = children.unpack();
         return value.ToLocalChecked();
     }
-    
+
+    Local<Value> decodeReference() {
+        auto reference = Object::New(isolate);
+        reference->Set(Nan::New("node").ToLocalChecked(), unpack());
+
+        Local<Object> ids = Array::New(isolate, 1);
+        ids->Set(0, Integer::New(isolate, read32()));
+        reference->Set(Nan::New("id").ToLocalChecked(), ids);
+
+        reference->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+
+        return reference;
+    }
+
+    Local<Value> decodeNewReference() {
+        auto reference = Object::New(isolate);
+
+        uint16_t len = read16();
+        reference->Set(Nan::New("node").ToLocalChecked(), unpack());
+        reference->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+
+        Local<Object> ids = Array::New(isolate, len);
+        for(uint16_t i = 0; i < len; ++i) {
+            ids->Set(i, Integer::New(isolate, read32()));
+        }
+        reference->Set(Nan::New("id").ToLocalChecked(), ids);
+
+
+        return reference;
+    }
+
+    Local<Value> decodePort() {
+        auto port = Object::New(isolate);
+        port->Set(Nan::New("node").ToLocalChecked(), unpack());
+        port->Set(Nan::New("id").ToLocalChecked(), Integer::New(isolate, read32()));
+        port->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        return port;
+    }
+
+    Local<Value> decodePID() {
+        auto pid = Object::New(isolate);
+        pid->Set(Nan::New("node").ToLocalChecked(), unpack());
+        pid->Set(Nan::New("id").ToLocalChecked(), Integer::New(isolate, read32()));
+        pid->Set(Nan::New("serial").ToLocalChecked(), Integer::New(isolate, read32()));
+        pid->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        return pid;
+    }
+
+    Local<Value> decodeExport() {
+        auto exp = Object::New(isolate);
+        exp->Set(Nan::New("mod").ToLocalChecked(), unpack());
+        exp->Set(Nan::New("fun").ToLocalChecked(), unpack());
+        exp->Set(Nan::New("arity").ToLocalChecked(), unpack());
+        return exp;
+    }
+
     Local<Value> unpack() {
         while(offset < size) {
             const auto type = read8();
@@ -428,16 +483,16 @@ public:
                     return decodeSmallBig();
                 case LARGE_BIG_EXT:
                     return decodeLargeBig();
-//                case REFERENCE_EXT:
-//                    return decodeReference();
-//                case NEW_REFERENCE_EXT:
-//                    return decodeNewReference();
-//                case PORT_EXT:
-//                    return decodePort();
-//                case PID_EXT:
-//                    return decodePID();
-//                case EXPORT_EXT:
-//                    return decodeExport();
+                case REFERENCE_EXT:
+                    return decodeReference();
+                case NEW_REFERENCE_EXT:
+                    return decodeNewReference();
+                case PORT_EXT:
+                    return decodePort();
+                case PID_EXT:
+                    return decodePID();
+                case EXPORT_EXT:
+                    return decodeExport();
                 case COMPRESSED:
                     return decodeCompressed();
                   default:

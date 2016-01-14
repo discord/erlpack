@@ -109,5 +109,49 @@ describe('unpacks', () => {
         expect(erlpack.unpack(new Buffer('\x83l\x00\x00\x00\x02l\x00\x00\x00\x02a\x02k\x00\x19it\'s getting hot in here.ja\x03j', 'binary'))).toEqual(expected);
         expect(erlpack.unpack(new Buffer('\x83P\x00\x00\x00\x2C\x78\x9C\xCB\x61\x60\x60\x60\xCA\x01\x11\x89\x4C\xD9\x0C\x92\x99\x25\xEA\xC5\x0A\xE9\xA9\x25\x25\x99\x79\xE9\x0A\x19\xF9\x25\x0A\x99\x79\x0A\x19\xA9\x45\xA9\x7A\x59\x89\xCC\x59\x00\xDC\xF7\x0B\xD9', 'binary'))).toEqual(expected);
     });
+
+    it('references', () => {
+        reference = {
+            "node" : "Hello",
+            "id": [1245],
+            "creation": 1
+        };
+        expect(erlpack.unpack(new Buffer('\x83ek\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(reference);
+
+        reference = {
+            "node" : "Hello",
+            "id": [10, 15, 1245],
+            "creation": 1
+        };
+        expect(erlpack.unpack(new Buffer('\x83r\x00\x03k\x00\x05Hello\x01\x00\x00\x00\x0A\x00\x00\x00\x0F\x00\x00\x04\xDD', 'binary'))).toEqual(reference);
+    });
+
+    it('port', () => {
+        port = {
+            "node" : "Hello",
+            "id": 1245,
+            "creation": 1
+        };
+        expect(erlpack.unpack(new Buffer('\x83fk\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(port);
+    });
+
+    it('pid', () => {
+        pid = {
+            "node" : "Hello",
+            "id": 1245,
+            "serial": 123456,
+            "creation": 1
+        };
+        expect(erlpack.unpack(new Buffer('\x83gk\x00\x05Hello\x00\x00\x04\xDD\x00\x01\xE2\x40\x01', 'binary'))).toEqual(pid);
+    });
+
+    it('export', () => {
+        exp = {
+            "mod" : "guild_members",
+            "fun": "append",
+            "arity": 1
+        };
+        expect(erlpack.unpack(new Buffer('\x83qd\x00\x0Dguild_membersd\x00\x06appenda\x01', 'binary'))).toEqual(exp);
+    });
 });
 
