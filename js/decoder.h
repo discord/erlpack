@@ -15,7 +15,7 @@ public:
     {
         const auto version = read8();
         if (version != FORMAT_VERSION) {
-            Nan::ThrowError("Bad version number."); // Expected %d found %d", FORMAT_VERSION, version);
+            Nan::ThrowError("Bad version number.");
         }
     }
 
@@ -28,7 +28,7 @@ public:
         if (!skipVersion) {
             const auto version = read8();
             if (version != FORMAT_VERSION) {
-                Nan::ThrowError("Bad version number."); // Expected %d found %d", FORMAT_VERSION, version);
+                Nan::ThrowError("Bad version number.");
             }
         }
     }
