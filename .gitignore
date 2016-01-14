@@ -142,5 +142,7 @@ Temporary Items
 .apdisk
 
 ## For Native Node Modules ##
+build/*
+node_modules/*
 js/build
 js/node_modules

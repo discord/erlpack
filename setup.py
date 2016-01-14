@@ -1,4 +1,7 @@
+import os
 from setuptools import setup
+
+os.chdir('py')
 
 have_cython = False
 try:

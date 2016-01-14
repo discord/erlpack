@@ -1,6 +1,8 @@
 include setup.py
 include COPYING
 include README.rst
+include setup.cfg
+include py/pytest.ini
 recursive-include erlpack *.pyx *.cpp
 recursive-include ../cpp *.h *.c *.cpp
 recursive-include test *.py
