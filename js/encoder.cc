@@ -2,6 +2,7 @@
 #include "../cpp/encoder.h"
 #include <cmath>
 #include <limits>
+#include <zlib.h>
 
 using namespace v8;
 
@@ -155,13 +156,27 @@ class Decoder {
 public:
     Decoder(Local<Value> value, Isolate* isolate_)
     : isolate(isolate_)
-    , data(node::Buffer::Data(value->ToObject()))
+    , data(reinterpret_cast<uint8_t*>(node::Buffer::Data(value->ToObject())))
     , size(node::Buffer::Length(value->ToObject()))
     , offset(0)
     {
         const auto version = read8();
         if (version != FORMAT_VERSION) {
             Nan::ThrowError("Bad version number."); // Expected %d found %d", FORMAT_VERSION, version);
+        }
+    }
+
+   Decoder(Isolate* isolate_, const uint8_t* data_, size_t length_, bool skipVersion = false)
+    : isolate(isolate_)
+    , data(data_)
+    , size(length_)
+    , offset(0)
+    {
+        if (!skipVersion) {
+            const auto version = read8();
+            if (version != FORMAT_VERSION) {
+                Nan::ThrowError("Bad version number."); // Expected %d found %d", FORMAT_VERSION, version);
+            }
         }
     }
 
@@ -199,6 +214,7 @@ public:
 
     Local<Value> decodeList() {
         const uint32_t length = read32();
+
         Local<Object> array = Array::New(isolate, length);
         for(uint32_t i = 0; i < length; ++i) {
             array->Set(i, unpack());
@@ -238,9 +254,9 @@ public:
     }
 
     const char* readString(uint32_t length) {
-        const char* str = data + offset;
+        const uint8_t* str = data + offset;
         offset += length;
-        return str;
+        return (const char*)str;
     }
 
     Local<Value> decodeAtom() {
@@ -360,6 +376,23 @@ public:
     Local<Value> decodeLargeTuple() {
         return decodeTuple(read32());
     }
+
+    Local<Value> decodeCompressed() {
+        const uint32_t uncompressedSize = read32();
+
+        unsigned long sourceSize = uncompressedSize;
+        std::auto_ptr<uint8_t> outBuffer((uint8_t*)malloc(uncompressedSize));
+        const int ret = uncompress(outBuffer.get(), &sourceSize, (const unsigned char*)(data + offset), size - offset);
+
+        offset += sourceSize;
+        if (ret != Z_OK) {
+            Nan::ThrowError("Failed to uncompresss compressed item");
+        }
+
+        Decoder children(isolate, outBuffer.get(), uncompressedSize, true);
+        MaybeLocal<Value> value = children.unpack();
+        return value.ToLocalChecked();
+    }
     
     Local<Value> unpack() {
         while(offset < size) {
@@ -405,8 +438,8 @@ public:
 //                    return decodePID();
 //                case EXPORT_EXT:
 //                    return decodeExport();
-//                case COMPRESSED:
-//                    return decodeCompressed();
+                case COMPRESSED:
+                    return decodeCompressed();
                   default:
                     Nan::ThrowError("Unsupported erlang term type identifier found");
             }
@@ -416,7 +449,7 @@ public:
     }
 private:
     Isolate* isolate;
-    const char* const data;
+    const uint8_t* const data;
     const size_t size;
 
     size_t offset;
