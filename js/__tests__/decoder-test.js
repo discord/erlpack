@@ -1,6 +1,6 @@
-jest.dontMock('bindings');
+jest.dontMock('../index');
 
-const erlpack = require('bindings')('erlpackjs');
+const erlpack = require('../index.js');
 
 describe('unpacks', () => {
     it('string with null byte', () => {

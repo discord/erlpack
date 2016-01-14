@@ -1,4 +1,5 @@
 {
+  "main": "./js/index.js",
   "name": "erlpackjs",
   "version": "0.1.0",
   "description": "Erlpackjs is a fast encoder and decoder for the Erlang Term Format (version 131) for Javascript",
