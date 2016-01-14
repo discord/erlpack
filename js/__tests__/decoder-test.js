@@ -157,5 +157,14 @@ describe('unpacks', () => {
         };
         expect(erlpack.unpack(new Buffer('\x83qd\x00\x0Dguild_membersd\x00\x06appenda\x01', 'binary'))).toEqual(exp);
     });
+
+    it('can unpack from ArrayBuffers', () => {
+        var data = new Buffer('\x83k\x00\x0bhello world', 'binary');
+        var byteBuffer = new Uint8Array(data.length);
+        for(var i = 0; i < data.length; ++i) {
+            byteBuffer[i] = data[i];
+        }
+        expect(erlpack.unpack(byteBuffer)).toEqual('hello world');
+    });
 });
 
