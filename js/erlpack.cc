@@ -25,7 +25,7 @@ NAN_METHOD(Unpack) {
     }
 
     Decoder decoder(info[0], isolate);
-    MaybeLocal<Value> value = decoder.unpack();
+    Nan::MaybeLocal<Value> value = decoder.unpack();
     info.GetReturnValue().Set(value.ToLocalChecked());
 }
 

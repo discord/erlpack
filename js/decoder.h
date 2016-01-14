@@ -244,7 +244,7 @@ public:
         }
 
         Decoder children(isolate, outBuffer.get(), uncompressedSize, true);
-        MaybeLocal<Value> value = children.unpack();
+        Nan::MaybeLocal<Value> value = children.unpack();
         return value.ToLocalChecked();
     }
 

@@ -25,12 +25,12 @@ public:
     }
 
     Nan::MaybeLocal<Object> releaseAsBuffer() {
-        if (pk.buf == nullptr) {
+        if (pk.buf == NULL) {
             return Nan::MaybeLocal<Object>();
         }
 
         auto buffer = Nan::NewBuffer(pk.buf, pk.length);
-        pk.buf = nullptr;
+        pk.buf = NULL;
         pk.length = 0;
         pk.allocated_size = 0;
         return buffer;
@@ -41,7 +41,7 @@ public:
             free(pk.buf);
         }
 
-        pk.buf = nullptr;
+        pk.buf = NULL;
         pk.length = 0;
         pk.allocated_size = 0;
     }
@@ -81,12 +81,12 @@ public:
             ret = erlpack_append_false(&pk);
         }
         else if(value->IsString()) {
-            String::Utf8Value string(value->ToString(isolate));
+            Nan::Utf8String string(value);
             ret = erlpack_append_binary(&pk, *string, string.length());
         }
         else if (value->IsArray()) {
-            auto array = value->ToObject(isolate);
-            const auto properties = array->GetOwnPropertyNames();
+            auto array = Nan::To<Object>(value).ToLocalChecked();
+            const auto properties = Nan::GetOwnPropertyNames(array).ToLocalChecked();
             const size_t length = properties->Length();
             if (length == 0) {
                 ret = erlpack_append_nil_ext(&pk);
@@ -103,7 +103,7 @@ public:
 
                 for(size_t i = 0; i < length; ++i) {
                     const auto k = properties->Get(i);
-                    const auto v = array->Get(k);
+                    const auto v = Nan::Get(array, k).ToLocalChecked();
                     ret = pack(v, isolate, nestLimit - 1);
                     if (ret != 0) {
                        return ret;
@@ -114,8 +114,8 @@ public:
             }
         }
         else if (value->IsObject()) {
-            auto object = value->ToObject(isolate);
-            const auto properties = object->GetOwnPropertyNames();
+            auto object = Nan::To<Object>(value).ToLocalChecked();
+            const auto properties = Nan::GetOwnPropertyNames(object).ToLocalChecked();
 
             const size_t len = properties->Length();
             if (len > MAX_SIZE) {
@@ -129,7 +129,7 @@ public:
 
             for(size_t i = 0; i < len; ++i) {
                 const auto k = properties->Get(i);
-                const auto v = object->Get(k);
+                const auto v = Nan::Get(object, k).ToLocalChecked();
 
                 ret = pack(k, isolate, nestLimit - 1);
                 if (ret != 0) {
