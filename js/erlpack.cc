@@ -24,7 +24,8 @@ NAN_METHOD(Unpack) {
         Nan::ThrowError("Attempting to unpack a non-object.");
     }
 
-    Decoder decoder(info[0], isolate);
+    Nan::TypedArrayContents<uint8_t> contents(info[0]);
+    Decoder decoder(contents, isolate);
     Nan::MaybeLocal<Value> value = decoder.unpack();
     info.GetReturnValue().Set(value.ToLocalChecked());
 }

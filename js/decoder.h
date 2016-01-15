@@ -7,10 +7,10 @@ using namespace v8;
 
 class Decoder {
 public:
-    Decoder(Local<Value> value, Isolate* isolate_)
+    Decoder(const Nan::TypedArrayContents<uint8_t>& array, Isolate* isolate_)
     : isolate(isolate_)
-    , data(reinterpret_cast<uint8_t*>(node::Buffer::Data(value->ToObject())))
-    , size(node::Buffer::Length(value->ToObject()))
+    , data(*array)
+    , size(array.length())
     , offset(0)
     {
         const auto version = read8();
