@@ -3,6 +3,8 @@
 #include <nan.h>
 #include <zlib.h>
 
+#define THROW(msg) Nan::ThrowError(msg); printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg)
+
 using namespace v8;
 
 class Decoder {
@@ -11,11 +13,13 @@ public:
     : isolate(isolate_)
     , data(*array)
     , size(array.length())
+    , isInvalid(false)
     , offset(0)
     {
         const auto version = read8();
         if (version != FORMAT_VERSION) {
-            Nan::ThrowError("Bad version number.");
+            THROW("Bad version number.");
+            isInvalid = true;
         }
     }
 
@@ -23,35 +27,56 @@ public:
     : isolate(isolate_)
     , data(data_)
     , size(length_)
+    , isInvalid(false)
     , offset(0)
     {
         if (!skipVersion) {
             const auto version = read8();
             if (version != FORMAT_VERSION) {
-                Nan::ThrowError("Bad version number.");
+                THROW("Bad version number.");
+                isInvalid = true;
             }
         }
     }
 
     uint8_t read8() {
+        if (offset + sizeof(uint8_t) > size) {
+            THROW("Reading past the end of the buffer.");
+            return 0;
+        }
         auto val = *reinterpret_cast<const uint8_t*>(data + offset);
         offset += sizeof(uint8_t);
         return val;
     }
 
     uint16_t read16() {
+        if (offset + sizeof(uint16_t) > size) {
+            THROW("Reading past the end of the buffer.");
+            return 0;
+        }
+
         uint16_t val = ntohs(*reinterpret_cast<const uint16_t*>(data + offset));
         offset += sizeof(uint16_t);
         return val;
     }
 
     uint32_t read32() {
+        if (offset + sizeof(uint32_t) > size) {
+            THROW("Reading past the end of the buffer.");
+            return 0;
+        }
+
         uint32_t val = ntohl(*reinterpret_cast<const uint32_t*>(data + offset));
         offset += sizeof(uint32_t);
         return val;
     }
 
     uint64_t read64() {
+        if (offset + sizeof(uint64_t) > size) {
+            THROW("Reading past the end of the buffer.");
+            return 0;
+        }
+
         uint64_t val = ntohll(*reinterpret_cast<const uint64_t*>(data + offset));
         offset += sizeof(val);
         return val;
@@ -75,7 +100,8 @@ public:
 
         const auto tailMarker = read8();
         if (tailMarker != NIL_EXT) {
-            Nan::ThrowError("List doesn't end with a tail marker, but it must!");
+            THROW("List doesn't end with a tail marker, but it must!");
+            return Nan::Null();
         }
 
         return array;
@@ -108,6 +134,11 @@ public:
     }
 
     const char* readString(uint32_t length) {
+        if (offset + length > size) {
+            THROW("Reading past the end of the buffer.");
+            return NULL;
+        }
+
         const uint8_t* str = data + offset;
         offset += length;
         return (const char*)str;
@@ -150,7 +181,8 @@ public:
 
         auto count = sscanf(nullTerimated, "%lf", &number);
         if (count != 1) {
-            Nan::ThrowError("Invalid float encoded.");
+            THROW("Invalid float encoded.");
+            return Nan::Null();
         }
 
         return Number::New(isolate, number);
@@ -165,7 +197,8 @@ public:
         const uint8_t sign = read8();
 
         if (digits > 8) {
-            Nan::ThrowError("Unable to decode big ints larger than 8 bytes");
+            THROW("Unable to decode big ints larger than 8 bytes");
+            return Nan::Null();
         }
 
         uint64_t value = 0;
@@ -193,7 +226,8 @@ public:
         const uint8_t length = sprintf(outBuffer, formatString, value);
 
         if (length < 0) {
-            Nan::ThrowError("Unable to convert big int to string");
+            THROW("Unable to convert big int to string");
+            return Nan::Null();
         }
 
         return Nan::New(outBuffer, length).ToLocalChecked();
@@ -240,7 +274,8 @@ public:
 
         offset += sourceSize;
         if (ret != Z_OK) {
-            Nan::ThrowError("Failed to uncompresss compressed item");
+            THROW("Failed to uncompresss compressed item");
+            return Nan::Null();
         }
 
         Decoder children(isolate, outBuffer.get(), uncompressedSize, true);
@@ -303,6 +338,10 @@ public:
     }
 
     Local<Value> unpack() {
+        if (isInvalid) {
+            return Nan::Null();
+        }
+
         while(offset < size) {
             const auto type = read8();
             switch(type) {
@@ -349,7 +388,8 @@ public:
                 case COMPRESSED:
                     return decodeCompressed();
                 default:
-                    Nan::ThrowError("Unsupported erlang term type identifier found");
+                    THROW("Unsupported erlang term type identifier found");
+                    return Nan::Null();
             }
         }
 
@@ -359,6 +399,6 @@ private:
     Isolate* isolate;
     const uint8_t* const data;
     const size_t size;
-
+    bool isInvalid;
     size_t offset;
 };
