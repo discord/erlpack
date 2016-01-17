@@ -144,32 +144,35 @@ public:
         return (const char*)str;
     }
 
+    Local<Value> processAtom(const char* atom, uint16_t length) {
+        if (length >= 3 && length <= 5) {
+            if (strncmp(atom, "nil", 3) == 0) {
+                return Nan::Null();
+            }
+            else if (strncmp(atom, "null", 4) == 0) {
+                return Nan::Null();
+            }
+            else if(strncmp(atom, "true", 4) == 0) {
+                return Nan::True();
+            }
+            else if (strncmp(atom, "false", 5) == 0) {
+                return Nan::False();
+            }
+        }
+
+        return Nan::New(atom, length).ToLocalChecked();
+    }
+
     Local<Value> decodeAtom() {
         auto length = read16();
         const char* atom = readString(length);
-        return Nan::New(atom, length).ToLocalChecked();
+        return processAtom(atom, length);
     }
 
     Local<Value> decodeSmallAtom() {
         auto length = read8();
         const char* atom = readString(length);
-
-        if (length == 3) { // nil
-            return Nan::Null();
-        }
-        else if (length == 4) { // true or null
-
-            if (atom[0] == 'n') { // null
-                return Nan::Null();
-            }
-
-            return Nan::True();
-        }
-        else if (length == 5) { // false
-            return Nan::False();
-        }
-
-        return Nan::New(atom, length).ToLocalChecked();
+        return processAtom(atom, length);
     }
 
     Local<Value> decodeFloat() {
