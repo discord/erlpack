@@ -3,8 +3,6 @@
 #include <nan.h>
 #include <zlib.h>
 
-#define THROW(msg) Nan::ThrowError(msg); printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg)
-
 using namespace v8;
 
 class Decoder {
@@ -41,7 +39,7 @@ public:
 
     uint8_t read8() {
         if (offset + sizeof(uint8_t) > size) {
-            THROW("Reading past the end of the buffer.");
+            THROW("Reading a byte passes the end of the buffer.");
             return 0;
         }
         auto val = *reinterpret_cast<const uint8_t*>(data + offset);
@@ -51,7 +49,7 @@ public:
 
     uint16_t read16() {
         if (offset + sizeof(uint16_t) > size) {
-            THROW("Reading past the end of the buffer.");
+            THROW("Reading two bytes passes the end of the buffer.");
             return 0;
         }
 
@@ -62,7 +60,7 @@ public:
 
     uint32_t read32() {
         if (offset + sizeof(uint32_t) > size) {
-            THROW("Reading past the end of the buffer.");
+            THROW("Reading three bytes passes the end of the buffer.");
             return 0;
         }
 
@@ -73,7 +71,7 @@ public:
 
     uint64_t read64() {
         if (offset + sizeof(uint64_t) > size) {
-            THROW("Reading past the end of the buffer.");
+            THROW("Reading four bytes passes the end of the buffer.");
             return 0;
         }
 
@@ -90,13 +88,21 @@ public:
         return Integer::New(isolate, read32());
     }
 
-    Local<Value> decodeList() {
-        const uint32_t length = read32();
-
+    Local<Value> decodeArray(uint32_t length) {
         Local<Object> array = Array::New(isolate, length);
         for(uint32_t i = 0; i < length; ++i) {
-            array->Set(i, unpack());
+            auto value = unpack();
+            if (isInvalid) {
+                return Nan::Undefined();
+            }
+            array->Set(i, value);
         }
+        return array;
+    }
+
+    Local<Value> decodeList() {
+        const uint32_t length = read32();
+        auto array = decodeArray(length);
 
         const auto tailMarker = read8();
         if (tailMarker != NIL_EXT) {
@@ -108,11 +114,7 @@ public:
     }
 
     Local<Value> decodeTuple(uint32_t length) {
-        Local<Object> array = Array::New(isolate, length);
-        for(uint32_t i = 0; i < length; ++i) {
-            array->Set(i, unpack());
-        }
-        return array;
+        return decodeArray(length);
     }
 
     Local<Value> decodeNil() {
@@ -127,6 +129,9 @@ public:
         for(uint32_t i = 0; i < length; ++i) {
             const auto key = unpack();
             const auto value = unpack();
+            if (isInvalid) {
+                return Nan::Undefined();
+            }
             map->Set(key, value);
         }
 
@@ -135,7 +140,7 @@ public:
 
     const char* readString(uint32_t length) {
         if (offset + length > size) {
-            THROW("Reading past the end of the buffer.");
+            THROW("Reading sequence past the end of the buffer.");
             return NULL;
         }
 
@@ -145,6 +150,10 @@ public:
     }
 
     Local<Value> processAtom(const char* atom, uint16_t length) {
+        if (atom == NULL) {
+            return Nan::Undefined();
+        }
+
         if (length >= 3 && length <= 5) {
             if (strncmp(atom, "nil", 3) == 0) {
                 return Nan::Null();
@@ -178,6 +187,10 @@ public:
     Local<Value> decodeFloat() {
         const uint8_t FLOAT_LENGTH = 31;
         const char* floatStr = readString(FLOAT_LENGTH);
+        if (floatStr == NULL) {
+            return Nan::Undefined();
+        }
+
         double number;
         char nullTerimated[FLOAT_LENGTH + 1] = {0};
         memcpy(nullTerimated, floatStr, FLOAT_LENGTH);
@@ -249,6 +262,9 @@ public:
     Local<Value> decodeBinary() {
         const auto length = read32();
         const char* str = readString(length);
+        if (str == NULL) {
+            return Nan::Undefined();
+        }
         auto binaryString = Nan::New(str, length);
         return binaryString.ToLocalChecked();
     }
@@ -256,6 +272,9 @@ public:
     Local<Value> decodeString() {
         const auto length = read16();
         const char* str = readString(length);
+        if (str == NULL) {
+            return Nan::Undefined();
+        }
         auto binaryString = Nan::New(str, length);
         return binaryString.ToLocalChecked();
     }
@@ -342,61 +361,64 @@ public:
 
     Local<Value> unpack() {
         if (isInvalid) {
-            return Nan::Null();
+            return Nan::Undefined();
         }
 
-        while(offset < size) {
-            const auto type = read8();
-            switch(type) {
-                case SMALL_INTEGER_EXT:
-                    return decodeSmallInteger();
-                case INTEGER_EXT:
-                    return decodeInteger();
-                case FLOAT_EXT:
-                    return decodeFloat();
-                case NEW_FLOAT_EXT:
-                    return decodeNewFloat();
-                case ATOM_EXT:
-                    return decodeAtom();
-                case SMALL_ATOM_EXT:
-                    return decodeSmallAtom();
-                case SMALL_TUPLE_EXT:
-                    return decodeSmallTuple();
-                case LARGE_TUPLE_EXT:
-                    return decodeLargeTuple();
-                case NIL_EXT:
-                    return decodeNil();
-                case STRING_EXT:
-                    return decodeString();
-                case LIST_EXT:
-                    return decodeList();
-                case MAP_EXT:
-                    return decodeMap();
-                case BINARY_EXT:
-                    return decodeBinary();
-                case SMALL_BIG_EXT:
-                    return decodeSmallBig();
-                case LARGE_BIG_EXT:
-                    return decodeLargeBig();
-                case REFERENCE_EXT:
-                    return decodeReference();
-                case NEW_REFERENCE_EXT:
-                    return decodeNewReference();
-                case PORT_EXT:
-                    return decodePort();
-                case PID_EXT:
-                    return decodePID();
-                case EXPORT_EXT:
-                    return decodeExport();
-                case COMPRESSED:
-                    return decodeCompressed();
-                default:
-                    THROW("Unsupported erlang term type identifier found");
-                    return Nan::Null();
-            }
+        if(offset >= size) {
+            THROW("Unpacking beyond the end of the buffer");
+            return Nan::Undefined();
         }
 
-        return Local<Value>();
+        const auto type = read8();
+        switch(type) {
+            case SMALL_INTEGER_EXT:
+                return decodeSmallInteger();
+            case INTEGER_EXT:
+                return decodeInteger();
+            case FLOAT_EXT:
+                return decodeFloat();
+            case NEW_FLOAT_EXT:
+                return decodeNewFloat();
+            case ATOM_EXT:
+                return decodeAtom();
+            case SMALL_ATOM_EXT:
+                return decodeSmallAtom();
+            case SMALL_TUPLE_EXT:
+                return decodeSmallTuple();
+            case LARGE_TUPLE_EXT:
+                return decodeLargeTuple();
+            case NIL_EXT:
+                return decodeNil();
+            case STRING_EXT:
+                return decodeString();
+            case LIST_EXT:
+                return decodeList();
+            case MAP_EXT:
+                return decodeMap();
+            case BINARY_EXT:
+                return decodeBinary();
+            case SMALL_BIG_EXT:
+                return decodeSmallBig();
+            case LARGE_BIG_EXT:
+                return decodeLargeBig();
+            case REFERENCE_EXT:
+                return decodeReference();
+            case NEW_REFERENCE_EXT:
+                return decodeNewReference();
+            case PORT_EXT:
+                return decodePort();
+            case PID_EXT:
+                return decodePID();
+            case EXPORT_EXT:
+                return decodeExport();
+            case COMPRESSED:
+                return decodeCompressed();
+            default:
+                THROW("Unsupported erlang term type identifier found");
+                return Nan::Undefined();
+        }
+
+        return Nan::Undefined();
     }
 private:
     Isolate* isolate;
@@ -404,4 +426,10 @@ private:
     const size_t size;
     bool isInvalid;
     size_t offset;
+
+    void THROW(const char* msg) {
+        Nan::ThrowError(msg);
+        isInvalid = true;
+        printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg);
+    }
 };

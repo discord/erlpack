@@ -166,5 +166,46 @@ describe('unpacks', () => {
         }
         expect(erlpack.unpack(byteBuffer)).toEqual('hello world');
     });
+
+    it('excepts from malformed token', () => {
+        const data = new Buffer(
+            '\x83q\x00\x00\x00\x03a\x02a\x02a\x03l\x00\x00\x00\x03a\x01a\x02a\x03jm\x00\x00\x00\x01aa\x01',
+            'binary'
+        );
+        expect(() => erlpack.unpack(data)).toThrow("Unsupported erlang term type identifier found");
+        expect(() => erlpack.unpack(new Buffer('\x83k\x00', 'binary'))).toThrow("Reading two bytes passes the end of the buffer.");
+    });
+
+    it('excepts from malformed array', () => {
+       expect(() => erlpack.unpack(new Buffer('\x83t\x00\x00\x00\x03a\x02a\x02a\x03', 'binary'))).toThrow("Unpacking beyond the end of the buffer");
+    });
+
+    it('excepts from malformed object', () => {
+        const data = new Buffer(
+            '\x83t\x00\x00\x00\x04a\x02a\x02a\x03l\x00\x00\x00\x03a\x01a\x02a\x03jm\x00\x00\x00\x01aa\x01',
+            'binary'
+        );
+        expect(() => erlpack.unpack(data)).toThrow("Unpacking beyond the end of the buffer");
+    });
+
+    it('excepts from malformed atom', () => {
+        expect(() => erlpack.unpack(new Buffer('\x83s\x09true', 'binary'))).toThrow("Reading sequence past the end of the buffer.");
+    });
+
+    it('excepts from malformed integer', () => {
+        expect(() => erlpack.unpack(new Buffer('\x83b\x00\x00\x04', 'binary'))).toThrow("Reading three bytes passes the end of the buffer.");
+    });
+
+    it('excepts from malformed float', () => {
+        expect(() => erlpack.unpack(new Buffer('\x83c2.500000000000000e+00\x00\x00\x00\x00\x00', 'binary'))).toThrow("Reading sequence past the end of the buffer.");
+    });
+
+    it('excepts from malformed string ', () => {
+        expect(() => erlpack.unpack(new Buffer('\x83k\x00\x0bworld', 'binary'))).toThrow("Reading sequence past the end of the buffer.");
+    });
+
+    it('excepts from malformed binary', () => {
+        expect(() => erlpack.unpack(new Buffer('\x83m\x00\x00\x00\x0chel', 'binary'))).toThrow("Reading sequence past the end of the buffer.");
+    });
 });
 

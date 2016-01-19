@@ -25,7 +25,7 @@ NAN_METHOD(Unpack) {
     Isolate* isolate = info.GetIsolate();
 
     if(!info[0]->IsObject()) {
-        THROW("Attempting to unpack a non-object.");
+        Nan::ThrowError("Attempting to unpack a non-object.");
         info.GetReturnValue().Set(Nan::Null());
         return;
     }
@@ -33,7 +33,7 @@ NAN_METHOD(Unpack) {
     Nan::TypedArrayContents<uint8_t> contents(info[0]);
 
     if (contents.length() == 0) {
-        THROW("Zero length buffer.");
+        Nan::ThrowError("Zero length buffer.");
         info.GetReturnValue().Set(Nan::Null());
         return;
     }
