@@ -155,16 +155,16 @@ public:
         }
 
         if (length >= 3 && length <= 5) {
-            if (strncmp(atom, "nil", 3) == 0) {
+            if (length == 3 && strncmp(atom, "nil", 3) == 0) {
                 return Nan::Null();
             }
-            else if (strncmp(atom, "null", 4) == 0) {
+            else if (length == 4 && strncmp(atom, "null", 4) == 0) {
                 return Nan::Null();
             }
-            else if(strncmp(atom, "true", 4) == 0) {
+            else if(length == 4 && strncmp(atom, "true", 4) == 0) {
                 return Nan::True();
             }
-            else if (strncmp(atom, "false", 5) == 0) {
+            else if (length == 5 && strncmp(atom, "false", 5) == 0) {
                 return Nan::False();
             }
         }
