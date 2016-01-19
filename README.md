@@ -1,6 +1,78 @@
 # Erlpack
 
-Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python.
+Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python and Javascript.
+
+# Javascript
+
+## Things that can be packed:
+
+- [X] Null
+- [X] Booleans
+- [X] Strings
+- [ ] Atoms
+- [X] Unicode Strings
+- [X] Floats
+- [X] Integers
+- [ ] Longs
+- [ ] Longs over 64 bits
+- [X] Objects
+- [X] Arrays
+- [ ] Tuples
+- [ ] PIDs
+- [ ] Ports
+- [ ] Exports
+- [ ] References
+
+## How to pack:
+```js
+let erlpack = require("erlpack");
+
+packed = erlpack.pack({'a': true, 'list': ['of', 3, 'things', 'to', 'pack']});
+```
+
+## How to unpack:
+Note: Unpacking requires the binary data be a Uint8Array or Buffer. For those using electron/libchromium see the gotcha below. 
+```js
+let erlpack = require("erlpack");
+
+let unpacked = null;
+let packed = new Buffer('', 'binary');
+try  {
+    unpacked = erlpack.unpack(packed);
+}
+catch (e) {
+    // got an exception parsing
+}
+```
+
+## Libchromium / Electron Gotcha
+Some versions of libchromium replace the native data type backing TypedArrays with a custom data type called 
+blink::WebArrayBuffer. To keep erlpack' dependencies simple this data type is not supported directly. If you're using
+Electron / Libchromium you need to convert the blink::WebArrayBuffer into a node::Buffer before passing to erlpack. You will
+need to add this code into your native package somewhere:
+```cpp
+v8::Local<v8::Value> ConvertToNodeBuffer(const v8::Local<v8::Object>& blinkArray)
+{
+    if (node::Buffer::HasInstance(blinkArray)) {
+        return blinkArray;
+    }
+    else if (blinkArray->IsArrayBufferView()) {
+        auto byteArray = v8::ArrayBufferView::Cast(*blinkArray);
+        return node::Buffer::Copy(v8::Isolate::GetCurrent(), (const char*)byteArray->Buffer()->GetContents().Data(), byteArray->ByteLength()).ToLocalChecked();
+    }
+    
+    return v8::Local<v8::Primitive>(v8::Null(v8::Isolate::GetCurrent()));
+}
+```
+
+Then in Javascript something like:
+
+```js
+let packed = NativeUtils.convertToNodeBuffer(new Uint8Array(binaryPayload));
+// unpack now using erlpack.unpack(packed)
+```
+
+# Python
 
 ## Things that can be packed:
 
@@ -21,7 +93,6 @@ Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) f
 - [ ] Ports
 - [ ] Exports
 - [ ] References
-
 
 ## How to pack:
 ```py

@@ -1,1 +1,1 @@
-module.exports = require('bindings')('erlpackjs');
+module.exports = require('bindings')('erlpack');

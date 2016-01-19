@@ -48,4 +48,4 @@ void Init(Handle<Object> exports) {
     exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
 }
 
-NODE_MODULE(erlpackjs, Init);
+NODE_MODULE(erlpack, Init);

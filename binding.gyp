@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "erlpackjs",
+      "target_name": "erlpack",
       "sources": [ "js/erlpack.cc" ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")",
