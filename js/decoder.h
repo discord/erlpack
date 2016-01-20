@@ -2,8 +2,11 @@
 
 #include <nan.h>
 #include <zlib.h>
+#include <cstdio>
 
 using namespace v8;
+
+#define THROW(msg) Nan::ThrowError(msg); isInvalid = true; printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg)
 
 class Decoder {
 public:
@@ -81,15 +84,15 @@ public:
     }
 
     Local<Value> decodeSmallInteger() {
-        return Integer::New(isolate, read8());
+        return Nan::New<Integer>(read8());
     }
 
     Local<Value> decodeInteger() {
-        return Integer::New(isolate, read32());
+        return Nan::New<Integer>((int32_t)read32());
     }
 
     Local<Value> decodeArray(uint32_t length) {
-        Local<Object> array = Array::New(isolate, length);
+        Local<Object> array = Nan::New<Array>(length);
         for(uint32_t i = 0; i < length; ++i) {
             auto value = unpack();
             if (isInvalid) {
@@ -118,13 +121,13 @@ public:
     }
 
     Local<Value> decodeNil() {
-        Local<Object> array = Array::New(isolate, 0);
+        Local<Object> array = Nan::New<Array>(0);
         return array;
     }
 
     Local<Value> decodeMap() {
         const uint32_t length = read32();
-        auto map = Object::New(isolate);
+        auto map = Nan::New<Object>();
 
         for(uint32_t i = 0; i < length; ++i) {
             const auto key = unpack();
@@ -201,12 +204,12 @@ public:
             return Nan::Null();
         }
 
-        return Number::New(isolate, number);
+        return Nan::New<Number>(number);
     }
 
     Local<Value> decodeNewFloat() {
         uint64_t val = read64();
-        return Number::New(isolate, *reinterpret_cast<double*>(&val));
+        return Nan::New<Number>(*reinterpret_cast<double*>(&val));
     }
 
     Local<Value> decodeBig(uint32_t digits) {
@@ -227,13 +230,13 @@ public:
 
         if (digits <= 4) {
             if (sign == 0) {
-                return Integer::New(isolate, static_cast<uint32_t>(value));
+                return Nan::New<Integer>(static_cast<uint32_t>(value));
             }
 
             const bool isSignBitAvailable = (value & (1 << 31)) == 0;
             if (isSignBitAvailable) {
                 int32_t negativeValue = -static_cast<int32_t>(value);
-                return Integer::New(isolate, negativeValue);
+                return Nan::New<Integer>(negativeValue);
             }
         }
 
@@ -291,43 +294,45 @@ public:
         const uint32_t uncompressedSize = read32();
 
         unsigned long sourceSize = uncompressedSize;
-        std::auto_ptr<uint8_t> outBuffer((uint8_t*)malloc(uncompressedSize));
-        const int ret = uncompress(outBuffer.get(), &sourceSize, (const unsigned char*)(data + offset), size - offset);
+        uint8_t* outBuffer = (uint8_t*)malloc(uncompressedSize);
+        const int ret = uncompress(outBuffer, &sourceSize, (const unsigned char*)(data + offset), size - offset);
 
         offset += sourceSize;
         if (ret != Z_OK) {
+            free(outBuffer);
             THROW("Failed to uncompresss compressed item");
             return Nan::Null();
         }
 
-        Decoder children(isolate, outBuffer.get(), uncompressedSize, true);
+        Decoder children(isolate, outBuffer, uncompressedSize, true);
         Nan::MaybeLocal<Value> value = children.unpack();
+        free(outBuffer);
         return value.ToLocalChecked();
     }
 
     Local<Value> decodeReference() {
-        auto reference = Object::New(isolate);
+        auto reference = Nan::New<Object>();
         reference->Set(Nan::New("node").ToLocalChecked(), unpack());
 
-        Local<Object> ids = Array::New(isolate, 1);
-        ids->Set(0, Integer::New(isolate, read32()));
+        Local<Object> ids = Nan::New<Array>(1);
+        ids->Set(0, Nan::New<Integer>(read32()));
         reference->Set(Nan::New("id").ToLocalChecked(), ids);
 
-        reference->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        reference->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
 
         return reference;
     }
 
     Local<Value> decodeNewReference() {
-        auto reference = Object::New(isolate);
+        auto reference = Nan::New<Object>();
 
         uint16_t len = read16();
         reference->Set(Nan::New("node").ToLocalChecked(), unpack());
-        reference->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        reference->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
 
-        Local<Object> ids = Array::New(isolate, len);
+        Local<Object> ids = Nan::New<Array>(len);
         for(uint16_t i = 0; i < len; ++i) {
-            ids->Set(i, Integer::New(isolate, read32()));
+            ids->Set(i, Nan::New<Integer>(read32()));
         }
         reference->Set(Nan::New("id").ToLocalChecked(), ids);
 
@@ -335,24 +340,24 @@ public:
     }
 
     Local<Value> decodePort() {
-        auto port = Object::New(isolate);
+        auto port = Nan::New<Object>();
         port->Set(Nan::New("node").ToLocalChecked(), unpack());
-        port->Set(Nan::New("id").ToLocalChecked(), Integer::New(isolate, read32()));
-        port->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        port->Set(Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32()));
+        port->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
         return port;
     }
 
     Local<Value> decodePID() {
-        auto pid = Object::New(isolate);
+        auto pid = Nan::New<Object>();
         pid->Set(Nan::New("node").ToLocalChecked(), unpack());
-        pid->Set(Nan::New("id").ToLocalChecked(), Integer::New(isolate, read32()));
-        pid->Set(Nan::New("serial").ToLocalChecked(), Integer::New(isolate, read32()));
-        pid->Set(Nan::New("creation").ToLocalChecked(), Integer::New(isolate, read8()));
+        pid->Set(Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32()));
+        pid->Set(Nan::New("serial").ToLocalChecked(), Nan::New<Integer>(read32()));
+        pid->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
         return pid;
     }
 
     Local<Value> decodeExport() {
-        auto exp = Object::New(isolate);
+        auto exp = Nan::New<Object>();
         exp->Set(Nan::New("mod").ToLocalChecked(), unpack());
         exp->Set(Nan::New("fun").ToLocalChecked(), unpack());
         exp->Set(Nan::New("arity").ToLocalChecked(), unpack());
@@ -426,10 +431,4 @@ private:
     const size_t size;
     bool isInvalid;
     size_t offset;
-
-    void THROW(const char* msg) {
-        Nan::ThrowError(msg);
-        isInvalid = true;
-        printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg);
-    }
 };

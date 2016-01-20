@@ -4,8 +4,7 @@
       "target_name": "erlpack",
       "sources": [ "js/erlpack.cc" ],
       "include_dirs": [
-        "<!(node -e \"require('nan')\")",
-        "electron/vendor/brightray/vendor/download/libchromiumcontent/src"
+        "<!(node -e \"require('nan')\")"
       ],
       'conditions': [
         [ 'OS=="mac"', {
