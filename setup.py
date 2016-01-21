@@ -30,7 +30,7 @@ ext_modules = [packer, unpacker]
 
 setup(
     name='erlpack',
-    version='0.3.0',
+    version='0.3.1',
     author='Jake Heinz',
     author_email='jh@hammerandchisel.com',
     url="http://github.com/hammerandchisel/erlpack",
