@@ -9,7 +9,6 @@ using namespace v8;
 class Encoder {
     static const size_t DEFAULT_RECURSE_LIMIT = 256;
     static const size_t INITIAL_BUFFER_SIZE = 1024 * 1024;
-    static const size_t MAX_SIZE = (2L << 32) - 1;
 
 public:
     Encoder() {
@@ -92,7 +91,7 @@ public:
                 ret = erlpack_append_nil_ext(&pk);
             }
             else {
-                if (length > MAX_SIZE) {
+                if (length > SIZE_MAX - 1) {
                     Nan::ThrowError("List is too large");
                 }
 
@@ -118,7 +117,7 @@ public:
             const auto properties = Nan::GetOwnPropertyNames(object).ToLocalChecked();
 
             const size_t len = properties->Length();
-            if (len > MAX_SIZE) {
+            if (len > SIZE_MAX - 1) {
                 Nan::ThrowError("Dictionary has too many properties");
             }
 
