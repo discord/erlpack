@@ -2,6 +2,7 @@
 
 #include <nan.h>
 #include <cmath>
+#include <limits>
 #include "../cpp/encoder.h"
 
 using namespace v8;
@@ -86,12 +87,12 @@ public:
         else if (value->IsArray()) {
             auto array = Nan::To<Object>(value).ToLocalChecked();
             const auto properties = Nan::GetOwnPropertyNames(array).ToLocalChecked();
-            const size_t length = properties->Length();
+            const uint32_t length = properties->Length();
             if (length == 0) {
                 ret = erlpack_append_nil_ext(&pk);
             }
             else {
-                if (length > SIZE_MAX - 1) {
+                if (length > std::numeric_limits<uint32_t>::max() - 1) {
                     Nan::ThrowError("List is too large");
                 }
 
@@ -100,7 +101,7 @@ public:
                     return ret;
                 }
 
-                for(size_t i = 0; i < length; ++i) {
+                for(uint32_t i = 0; i < length; ++i) {
                     const auto k = properties->Get(i);
                     const auto v = Nan::Get(array, k).ToLocalChecked();
                     ret = pack(v, isolate, nestLimit - 1);
@@ -116,8 +117,8 @@ public:
             auto object = Nan::To<Object>(value).ToLocalChecked();
             const auto properties = Nan::GetOwnPropertyNames(object).ToLocalChecked();
 
-            const size_t len = properties->Length();
-            if (len > SIZE_MAX - 1) {
+            const uint32_t len = properties->Length();
+            if (len > std::numeric_limits<uint32_t>::max() - 1) {
                 Nan::ThrowError("Dictionary has too many properties");
             }
 
@@ -126,7 +127,7 @@ public:
                 return ret;
             }
 
-            for(size_t i = 0; i < len; ++i) {
+            for(uint32_t i = 0; i < len; ++i) {
                 const auto k = properties->Get(i);
                 const auto v = Nan::Get(object, k).ToLocalChecked();
 
