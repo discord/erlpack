@@ -51,6 +51,7 @@ public:
 
         if (nestLimit < 0) {
             Nan::ThrowError("Reached recursion limit");
+            return -1;
         }
 
         if (value->IsInt32() || value->IsUint32()) {
@@ -94,6 +95,7 @@ public:
             else {
                 if (length > std::numeric_limits<uint32_t>::max() - 1) {
                     Nan::ThrowError("List is too large");
+                    return -1;
                 }
 
                 ret = erlpack_append_list_header(&pk, length);
@@ -120,6 +122,7 @@ public:
             const uint32_t len = properties->Length();
             if (len > std::numeric_limits<uint32_t>::max() - 1) {
                 Nan::ThrowError("Dictionary has too many properties");
+                return -1;
             }
 
             ret = erlpack_append_map_header(&pk, len);
