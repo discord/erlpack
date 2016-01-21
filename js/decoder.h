@@ -4,26 +4,19 @@
 #include <zlib.h>
 #include <cstdio>
 
+#if defined(_WIN32)
+// assuming _WIN32 is LE
+#include <cstdlib>
+#define ntohs(x) (_byteswap_ushort(x))
+#define ntohl(x) (_byteswap_ulong(x))
+#define ntohll(x) (_byteswap_uint64(x))
+#endif
+
 using namespace v8;
 
 #define THROW(msg) Nan::ThrowError(msg); isInvalid = true; printf("[Error %s:%d] %s\n", __FILE__, __LINE__, msg)
 
 class Decoder {
-    // Instead of using ntohll from std, because on windows we'd need to include winsock2
-    uint64_t _ntohll(uint64_t host_longlong)
-    {
-        int x = 1;
-
-        /* little endian */
-        if(*(char *)&x == 1) {
-            return ((((uint64_t)ntohl(host_longlong)) << 32) + ntohl(host_longlong >> 32));
-        }
-        /* big endian */
-        else {
-            return host_longlong;
-        }
-    }
-
 public:
     Decoder(const Nan::TypedArrayContents<uint8_t>& array, Isolate* isolate_)
     : isolate(isolate_)
@@ -93,7 +86,7 @@ public:
             return 0;
         }
 
-        uint64_t val = _ntohll(*reinterpret_cast<const uint64_t*>(data + offset));
+        uint64_t val = ntohll(*reinterpret_cast<const uint64_t*>(data + offset));
         offset += sizeof(val);
         return val;
     }
