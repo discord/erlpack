@@ -1,19 +1,21 @@
 {
-  "targets": [
+  'targets': [
     {
-      "target_name": "erlpack",
-      "sources": [ "js/erlpack.cc" ],
-      "include_dirs": [
-        "<!(node -e \"require('nan')\")",
-        '<(nodedir)/deps/zlib',
+      'target_name': 'erlpack',
+      'dependencies': [
+        'vendor/zlib.gyp:zlib',
       ],
-      'conditions': [
-        [ 'OS=="mac"', {
-          'xcode_settings': {
-            'OTHER_CPLUSPLUSFLAGS' : ['-std=c++11']
-            },
-        }],
+      'include_dirs': [
+        '<!(node -e \"require(\'nan\')\")',
       ],
-    }
-  ]
+      'cflags_cc': [
+        '-std=c++11',
+      ],
+      'sources': [
+        'js/encoder.h',
+        'js/erlpack.cc',
+        'js/decoder.h',
+      ],
+    },
+  ],
 }
