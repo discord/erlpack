@@ -4,7 +4,8 @@
       "target_name": "erlpack",
       "sources": [ "js/erlpack.cc" ],
       "include_dirs": [
-        "<!(node -e \"require('nan')\")"
+        "<!(node -e \"require('nan')\")",
+        '<(nodedir)/deps/zlib',
       ],
       'conditions': [
         [ 'OS=="mac"', {
