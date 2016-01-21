@@ -14,17 +14,17 @@ if have_cython:
         "erlpack._packer",
         cython_cplus=True,
         extra_compile_args=['-O3'],
-        sources=["erlpack/_packer.pyx"]
+        sources=["py/erlpack/_packer.pyx"]
     )
     unpacker = Extension(
         "erlpack._unpacker",
         cython_cplus=True,
         extra_compile_args=['-O3'],
-        sources=["erlpack/_unpacker.pyx"]
+        sources=["py/erlpack/_unpacker.pyx"]
     )
 else:
-    packer = Extension('erlpack._packer', sources=['erlpack/_packer.cpp'], extra_compile_args=['-O3'])
-    unpacker = Extension('erlpack._unpacker', sources=['erlpack/_unpacker.cpp'], extra_compile_args=['-O3'])
+    packer = Extension('erlpack._packer', sources=['py/erlpack/_packer.cpp'], extra_compile_args=['-O3'])
+    unpacker = Extension('erlpack._unpacker', sources=['py/erlpack/_unpacker.cpp'], extra_compile_args=['-O3'])
 
 ext_modules = [packer, unpacker]
 
@@ -38,6 +38,7 @@ setup(
     license='Apache 2.0',
     cmdclass={'build_ext': build_ext},
     zip_safe=False,
+    package_dir={'': 'py'},
     packages=['erlpack'],
     ext_modules=ext_modules,
     setup_requires=['pytest-runner'],
