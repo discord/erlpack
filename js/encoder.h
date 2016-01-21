@@ -28,7 +28,7 @@ public:
             return Nan::MaybeLocal<Object>();
         }
 
-        auto buffer = Nan::NewBuffer(pk.buf, pk.length);
+        auto buffer = Nan::NewBuffer(pk.buf, pk.length, NULL, NULL);
         pk.buf = NULL;
         pk.length = 0;
         pk.allocated_size = 0;
