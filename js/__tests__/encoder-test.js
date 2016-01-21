@@ -48,9 +48,9 @@ describe('packs', () => {
         expect(packed.equals(expected)).toBeTruthy();
     });
 
-    it('floats', () => {
-        expect(erlpack.pack(2.5).equals(new Buffer('\x83c2.50000000000000000000e+00\x00\x00\x00\x00\x00', 'binary'))).toBeTruthy();
-        expect(erlpack.pack(51512123841234.31423412341435123412341342).equals(new Buffer('\x83c5.15121238412343125000e+13\x00\x00\x00\x00\x00', 'binary'))).toBeTruthy();
+    it('floats as new floats', () => {
+        expect(erlpack.pack(2.5).equals(new Buffer('\x83F\x40\x04\x00\x00\x00\x00\x00\x00', 'binary'))).toBeTruthy();
+        expect(erlpack.pack(51512123841234.31423412341435123412341342).equals(new Buffer('\x83F\x42\xc7\x6c\xcc\xeb\xed\x69\x28', 'binary'))).toBeTruthy();
     });
 
     it('small int', () => {
@@ -74,7 +74,7 @@ describe('packs', () => {
     });
 
     it('list', () => {
-        const expected = new Buffer('\x83l\x00\x00\x00\x05a\x01m\x00\x00\x00\x03twoc3.10000000000000008882e+00\x00\x00\x00\x00\x00m\x00\x00\x00\x04fourl\x00\x00\x00\x01m\x00\x00\x00\x04fivejj', 'binary');
+        const expected = new Buffer('\x83l\x00\x00\x00\x05a\x01m\x00\x00\x00\x03twoF\x40\x08\xcc\xcc\xcc\xcc\xcc\xcdm\x00\x00\x00\x04fourl\x00\x00\x00\x01m\x00\x00\x00\x04fivejj', 'binary');
         const packed = erlpack.pack([1, "two", 3.1, "four", ['five']]);
         expect(packed.equals(expected)).toBeTruthy();
     });

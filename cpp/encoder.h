@@ -106,17 +106,11 @@ static inline int erlpack_append_long_long(erlpack_buffer *b, long long d) {
   erlpack_append(b, buf, 1 + 2 + bytes_enc);
 }
 
-#ifdef WIN32
-  #define snprintf _snprintf
-#endif
-
 static inline int erlpack_append_double(erlpack_buffer *b, double f) {
-  unsigned char buf[1 + 31] = {0};
-  buf[0] = FLOAT_EXT;
-  // HEYO: This will use _snprintf on Windows/MSVS, which behaves differently than OSX/G++. Note that in our case
-  //       we don't care since we don't need a null terminator or the return value.
-  snprintf((char *)(buf + 1), 31, "%.20e", f);
-  erlpack_append(b, buf, 1 + 31);
+  unsigned char buf[1 + 8] = {0};
+  buf[0] = NEW_FLOAT_EXT;
+  _erlpack_store64(buf + 1, *(uint64_t*)&f);
+  erlpack_append(b, buf, 1 + 8);
 }
 
 static inline int erlpack_append_atom(erlpack_buffer *b, const char *bytes, size_t size) {
