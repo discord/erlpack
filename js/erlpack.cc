@@ -3,10 +3,8 @@
 #include "decoder.h"
 
 NAN_METHOD(Pack) {
-    Isolate* isolate = info.GetIsolate();
-
     Encoder encoder;
-    const int ret = encoder.pack(info[0], isolate);
+    const int ret = encoder.pack(info[0]);
     if (ret == -1) {
         Nan::ThrowError("Out of memory");
         info.GetReturnValue().Set(Nan::Null());
@@ -22,8 +20,6 @@ NAN_METHOD(Pack) {
 }
 
 NAN_METHOD(Unpack) {
-    Isolate* isolate = info.GetIsolate();
-
     if(!info[0]->IsObject()) {
         Nan::ThrowError("Attempting to unpack a non-object.");
         info.GetReturnValue().Set(Nan::Null());
@@ -38,7 +34,7 @@ NAN_METHOD(Unpack) {
         return;
     }
 
-    Decoder decoder(contents, isolate);
+    Decoder decoder(contents);
     Nan::MaybeLocal<Value> value = decoder.unpack();
     info.GetReturnValue().Set(value.ToLocalChecked());
 }

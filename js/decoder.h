@@ -18,9 +18,8 @@ using namespace v8;
 
 class Decoder {
 public:
-    Decoder(const Nan::TypedArrayContents<uint8_t>& array, Isolate* isolate_)
-    : isolate(isolate_)
-    , data(*array)
+    Decoder(const Nan::TypedArrayContents<uint8_t>& array)
+    : data(*array)
     , size(array.length())
     , isInvalid(false)
     , offset(0)
@@ -32,9 +31,8 @@ public:
         }
     }
 
-   Decoder(Isolate* isolate_, const uint8_t* data_, size_t length_, bool skipVersion = false)
-    : isolate(isolate_)
-    , data(data_)
+   Decoder(const uint8_t* data_, size_t length_, bool skipVersion = false)
+    : data(data_)
     , size(length_)
     , isInvalid(false)
     , offset(0)
@@ -312,7 +310,7 @@ public:
             return Nan::Null();
         }
 
-        Decoder children(isolate, outBuffer, uncompressedSize, true);
+        Decoder children(outBuffer, uncompressedSize, true);
         Nan::MaybeLocal<Value> value = children.unpack();
         free(outBuffer);
         return value.ToLocalChecked();
@@ -434,7 +432,6 @@ public:
         return Nan::Undefined();
     }
 private:
-    Isolate* isolate;
     const uint8_t* const data;
     const size_t size;
     bool isInvalid;
