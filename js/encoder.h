@@ -11,6 +11,10 @@ class Encoder {
     static const size_t DEFAULT_RECURSE_LIMIT = 256;
     static const size_t INITIAL_BUFFER_SIZE = 1024 * 1024;
 
+    static void _free(char *data, void *hint) {
+        free(data);
+    }
+
 public:
     Encoder() {
         ret = 0;
@@ -29,7 +33,7 @@ public:
             return Nan::MaybeLocal<Object>();
         }
 
-        auto buffer = Nan::NewBuffer(pk.buf, pk.length, NULL, NULL);
+        auto buffer = Nan::NewBuffer(pk.buf, pk.length, _free, NULL);
         pk.buf = NULL;
         pk.length = 0;
         pk.allocated_size = 0;
