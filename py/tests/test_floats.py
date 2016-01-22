@@ -2,5 +2,5 @@ from erlpack import pack
 
 
 def test_float():
-    assert pack(2.5) == '\x83c2.50000000000000000000e+00\x00\x00\x00\x00\x00'
-    assert pack(51512123841234.31423412341435123412341342) == '\x83c5.15121238412343125000e+13\x00\x00\x00\x00\x00'
+    assert pack(2.5) == '\x83F@\x04\x00\x00\x00\x00\x00\x00'
+    assert pack(51512123841234.31423412341435123412341342) == '\x83FB\xc7l\xcc\xeb\xedi('
