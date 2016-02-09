@@ -36,6 +36,10 @@ typedef unsigned __int64 uint64_t;
 #include <stdbool.h>
 #endif
 
+#if defined(__linux__)
+#include <endian.h>
+#endif
+
 #ifdef _WIN32
 
 #ifdef __cplusplus
@@ -101,8 +105,10 @@ typedef unsigned __int64 uint64_t;
 #  define _erlpack_be64(x) bswap_64(x)
 #elif defined(__DARWIN_OSSwapInt64)
 #  define _erlpack_be64(x) __DARWIN_OSSwapInt64(x)
+#elif defined(__linux__)
+#  define _erlpack_be64(x) be64toh(x)
 #else
-#define _erlpack_be64(x) \
+#  define _erlpack_be64(x) \
     ( ((((uint64_t)x) << 56)                         ) | \
       ((((uint64_t)x) << 40) & 0x00ff000000000000ULL ) | \
       ((((uint64_t)x) << 24) & 0x0000ff0000000000ULL ) | \

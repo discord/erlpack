@@ -4,13 +4,7 @@
 #include <zlib.h>
 #include <cstdio>
 
-#if defined(_WIN32)
-// assuming _WIN32 is LE
-#include <cstdlib>
-#define ntohs(x) (_byteswap_ushort(x))
-#define ntohl(x) (_byteswap_ulong(x))
-#define ntohll(x) (_byteswap_uint64(x))
-#endif
+#include "../cpp/sysdep.h"
 
 using namespace v8;
 
@@ -62,7 +56,7 @@ public:
             return 0;
         }
 
-        uint16_t val = ntohs(*reinterpret_cast<const uint16_t*>(data + offset));
+        uint16_t val = _erlpack_be16(*reinterpret_cast<const uint16_t*>(data + offset));
         offset += sizeof(uint16_t);
         return val;
     }
@@ -73,7 +67,7 @@ public:
             return 0;
         }
 
-        uint32_t val = ntohl(*reinterpret_cast<const uint32_t*>(data + offset));
+        uint32_t val = _erlpack_be32(*reinterpret_cast<const uint32_t*>(data + offset));
         offset += sizeof(uint32_t);
         return val;
     }
@@ -84,7 +78,7 @@ public:
             return 0;
         }
 
-        uint64_t val = ntohll(*reinterpret_cast<const uint64_t*>(data + offset));
+        uint64_t val = _erlpack_be64(*reinterpret_cast<const uint64_t*>(data + offset));
         offset += sizeof(val);
         return val;
     }
@@ -214,8 +208,12 @@ public:
     }
 
     Local<Value> decodeNewFloat() {
-        uint64_t val = read64();
-        return Nan::New<Number>(*reinterpret_cast<double*>(&val));
+        union {
+            uint64_t ui64;
+            double df;
+        } val;
+        val.ui64 = read64();
+        return Nan::New<Number>(val.df);
     }
 
     Local<Value> decodeBig(uint32_t digits) {
@@ -248,12 +246,13 @@ public:
 
         char outBuffer[32] = {0}; // 9223372036854775807
         const char* const formatString = sign == 0 ? "%llu" : "-%llu";
-        const uint8_t length = sprintf(outBuffer, formatString, value);
+        const int res = sprintf(outBuffer, formatString, value);
 
-        if (length < 0) {
+        if (res < 0) {
             THROW("Unable to convert big int to string");
             return Nan::Null();
         }
+        const uint8_t length = static_cast<const uint8_t>(res);
 
         return Nan::New(outBuffer, length).ToLocalChecked();
     }
@@ -301,7 +300,7 @@ public:
 
         unsigned long sourceSize = uncompressedSize;
         uint8_t* outBuffer = (uint8_t*)malloc(uncompressedSize);
-        const int ret = uncompress(outBuffer, &sourceSize, (const unsigned char*)(data + offset), size - offset);
+        const int ret = uncompress(outBuffer, &sourceSize, (const unsigned char*)(data + offset), (uLong)(size - offset));
 
         offset += sourceSize;
         if (ret != Z_OK) {
