@@ -106,10 +106,17 @@ static inline int erlpack_append_long_long(erlpack_buffer *b, long long d) {
   erlpack_append(b, buf, 1 + 2 + bytes_enc);
 }
 
+typedef union {
+  uint64_t ui64;
+  double df;
+} typePunner;
+
 static inline int erlpack_append_double(erlpack_buffer *b, double f) {
   unsigned char buf[1 + 8] = {0};
   buf[0] = NEW_FLOAT_EXT;
-  _erlpack_store64(buf + 1, *(uint64_t*)&f);
+  typePunner p;
+  p.df = f;
+  _erlpack_store64(buf + 1, p.ui64);
   erlpack_append(b, buf, 1 + 8);
 }
 

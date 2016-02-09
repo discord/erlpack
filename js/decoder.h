@@ -10,6 +10,9 @@
 #define ntohs(x) (_byteswap_ushort(x))
 #define ntohl(x) (_byteswap_ulong(x))
 #define ntohll(x) (_byteswap_uint64(x))
+#elif defined(__linux__)
+#include <endian.h>
+#define ntohll(x) be64toh(x)
 #endif
 
 using namespace v8;
@@ -214,8 +217,12 @@ public:
     }
 
     Local<Value> decodeNewFloat() {
-        uint64_t val = read64();
-        return Nan::New<Number>(*reinterpret_cast<double*>(&val));
+        union {
+            uint64_t ui64;
+            double df;
+        } val;
+        val.ui64 = read64();
+        return Nan::New<Number>(val.df);
     }
 
     Local<Value> decodeBig(uint32_t digits) {
@@ -248,12 +255,13 @@ public:
 
         char outBuffer[32] = {0}; // 9223372036854775807
         const char* const formatString = sign == 0 ? "%llu" : "-%llu";
-        const uint8_t length = sprintf(outBuffer, formatString, value);
+        const int res = sprintf(outBuffer, formatString, value);
 
-        if (length < 0) {
+        if (res < 0) {
             THROW("Unable to convert big int to string");
             return Nan::Null();
         }
+        const uint8_t length = static_cast<const uint8_t>(res);
 
         return Nan::New(outBuffer, length).ToLocalChecked();
     }
