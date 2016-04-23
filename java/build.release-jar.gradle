@@ -1,0 +1,56 @@
+// Deployment script: https://github.com/blundell/release-android-library
+// Run with command ./gradlew clean build generateRelease
+apply plugin: 'maven'
+
+def groupId = POM_GROUP_ID
+def artifactId = POM_ARTIFACT_ID
+def version = POM_VERSION_ID
+
+def localReleaseDest = "${buildDir}/release/${version}"
+
+task javaJavadocs(type: Javadoc) {
+    source = sourceSets.main.java.srcDirs
+}
+
+task javaJavadocsJar(type: Jar, dependsOn: javaJavadocs) {
+    classifier = 'javadoc'
+
+    //noinspection GroovyAssignabilityCheck
+    from destinationDir
+}
+
+task javaSourcesJar(type: Jar) {
+    classifier = 'sources'
+
+    //noinspection GroovyAssignabilityCheck
+    from sourceSets.main.java.srcDirs
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "file://${localReleaseDest}")
+
+        pom.groupId = groupId
+        pom.artifactId = artifactId
+        pom.version = version
+    }
+}
+
+task zipRelease(type: Zip) {
+    from localReleaseDest
+    destinationDir buildDir
+    archiveName "release-${version}.zip"
+}
+
+task generateRelease << {
+    println "Release ${version} can be found at ${localReleaseDest}/"
+    println "Release ${version} zipped can be found ${buildDir}/release-${version}.zip"
+}
+
+generateRelease.dependsOn(uploadArchives)
+generateRelease.dependsOn(zipRelease)
+
+artifacts {
+    archives javaSourcesJar
+    archives javaJavadocsJar
+}
