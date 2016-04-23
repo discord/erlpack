@@ -1,0 +1,39 @@
+### Generated files
+
+bin/
+gen/
+
+*.apk
+*.patch
+
+### Gradle files
+
+.gradle/
+
+**/build
+
+### Local configuration file (sdk path, etc)
+
+local.properties
+
+### Proguard
+
+proguard/
+
+### Log Files
+
+*.log
+
+### IDEA
+
+**/.idea
+
+*.iml
+
+### OSX
+
+.DS_Store
+
+### WebP
+
+!*.webp
