@@ -1,7 +1,12 @@
 apply plugin: 'java'
 
-dependencies {
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.7
+//noinspection GroovyUnusedAssignment
+targetCompatibility = 1.7
 
+dependencies {
+    testCompile 'junit:junit:4.12'
 }
 
 apply from: '../build.release-jar.gradle'

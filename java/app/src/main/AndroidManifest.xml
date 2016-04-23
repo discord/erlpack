@@ -6,6 +6,7 @@
         android:allowBackup="true"
         android:icon="@android:color/transparent"
         android:supportsRtl="true"
+        android:label="Erlpack Sample App"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
