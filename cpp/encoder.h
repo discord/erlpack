@@ -47,6 +47,10 @@ static inline int erlpack_append_version(erlpack_buffer *b) {
   erlpack_append(b, buf, 1);
 }
 
+static inline int erlpack_append_nil(erlpack_buffer *b) {
+  static unsigned char buf[5] = {SMALL_ATOM_EXT, 3, 'n', 'i', 'l'};
+  erlpack_append(b, buf, 5);
+}
 static inline int erlpack_append_false(erlpack_buffer *b) {
   static unsigned char buf[7] = {SMALL_ATOM_EXT, 5, 'f', 'a', 'l', 's', 'e'};
   erlpack_append(b, buf, 7);
