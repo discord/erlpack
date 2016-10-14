@@ -45,13 +45,15 @@ cdef class ErlangTermEncoder(object):
     cdef erlpack_buffer pk
     cdef char*_encoding
     cdef char*_unicode_errors
+    cdef char*_none_atom
+    cdef int _none_atom_s
     cdef object _unicode_type
     cdef object _encode_hook
 
     def __cinit__(self):
         self.pk.buf = NULL
 
-    def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):
+    def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', none_atom='nil', encode_hook=None):
         cdef object _encoding
         cdef object _unicode_errors
 
@@ -71,6 +73,13 @@ cdef class ErlangTermEncoder(object):
 
             self._encoding = PyString_AsString(_encoding)
             self._unicode_errors = PyString_AsString(_unicode_errors)
+
+        if isinstance(none_atom, unicode):
+            _none_atom = none_atom.encode('ascii')
+        else:
+            _none_atom = none_atom
+        self._none_atom = PyString_AsString(_none_atom)
+        self._none_atom_s = PyString_GET_SIZE(_none_atom)
 
         self._unicode_type = unicode_type
         self._encode_hook = encode_hook
@@ -122,7 +131,7 @@ cdef class ErlangTermEncoder(object):
             raise EncodingError('Exceeded recursion limit')
 
         if o is None:
-            ret = erlpack_append_nil(&self.pk)
+            ret =  erlpack_append_atom(&self.pk, self._none_atom, self._none_atom_s)
 
         elif o is True:
             ret = erlpack_append_true(&self.pk)

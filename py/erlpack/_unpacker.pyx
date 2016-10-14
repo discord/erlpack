@@ -20,8 +20,10 @@ class ErlangTermDecodeError(Exception):
 # noinspection PyMethodMayBeStatic,PyPep8Naming,PyShadowingBuiltins,PyUnusedLocal
 cdef class ErlangTermDecoder(object):
     cdef object encoding
-    def __init__(self, encoding=None):
+    cdef object _none_atom
+    def __init__(self, encoding=None, none_atom='nil'):
         self.encoding = encoding
+        self._none_atom = none_atom
 
     def loads(self, bytes, offset=0):
         version = ord(bytes[offset])
@@ -309,6 +311,6 @@ cdef class ErlangTermDecoder(object):
             return True
         elif atom == 'false':
             return False
-        elif atom == 'nil':
+        elif atom == self._none_atom:
             return None
         return Atom(atom)
