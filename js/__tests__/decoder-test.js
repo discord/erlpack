@@ -2,13 +2,19 @@ jest.dontMock('../index');
 
 const erlpack = require('../index.js');
 
+const helloWorldList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const helloWorldBinary = '\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B';
+
+const helloWorldListWithNull = [1, 2, 3, 4, 5, 0, 6, 7, 8, 9, 10, 11];
+const helloWorldBinaryWithNull = '\x01\x02\x03\x04\x05\x00\x06\x07\x08\x09\x0A\x0B';
+
 describe('unpacks', () => {
-    it('string with null byte', () => {
-        expect(erlpack.unpack(new Buffer('\x83k\x00\x0chello\x00 world', 'binary'))).toEqual('hello\x00 world');
+    it('short list via string with null byte', () => {
+        expect(erlpack.unpack(new Buffer('\x83k\x00\x0c' + helloWorldBinaryWithNull, 'binary'))).toEqual(helloWorldListWithNull);
     });
 
-    it('string without byte', () => {
-        expect(erlpack.unpack(new Buffer('\x83k\x00\x0bhello world', 'binary'))).toEqual('hello world');
+    it('short list via string without byte', () => {
+        expect(erlpack.unpack(new Buffer('\x83k\x00\x0b' + helloWorldBinary, 'binary'))).toEqual(helloWorldList);
     });
 
     it('binary with null byte', () => {
@@ -98,18 +104,18 @@ describe('unpacks', () => {
     });
 
     it('tuples', () => {
-        expect(erlpack.unpack(new Buffer('\x83h\x03k\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
-        expect(erlpack.unpack(new Buffer('\x83i\x00\x00\x00\x03k\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
+        expect(erlpack.unpack(new Buffer('\x83h\x03m\x00\x00\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
+        expect(erlpack.unpack(new Buffer('\x83i\x00\x00\x00\x03m\x00\x00\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
     });
 
     it('compressed', () => {
-        const expected = [2, "it's getting hot in here."];
+        const expected = [2, Array.from("it's getting hot in here.").map(x => x.charCodeAt(0))];
         expect(erlpack.unpack(new Buffer('\x83l\x00\x00\x00\x02a\x02k\x00\x19it\'s getting hot in here.j', 'binary'))).toEqual(expected);
         expect(erlpack.unpack(new Buffer('\x83P\x00\x00\x00\x24\x78\x9C\xCB\x61\x60\x60\x60\x4A\x64\xCA\x66\x90\xCC\x2C\x51\x2F\x56\x48\x4F\x2D\x29\xC9\xCC\x4B\x57\xC8\xC8\x2F\x51\xC8\xCC\x53\xC8\x48\x2D\x4A\xD5\xCB\x02\x00\xA8\xA8\x0A\x9D', 'binary'))).toEqual(expected);
     });
 
     it('nested compressed', () => {
-        const expected = [[2, "it's getting hot in here."], 3];
+        const expected = [[2, Array.from("it's getting hot in here.").map(x => x.charCodeAt(0))], 3];
         expect(erlpack.unpack(new Buffer('\x83l\x00\x00\x00\x02l\x00\x00\x00\x02a\x02k\x00\x19it\'s getting hot in here.ja\x03j', 'binary'))).toEqual(expected);
         expect(erlpack.unpack(new Buffer('\x83P\x00\x00\x00\x2C\x78\x9C\xCB\x61\x60\x60\x60\xCA\x01\x11\x89\x4C\xD9\x0C\x92\x99\x25\xEA\xC5\x0A\xE9\xA9\x25\x25\x99\x79\xE9\x0A\x19\xF9\x25\x0A\x99\x79\x0A\x19\xA9\x45\xA9\x7A\x59\x89\xCC\x59\x00\xDC\xF7\x0B\xD9', 'binary'))).toEqual(expected);
     });
@@ -120,14 +126,14 @@ describe('unpacks', () => {
             "id": [1245],
             "creation": 1
         };
-        expect(erlpack.unpack(new Buffer('\x83ek\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(reference);
+        expect(erlpack.unpack(new Buffer('\x83em\x00\x00\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(reference);
 
         reference = {
             "node" : "Hello",
             "id": [10, 15, 1245],
             "creation": 1
         };
-        expect(erlpack.unpack(new Buffer('\x83r\x00\x03k\x00\x05Hello\x01\x00\x00\x00\x0A\x00\x00\x00\x0F\x00\x00\x04\xDD', 'binary'))).toEqual(reference);
+        expect(erlpack.unpack(new Buffer('\x83r\x00\x03m\x00\x00\x00\x05Hello\x01\x00\x00\x00\x0A\x00\x00\x00\x0F\x00\x00\x04\xDD', 'binary'))).toEqual(reference);
     });
 
     it('port', () => {
@@ -136,7 +142,7 @@ describe('unpacks', () => {
             "id": 1245,
             "creation": 1
         };
-        expect(erlpack.unpack(new Buffer('\x83fk\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(port);
+        expect(erlpack.unpack(new Buffer('\x83fm\x00\x00\x00\x05Hello\x00\x00\x04\xDD\x01', 'binary'))).toEqual(port);
     });
 
     it('pid', () => {
@@ -146,7 +152,7 @@ describe('unpacks', () => {
             "serial": 123456,
             "creation": 1
         };
-        expect(erlpack.unpack(new Buffer('\x83gk\x00\x05Hello\x00\x00\x04\xDD\x00\x01\xE2\x40\x01', 'binary'))).toEqual(pid);
+        expect(erlpack.unpack(new Buffer('\x83gm\x00\x00\x00\x05Hello\x00\x00\x04\xDD\x00\x01\xE2\x40\x01', 'binary'))).toEqual(pid);
     });
 
     it('export', () => {
@@ -159,12 +165,12 @@ describe('unpacks', () => {
     });
 
     it('can unpack from ArrayBuffers', () => {
-        const data = new Buffer('\x83k\x00\x0bhello world', 'binary');
+        const data = new Buffer('\x83k\x00\x0b' + helloWorldBinary, 'binary');
         var byteBuffer = new Uint8Array(data.length);
         for(var i = 0; i < data.length; ++i) {
             byteBuffer[i] = data[i];
         }
-        expect(erlpack.unpack(byteBuffer)).toEqual('hello world');
+        expect(erlpack.unpack(byteBuffer)).toEqual(helloWorldList);
     });
 
     it('excepts from malformed token', () => {

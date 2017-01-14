@@ -267,7 +267,7 @@ public:
         return decodeBig(bytes);
     }
 
-    Local<Value> decodeBinary() {
+    Local<Value> decodeBinaryAsString() {
         const auto length = read32();
         const char* str = readString(length);
         if (str == NULL) {
@@ -286,6 +286,21 @@ public:
         auto binaryString = Nan::New(str, length);
         return binaryString.ToLocalChecked();
     }
+
+    Local<Value> decodeStringAsList() {
+        const auto length = read16();
+        if (offset + length > size) {
+            THROW("Reading sequence past the end of the buffer.");
+            return Nan::Null();
+        }
+
+        Local<Object> array = Nan::New<Array>(length);
+        for(uint16_t i = 0; i < length; ++i) {
+            array->Set(i, decodeSmallInteger());
+        }
+        
+        return array;
+    }    
 
     Local<Value> decodeSmallTuple() {
         return decodeTuple(read8());
@@ -400,13 +415,13 @@ public:
             case NIL_EXT:
                 return decodeNil();
             case STRING_EXT:
-                return decodeString();
+                return decodeStringAsList();
             case LIST_EXT:
                 return decodeList();
             case MAP_EXT:
                 return decodeMap();
             case BINARY_EXT:
-                return decodeBinary();
+                return decodeBinaryAsString();
             case SMALL_BIG_EXT:
                 return decodeSmallBig();
             case LARGE_BIG_EXT:
