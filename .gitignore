@@ -146,3 +146,10 @@ build/*
 node_modules/*
 js/build
 js/node_modules
+
+## For Elixir
+/_build
+/cover
+/deps
+erl_crash.dump
+*.ez
