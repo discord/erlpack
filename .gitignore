@@ -153,3 +153,6 @@ js/node_modules
 /deps
 erl_crash.dump
 *.ez
+
+## VSCode
+.vscode
