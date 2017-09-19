@@ -23,8 +23,10 @@ if have_cython:
         sources=["py/erlpack/_unpacker.pyx"]
     )
 else:
-    packer = Extension('erlpack._packer', sources=['py/erlpack/_packer.cpp'], extra_compile_args=['-O3'])
-    unpacker = Extension('erlpack._unpacker', sources=['py/erlpack/_unpacker.cpp'], extra_compile_args=['-O3'])
+    packer = Extension('erlpack._packer', sources=[
+                       'py/erlpack/_packer.cpp'], extra_compile_args=['-O3'])
+    unpacker = Extension('erlpack._unpacker', sources=[
+                         'py/erlpack/_unpacker.cpp'], extra_compile_args=['-O3'])
 
 ext_modules = [packer, unpacker]
 
@@ -32,8 +34,8 @@ setup(
     name='erlpack',
     version='0.3.2',
     author='Jake Heinz',
-    author_email='jh@hammerandchisel.com',
-    url="http://github.com/hammerandchisel/erlpack",
+    author_email='jh@discordapp.com',
+    url="http://github.com/discordapp/erlpack",
     description='A high performance erlang term encoder for Python.',
     license='Apache 2.0',
     cmdclass={'build_ext': build_ext},

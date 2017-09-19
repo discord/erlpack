@@ -33,7 +33,7 @@ defmodule ErlPack.Mixfile do
       licenses: ["MIT"],
       files: ["ex/erlpack/lib/*", "mix.exs", "README*", "LICENSE*"],
       links: %{
-        "GitHub" => "https://github.com/hammerandchisel/erlpack",
+        "GitHub" => "https://github.com/discordapp/erlpack",
       },
     ]
   end
