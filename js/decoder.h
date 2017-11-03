@@ -1,7 +1,12 @@
 #pragma once
 
+#if !defined(__STDC_FORMAT_MACROS)
+#define __STDC_FORMAT_MACROS
+#endif
+
 #include <nan.h>
 #include <zlib.h>
+#include <cinttypes>
 #include <cstdio>
 
 #include "../cpp/sysdep.h"
@@ -245,7 +250,7 @@ public:
         }
 
         char outBuffer[32] = {0}; // 9223372036854775807
-        const char* const formatString = sign == 0 ? "%llu" : "-%llu";
+        const char* const formatString = sign == 0 ? "%" PRIu64 : "-%" PRIu64;
         const int res = sprintf(outBuffer, formatString, value);
 
         if (res < 0) {
@@ -298,9 +303,9 @@ public:
         for(uint16_t i = 0; i < length; ++i) {
             array->Set(i, decodeSmallInteger());
         }
-        
+
         return array;
-    }    
+    }
 
     Local<Value> decodeSmallTuple() {
         return decodeTuple(read8());
