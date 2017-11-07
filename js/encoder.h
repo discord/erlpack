@@ -32,6 +32,7 @@ public:
         auto buffer = Nan::NewBuffer(pk.length);
         memcpy(node::Buffer::Data(buffer.ToLocalChecked()), pk.buf, pk.length); 
         pk.length = 0;
+        erlpack_append_version(&pk);
         return buffer;
     }
 
