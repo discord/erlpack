@@ -43,15 +43,15 @@ class EncodingError(Exception):
 
 cdef class ErlangTermEncoder(object):
     cdef erlpack_buffer pk
-    cdef char*_encoding
-    cdef char*_unicode_errors
-    cdef object _unicode_type
+    cdef char* _encoding
+    cdef char* _unicode_errors
+    cdef char* _unicode_type
     cdef object _encode_hook
 
     def __cinit__(self):
         self.pk.buf = NULL
 
-    def __init__(self, encoding='utf-8', unicode_errors='strict', unicode_type='binary', encode_hook=None):
+    def __init__(self, encoding=b'utf-8', unicode_errors=b'strict', unicode_type=b'binary', encode_hook=None):
         cdef object _encoding
         cdef object _unicode_errors
 
@@ -69,8 +69,8 @@ cdef class ErlangTermEncoder(object):
             else:
                 _unicode_errors = unicode_errors
 
-            self._encoding = PyString_AsString(_encoding)
-            self._unicode_errors = PyString_AsString(_unicode_errors)
+            self._encoding = PyBytes_AsString(_encoding)
+            self._unicode_errors = PyBytes_AsString(_unicode_errors)
 
         self._unicode_type = unicode_type
         self._encode_hook = encode_hook
@@ -151,11 +151,22 @@ cdef class ErlangTermEncoder(object):
             ret = erlpack_append_double(&self.pk, doubleval)
 
         elif PyObject_IsInstance(o, Atom):
-            val = str(o)
-            ret = erlpack_append_atom(&self.pk, PyString_AS_STRING(val), PyString_GET_SIZE(val))
+            # If this is Python 2, it's probably actually a bytes so we should just pass it
+            # through unmolested.
+            if PyBytes_Check(o):
+                val = str(o)
+                ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(val), PyBytes_GET_SIZE(val))
 
-        elif PyString_Check(o):
-            ret = erlpack_append_binary(&self.pk, PyString_AS_STRING(o), PyString_GET_SIZE(o))
+            # But if we're Python 3, it's a unicode.
+            else:
+                if not self._encoding:
+                    return self._pack([ord(x) for x in o])
+
+                obj = PyUnicode_AsEncodedString(o, self._encoding, self._unicode_errors)
+                ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(obj), PyBytes_Size(obj))
+
+        elif PyBytes_Check(o):
+            ret = erlpack_append_binary(&self.pk, PyBytes_AS_STRING(o), PyBytes_GET_SIZE(o))
 
         elif PyUnicode_Check(o):
             ret = self._encode_unicode(o)
@@ -252,19 +263,19 @@ cdef class ErlangTermEncoder(object):
             return self._pack([ord(x) for x in obj])
 
         cdef object st = PyUnicode_AsEncodedString(obj, self._encoding, self._unicode_errors)
-        cdef size_t size = PyString_Size(st)
+        cdef size_t size = PyBytes_Size(st)
 
-        if self._unicode_type == 'binary':
+        if self._unicode_type == b'binary':
             if size > MAX_SIZE:
                 raise ValueError('unicode string is too large using unicode type binary')
 
-            return erlpack_append_binary(&self.pk, PyString_AS_STRING(st), size)
+            return erlpack_append_binary(&self.pk, PyBytes_AS_STRING(st), size)
 
-        elif self._unicode_type == 'str':
+        elif self._unicode_type == b'str':
             if size > 0xFFF:
                 raise ValueError('unicode string is too large using unicode type str')
 
-            return erlpack_append_string(&self.pk, PyString_AS_STRING(st), size)
+            return erlpack_append_string(&self.pk, PyBytes_AS_STRING(st), size)
 
         else:
             raise TypeError('Unknown unicode encoding type %s' % self._unicode_type)

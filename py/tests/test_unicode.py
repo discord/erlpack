@@ -1,14 +1,14 @@
 from __future__ import absolute_import
 from erlpack import pack
 
+atm = u'hello world'
+assert pack(atm) == b'\x83m\x00\x00\x00\x0bhello world'
 
 def test_unicode():
     atm = u'hello world'
-
-    assert pack(atm) == '\x83m\x00\x00\x00\x0bhello world'
+    assert pack(atm) == b'\x83m\x00\x00\x00\x0bhello world'
 
 
 def test_unicode_with_actual_unicode_chars():
     atm = u'hello world\u202e'
-
-    assert pack(atm) == '\x83m\x00\x00\x00\x0ehello world\xe2\x80\xae'
+    assert pack(atm) == b'\x83m\x00\x00\x00\x0ehello world\xe2\x80\xae'

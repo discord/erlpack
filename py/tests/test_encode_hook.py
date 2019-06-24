@@ -13,7 +13,7 @@ def test_encode_hook():
 
     encoder = ErlangTermEncoder(encode_hook=encode_hook)
 
-    assert encoder.pack(datetime.datetime(2015, 12, 25, 12, 23, 55)) == '\x83m\x00\x00\x00\x132015-12-25T12:23:55'
+    assert encoder.pack(datetime.datetime(2015, 12, 25, 12, 23, 55)) == b'\x83m\x00\x00\x00\x132015-12-25T12:23:55'
 
     with raises(NotImplementedError):
         encoder.pack(datetime.date.today())

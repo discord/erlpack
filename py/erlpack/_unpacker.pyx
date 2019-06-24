@@ -24,78 +24,78 @@ cdef class ErlangTermDecoder(object):
         self.encoding = encoding
 
     def loads(self, bytes, offset=0):
-        version = ord(bytes[offset])
+        version = ord(bytes[offset:offset+1])
         if version != FORMAT_VERSION:
             raise ErlangTermDecodeError('Bad version number. Expected %d found %d' % (FORMAT_VERSION, version))
         return self.decode_part(bytes, offset + 1)[0]
 
     cdef object decode_part(self, bytes, offset=0):
-        opcode = bytes[offset]
+        opcode = bytes[offset:offset+1]
 
-        if opcode == 'a':
+        if opcode == b'a':
             return self.decode_a(bytes, offset + 1)
 
-        elif opcode == 'b':
+        elif opcode == b'b':
             return self.decode_b(bytes, offset + 1)
 
-        elif opcode == 'c':
+        elif opcode == b'c':
             return self.decode_c(bytes, offset + 1)
 
-        elif opcode == 'F':
+        elif opcode == b'F':
             return self.decode_F(bytes, offset + 1)
 
-        elif opcode == 'd':
+        elif opcode == b'd':
             return self.decode_d(bytes, offset + 1)
 
-        elif opcode == 's':
+        elif opcode == b's':
             return self.decode_s(bytes, offset + 1)
 
-        elif opcode == 't':
+        elif opcode == b't':
             return self.decode_t(bytes, offset + 1)
 
-        elif opcode == 'h':
+        elif opcode == b'h':
             return self.decode_h(bytes, offset + 1)
 
-        elif opcode == 'i':
+        elif opcode == b'i':
             return self.decode_i(bytes, offset + 1)
 
-        elif opcode == 'j':
+        elif opcode == b'j':
             return self.decode_j(bytes, offset + 1)
 
-        elif opcode == 'k':
+        elif opcode == b'k':
             return self.decode_k(bytes, offset + 1)
 
-        elif opcode == 'l':
+        elif opcode == b'l':
             return self.decode_l(bytes, offset + 1)
 
-        elif opcode == 'm':
+        elif opcode == b'm':
             return self.decode_m(bytes, offset + 1)
 
-        elif opcode == 'n':
+        elif opcode == b'n':
             return self.decode_n(bytes, offset + 1)
 
-        elif opcode == 'o':
+        elif opcode == b'o':
             return self.decode_o(bytes, offset + 1)
 
-        elif opcode == 't':
+        elif opcode == b't':
             return self.decode_t(bytes, offset + 1)
 
-        elif opcode == 'e':
+        elif opcode == b'e':
             return self.decode_e(bytes, offset + 1)
 
-        elif opcode == 'r':
+        elif opcode == b'r':
             return self.decode_r(bytes, offset + 1)
 
-        elif opcode == 'f':
+        elif opcode == b'f':
             return self.decode_f(bytes, offset + 1)
 
-        elif opcode == 'g':
+        elif opcode == b'g':
             return self.decode_g(bytes, offset + 1)
 
-        elif opcode == 'q':
+        elif opcode == b'q':
             return self.decode_q(bytes, offset + 1)
 
-        elif opcode == 'P':
+        elif opcode == b'P':
             return self.decode_P(bytes, offset + 1)
 
         else:
@@ -103,7 +103,7 @@ cdef class ErlangTermDecoder(object):
 
     cdef object decode_a(self, bytes, offset):
         """SMALL_INTEGER_EXT"""
-        return ord(bytes[offset]), offset + 1
+        return ord(bytes[offset:offset+1]), offset + 1
 
     cdef object decode_b(self, bytes, offset):
         """INTEGER_EXT"""
@@ -126,7 +126,7 @@ cdef class ErlangTermDecoder(object):
 
     cdef object decode_s(self, bytes, offset):
         """SMALL_ATOM_EXT"""
-        atom_len = ord(bytes[offset])
+        atom_len = ord(bytes[offset:offset+1])
         offset += 1
         atom = bytes[offset:offset + atom_len]
         return self.convert_atom(atom), offset + atom_len
@@ -144,7 +144,7 @@ cdef class ErlangTermDecoder(object):
 
     cdef object decode_h(self, bytes, offset):
         """SMALL_TUPLE_EXT"""
-        arity = ord(bytes[offset])
+        arity = ord(bytes[offset:offset+1])
         offset += 1
         items = []
         for i in xrange(arity):
@@ -203,7 +203,7 @@ cdef class ErlangTermDecoder(object):
 
     cdef object decode_n(self, bytes, offset):
         """SMALL_BIG_EXT"""
-        n = ord(bytes[offset])
+        n = ord(bytes[offset:offset+1])
         offset += 1
         return self.decode_bigint(n, bytes, offset)
 
@@ -215,11 +215,11 @@ cdef class ErlangTermDecoder(object):
 
     @cython.boundscheck(False)
     cdef object decode_bigint(self, n, bytes, unsigned int offset):
-        cdef unsigned char* cd = <unsigned char*>PyString_AsString(bytes)
+        cdef unsigned char* cd = <unsigned char*>PyBytes_AsString(bytes)
         cpdef unsigned long long ull
         cpdef unsigned char pos = 0
 
-        if offset + 1 + n > PyString_Size(bytes):
+        if offset + 1 + n > PyBytes_Size(bytes):
             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))
 
         sign = cd[offset]
@@ -305,10 +305,10 @@ cdef class ErlangTermDecoder(object):
         return self.decode_part(bytes, 0)
 
     cdef object convert_atom(self, atom):
-        if atom == 'true':
+        if atom == b'true':
             return True
-        elif atom == 'false':
+        elif atom == b'false':
             return False
-        elif atom == 'nil':
+        elif atom == b'nil':
             return None
-        return Atom(atom)
+        return Atom(atom.decode('utf-8'))
