@@ -1,8 +1,10 @@
+from __future__ import absolute_import
 from erlpack import pack
 from pytest import raises
+from six.moves import range
 
 def test_smallint():
-    for i in xrange(256):
+    for i in range(256):
         assert pack(i) == '\x83a%s' % chr(i)
 
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import absolute_import
 from erlpack import pack, unpack
 import socket
 import struct
@@ -49,7 +50,7 @@ def start_server():
             term = unpack(data_str)
             encoded_term = pack(term)
             out_size = len(encoded_term)
-            clientfile.write(struct.pack("!L", long(out_size)))
+            clientfile.write(struct.pack("!L", int(out_size)))
             clientfile.write(encoded_term)
             clientfile.flush()
             if is_name:

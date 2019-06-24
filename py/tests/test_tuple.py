@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from erlpack import pack
+from six.moves import range
 
 
 def test_small_tuple():

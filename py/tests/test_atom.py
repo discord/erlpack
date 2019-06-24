@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from erlpack.types import Atom
 from erlpack import pack
 
