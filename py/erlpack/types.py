@@ -2,10 +2,13 @@
 Types based on work from Samuel Stauffer's `python-erlastic` library. See COPYING.
 """
 
+import six
+
+
 __all__ = ['Atom', 'Reference', 'Port', 'PID', 'Export']
 
 
-class Atom(str):
+class Atom(six.text_type):
     def __repr__(self):
         return 'Atom(%s)' % super(Atom, self).__repr__()
 

@@ -3,4 +3,4 @@ from erlpack import pack
 
 
 def test_nil():
-    assert pack(None) == '\x83s\x03nil'
+    assert pack(None) == b'\x83s\x03nil'
