@@ -1,6 +1,7 @@
 #define FORMAT_VERSION 131
 #define NEW_FLOAT_EXT 'F'      // 70  [Float64:IEEE float]
 #define BIT_BINARY_EXT 'M'     // 77  [UInt32:Len, UInt8:Bits, Len:Data]
+#define COMPRESSED 'P'         // 80  [UInt4:UncompressedSize, N:ZlibCompressedData]
 #define SMALL_INTEGER_EXT 'a'  // 97  [UInt8:Int]
 #define INTEGER_EXT 'b'        // 98  [Int32:Int]
 #define FLOAT_EXT 'c'          // 99  [31:Float String] Float in string format (formatted "%.20e", sscanf "%lf"). Superseded by NEW_FLOAT_EXT
@@ -22,4 +23,5 @@
 #define SMALL_ATOM_EXT 's'     // 115 [UInt8:Len, Len:AtomName]
 #define MAP_EXT 't'            // 116 [UInt32:Airty, N:Pairs]
 #define FUN_EXT 'u'            // 117 [UInt4:NumFree, pid:Pid, atom:Module, int:Index, int:Uniq, NumFree*ext:FreeVars]
-#define COMPRESSED 'P'         // 80  [UInt4:UncompressedSize, N:ZlibCompressedData]
+#define ATOM_UTF8_EXT 'v'      // 118 [UInt16:Len, Len:AtomName] max Len is 255 characters (up to 4 bytes per)
+#define SMALL_ATOM_UTF8_EXT 'w' // 119 [UInt8:Len, Len:AtomName]

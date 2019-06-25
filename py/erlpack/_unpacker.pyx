@@ -50,6 +50,12 @@ cdef class ErlangTermDecoder(object):
         elif opcode == b's':
             return self.decode_s(bytes, offset + 1)
 
+        elif opcode == b'v':
+            return self.decode_v(bytes, offset + 1)
+
+        elif opcode == b'w':
+            return self.decode_w(bytes, offset + 1)
+
         elif opcode == b't':
             return self.decode_t(bytes, offset + 1)
 
@@ -130,6 +136,20 @@ cdef class ErlangTermDecoder(object):
         offset += 1
         atom = bytes[offset:offset + atom_len]
         return self.convert_atom(atom), offset + atom_len
+
+    cdef object decode_v(self, bytes, offset):
+        """ATOM_UTF8_EXT"""
+        atom_len, = struct.unpack('>H', bytes[offset:offset + 2])
+        offset += 2
+        atom = bytes[offset:offset + atom_len]
+        return self.convert_atom(atom, encoding='utf-8'), offset + atom_len
+
+    cdef object decode_w(self, bytes, offset):
+        """SMALL_ATOM_UTF8_EXT"""
+        atom_len = ord(bytes[offset:offset+1])
+        offset += 1
+        atom = bytes[offset:offset + atom_len]
+        return self.convert_atom(atom, encoding='utf-8'), offset + atom_len
 
     cdef object decode_t(self, bytes, offset):
         """MAP_EXT"""
@@ -304,11 +324,14 @@ cdef class ErlangTermDecoder(object):
         bytes = zlib.decompress(bytes[offset:offset + usize])
         return self.decode_part(bytes, 0)
 
-    cdef object convert_atom(self, atom):
+    cdef object convert_atom(self, atom, encoding='latin1'):
+        """Convert an atom (bytes) into an appropriate Python object,
+        using specified encoding. The default encoding is latin1, which
+        is the old-style encoding."""
         if atom == b'true':
             return True
         elif atom == b'false':
             return False
         elif atom == b'nil':
             return None
-        return Atom(atom.decode('utf-8'))
+        return Atom(atom.decode(encoding))

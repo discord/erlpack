@@ -30,6 +30,7 @@ cdef extern from "../../cpp/encoder.h":
     int erlpack_append_long_long(erlpack_buffer *pk, long long d)
     int erlpack_append_double(erlpack_buffer *pk, double f)
     int erlpack_append_atom(erlpack_buffer *pk, const char *bytes, unsigned int size)
+    int erlpack_append_atom_utf8(erlpack_buffer *pk, const char *bytes, unsigned int size)
     int erlpack_append_binary(erlpack_buffer *pk, const char *bytes, unsigned int size)
     int erlpack_append_string(erlpack_buffer *pk, const char *bytes, unsigned int size)
     int erlpack_append_tuple_header(erlpack_buffer *pk, size_t size)
@@ -151,10 +152,10 @@ cdef class ErlangTermEncoder(object):
             ret = erlpack_append_double(&self.pk, doubleval)
 
         elif PyObject_IsInstance(o, Atom):
-            if not self._encoding:
-                return self._pack([ord(x) for x in o])
-
-            obj = PyUnicode_AsEncodedString(o, self._encoding, self._unicode_errors)
+            # TODO: Erlang can support utf-8 atoms, but until all of the
+            # clients we know can speak it, we are going to continue sending
+            # the latin-1 encoded deprecated style.
+            obj = PyUnicode_AsEncodedString(o, 'latin-1', 'strict')
             ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(obj), PyBytes_Size(obj))
 
         elif PyBytes_Check(o):

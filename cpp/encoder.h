@@ -146,6 +146,32 @@ static inline int erlpack_append_atom(erlpack_buffer *b, const char *bytes, size
   }
 }
 
+static inline int erlpack_append_atom_utf8(erlpack_buffer *b, const char *bytes, size_t size) {
+  if (size < 255) {
+    unsigned char buf[2] = {SMALL_ATOM_UTF8_EXT, (unsigned char)size};
+    int ret = erlpack_buffer_write(b, (const char *)buf, 2);
+    if (ret < 0)
+      return ret;
+
+    erlpack_append(b, bytes, size);
+  } else {
+    unsigned char buf[3];
+    buf[0] = ATOM_UTF8_EXT;
+
+    if (size > 0xFFFF) {
+      return 1;
+    }
+
+    _erlpack_store16(buf + 1, size);
+
+    int ret = erlpack_buffer_write(b, (const char *)buf, 3);
+    if (ret < 0)
+      return ret;
+
+    erlpack_append(b, bytes, size);
+  }
+}
+
 static inline int erlpack_append_binary(erlpack_buffer *b, const char *bytes, size_t size) {
   unsigned char buf[5];
   buf[0] = BINARY_EXT;
