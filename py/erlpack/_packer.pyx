@@ -151,19 +151,11 @@ cdef class ErlangTermEncoder(object):
             ret = erlpack_append_double(&self.pk, doubleval)
 
         elif PyObject_IsInstance(o, Atom):
-            # If this is Python 2, it's probably actually a bytes so we should just pass it
-            # through unmolested.
-            if PyBytes_Check(o):
-                val = str(o)
-                ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(val), PyBytes_GET_SIZE(val))
+            if not self._encoding:
+                return self._pack([ord(x) for x in o])
 
-            # But if we're Python 3, it's a unicode.
-            else:
-                if not self._encoding:
-                    return self._pack([ord(x) for x in o])
-
-                obj = PyUnicode_AsEncodedString(o, self._encoding, self._unicode_errors)
-                ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(obj), PyBytes_Size(obj))
+            obj = PyUnicode_AsEncodedString(o, self._encoding, self._unicode_errors)
+            ret = erlpack_append_atom(&self.pk, PyBytes_AS_STRING(obj), PyBytes_Size(obj))
 
         elif PyBytes_Check(o):
             ret = erlpack_append_binary(&self.pk, PyBytes_AS_STRING(o), PyBytes_GET_SIZE(o))
