@@ -46,7 +46,7 @@ public:
         pk.allocated_size = 0;
     }
 
-    int pack(Local<Value> value, const int nestLimit = DEFAULT_RECURSE_LIMIT) {
+    int pack(Local<Context> context, Local<Value> value, const int nestLimit = DEFAULT_RECURSE_LIMIT) {
         ret = 0;
 
         if (nestLimit < 0) {
@@ -55,7 +55,7 @@ public:
         }
 
         if (value->IsInt32() || value->IsUint32()) {
-            int number = value->Int32Value();
+            int number = value->Int32Value(context).ToChecked();
             if (number >= 0 && number <= 255) {
                 unsigned char num = (unsigned char)number;
                 ret = erlpack_append_small_integer(&pk, num);
@@ -64,12 +64,12 @@ public:
                 ret = erlpack_append_integer(&pk, number);
             }
             else if (value->IsUint32()) {
-                auto uNum = (unsigned long long)value->Uint32Value();
+                auto uNum = (unsigned long long)value->Uint32Value(context).ToChecked();
                 ret = erlpack_append_unsigned_long_long(&pk, uNum);
             }
         }
         else if(value->IsNumber()) {
-            double decimal = value->NumberValue();
+            double decimal = value->NumberValue(context).ToChecked();
             ret = erlpack_append_double(&pk, decimal);
         }
         else if (value->IsNull() || value->IsUndefined()) {
@@ -106,7 +106,7 @@ public:
                 for(uint32_t i = 0; i < length; ++i) {
                     const auto k = properties->Get(i);
                     const auto v = Nan::Get(array, k).ToLocalChecked();
-                    ret = pack(v, nestLimit - 1);
+                    ret = pack(context, v, nestLimit - 1);
                     if (ret != 0) {
                        return ret;
                     }
@@ -134,12 +134,12 @@ public:
                 const auto k = properties->Get(i);
                 const auto v = Nan::Get(object, k).ToLocalChecked();
 
-                ret = pack(k, nestLimit - 1);
+                ret = pack(context, k, nestLimit - 1);
                 if (ret != 0) {
                     return ret;
                 }
 
-                ret = pack(v, nestLimit - 1);
+                ret = pack(context, v, nestLimit - 1);
                 if (ret != 0) {
                     return ret;
                 }

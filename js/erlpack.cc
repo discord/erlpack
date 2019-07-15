@@ -4,7 +4,8 @@
 
 NAN_METHOD(Pack) {
     Encoder encoder;
-    const int ret = encoder.pack(info[0]);
+    auto context = info.GetIsolate()->GetCurrentContext();
+    const int ret = encoder.pack(context, info[0]);
     if (ret == -1) {
         Nan::ThrowError("Out of memory");
         info.GetReturnValue().Set(Nan::Null());
@@ -39,9 +40,10 @@ NAN_METHOD(Unpack) {
     info.GetReturnValue().Set(value.ToLocalChecked());
 }
 
-void Init(Handle<Object> exports) {
-    exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
-    exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
+void Init(Local<Object> exports) {
+    auto context = exports->CreationContext();
+    exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction(context).ToLocalChecked());
+    exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction(context).ToLocalChecked());
 }
 
 NODE_MODULE(erlpack, Init);
