@@ -30,7 +30,7 @@ public:
         }
 
         auto buffer = Nan::NewBuffer(pk.length);
-        memcpy(node::Buffer::Data(buffer.ToLocalChecked()), pk.buf, pk.length); 
+        memcpy(node::Buffer::Data(buffer.ToLocalChecked()), pk.buf, pk.length);
         pk.length = 0;
         erlpack_append_version(&pk);
         return buffer;
@@ -55,7 +55,7 @@ public:
         }
 
         if (value->IsInt32() || value->IsUint32()) {
-            int number = value->Int32Value();
+            int number = value->Int32Value(Nan::GetCurrentContext()).FromJust();
             if (number >= 0 && number <= 255) {
                 unsigned char num = (unsigned char)number;
                 ret = erlpack_append_small_integer(&pk, num);
@@ -64,12 +64,12 @@ public:
                 ret = erlpack_append_integer(&pk, number);
             }
             else if (value->IsUint32()) {
-                auto uNum = (unsigned long long)value->Uint32Value();
+                auto uNum = (unsigned long long)value->Uint32Value(Nan::GetCurrentContext()).FromJust();
                 ret = erlpack_append_unsigned_long_long(&pk, uNum);
             }
         }
         else if(value->IsNumber()) {
-            double decimal = value->NumberValue();
+            double decimal = value->NumberValue(Nan::GetCurrentContext()).FromJust();
             ret = erlpack_append_double(&pk, decimal);
         }
         else if (value->IsNull() || value->IsUndefined()) {
@@ -104,7 +104,7 @@ public:
                 }
 
                 for(uint32_t i = 0; i < length; ++i) {
-                    const auto k = properties->Get(i);
+                    const auto k = Nan::Get(properties, i).ToLocalChecked();
                     const auto v = Nan::Get(array, k).ToLocalChecked();
                     ret = pack(v, nestLimit - 1);
                     if (ret != 0) {
@@ -131,7 +131,7 @@ public:
             }
 
             for(uint32_t i = 0; i < len; ++i) {
-                const auto k = properties->Get(i);
+                const auto k = Nan::Get(properties, i).ToLocalChecked();
                 const auto v = Nan::Get(object, k).ToLocalChecked();
 
                 ret = pack(k, nestLimit - 1);

@@ -103,7 +103,7 @@ public:
             if (isInvalid) {
                 return Nan::Undefined();
             }
-            array->Set(i, value);
+            Nan::Set(array, i, value);
         }
         return array;
     }
@@ -140,7 +140,7 @@ public:
             if (isInvalid) {
                 return Nan::Undefined();
             }
-            map->Set(key, value);
+            Nan::Set(map, key, value);
         }
 
         return map;
@@ -301,7 +301,7 @@ public:
 
         Local<Object> array = Nan::New<Array>(length);
         for(uint16_t i = 0; i < length; ++i) {
-            array->Set(i, decodeSmallInteger());
+            Nan::Set(array, i, decodeSmallInteger());
         }
 
         return array;
@@ -337,13 +337,13 @@ public:
 
     Local<Value> decodeReference() {
         auto reference = Nan::New<Object>();
-        reference->Set(Nan::New("node").ToLocalChecked(), unpack());
+        Nan::Set(reference, Nan::New("node").ToLocalChecked(), unpack()).FromJust();
 
         Local<Object> ids = Nan::New<Array>(1);
-        ids->Set(0, Nan::New<Integer>(read32()));
-        reference->Set(Nan::New("id").ToLocalChecked(), ids);
+        Nan::Set(ids, 0, Nan::New<Integer>(read32())).FromJust();
+        Nan::Set(reference, Nan::New("id").ToLocalChecked(), ids).FromJust();
 
-        reference->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
+        Nan::Set(reference, Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8())).FromJust();
 
         return reference;
     }
@@ -352,40 +352,40 @@ public:
         auto reference = Nan::New<Object>();
 
         uint16_t len = read16();
-        reference->Set(Nan::New("node").ToLocalChecked(), unpack());
-        reference->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
+        Nan::Set(reference, Nan::New("node").ToLocalChecked(), unpack()).FromJust();
+        Nan::Set(reference, Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8())).FromJust();
 
         Local<Object> ids = Nan::New<Array>(len);
         for(uint16_t i = 0; i < len; ++i) {
-            ids->Set(i, Nan::New<Integer>(read32()));
+            Nan::Set(ids, i, Nan::New<Integer>(read32())).FromJust();
         }
-        reference->Set(Nan::New("id").ToLocalChecked(), ids);
+        Nan::Set(reference, Nan::New("id").ToLocalChecked(), ids).FromJust();
 
         return reference;
     }
 
     Local<Value> decodePort() {
         auto port = Nan::New<Object>();
-        port->Set(Nan::New("node").ToLocalChecked(), unpack());
-        port->Set(Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32()));
-        port->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
+        Nan::Set(port, Nan::New("node").ToLocalChecked(), unpack()).FromJust();
+        Nan::Set(port, Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32())).FromJust();
+        Nan::Set(port, Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8())).FromJust();
         return port;
     }
 
     Local<Value> decodePID() {
         auto pid = Nan::New<Object>();
-        pid->Set(Nan::New("node").ToLocalChecked(), unpack());
-        pid->Set(Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32()));
-        pid->Set(Nan::New("serial").ToLocalChecked(), Nan::New<Integer>(read32()));
-        pid->Set(Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8()));
+        Nan::Set(pid, Nan::New("node").ToLocalChecked(), unpack()).FromJust();
+        Nan::Set(pid, Nan::New("id").ToLocalChecked(), Nan::New<Integer>(read32())).FromJust();
+        Nan::Set(pid, Nan::New("serial").ToLocalChecked(), Nan::New<Integer>(read32())).FromJust();
+        Nan::Set(pid, Nan::New("creation").ToLocalChecked(), Nan::New<Integer>(read8())).FromJust();
         return pid;
     }
 
     Local<Value> decodeExport() {
         auto exp = Nan::New<Object>();
-        exp->Set(Nan::New("mod").ToLocalChecked(), unpack());
-        exp->Set(Nan::New("fun").ToLocalChecked(), unpack());
-        exp->Set(Nan::New("arity").ToLocalChecked(), unpack());
+        Nan::Set(exp, Nan::New("mod").ToLocalChecked(), unpack()).FromJust();
+        Nan::Set(exp, Nan::New("fun").ToLocalChecked(), unpack()).FromJust();
+        Nan::Set(exp, Nan::New("arity").ToLocalChecked(), unpack()).FromJust();
         return exp;
     }
 
