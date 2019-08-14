@@ -43,6 +43,7 @@ setup(
     package_dir={'': 'py'},
     packages=['erlpack'],
     ext_modules=ext_modules,
+    install_requires=['six==1.12.0'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
 )
