@@ -191,13 +191,20 @@ cdef class ErlangTermDecoder(object):
         length, = struct.unpack('>H', bytes[offset:offset + 2])
         offset += 2
         st = bytes[offset:offset + length]
+        byte_elements_are_ints = isinstance(b'a'[0], int)
         if self.encoding:
             try:
                 st = st.decode(self.encoding)
             except UnicodeError:
-                st = [ord(x) for x in st]
+                if byte_elements_are_ints:
+                    st = [x for x in st]
+                else:
+                    st = [ord(x) for x in st]
         else:
-            st = [ord(x) for x in st]
+            if byte_elements_are_ints:
+                st = [x for x in st]
+            else:
+                st = [ord(x) for x in st]
         return st, offset + length
 
     cdef object decode_l(self, bytes, offset):
