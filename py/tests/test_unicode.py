@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
-from erlpack import pack, unpack, Atom, ErlangTermDecoder
+from erlpack import Atom, ErlangTermDecoder, pack, unpack
 
 
 def test_unicode():
@@ -31,9 +31,8 @@ def test_unicode_atom_decodes():
     assert atm == Atom(u'こんにちは世界')
 
 
-def test_unicode_string_decodes_by_default():
+def test_unicode_string_decodes_if_encoding_set():
     unicode_string = u'こんにちは世界'
     decoder = ErlangTermDecoder(encoding='utf-8')
     packed = pack(unicode_string)
-    unpacker = decoder.loads
-    assert unpacker(packed) == unicode_string
+    assert decoder.loads(packed) == unicode_string

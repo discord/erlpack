@@ -228,10 +228,7 @@ cdef class ErlangTermDecoder(object):
         offset += 4
         rv = bytes[offset:offset + length]
         if self.encoding:
-            try:
-                rv = rv.decode(self.encoding)
-            except UnicodeError:
-                pass
+            rv = rv.decode(self.encoding)
         return rv, offset + length
 
     cdef object decode_n(self, bytes, offset):
