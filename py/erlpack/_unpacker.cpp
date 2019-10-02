@@ -820,9 +820,9 @@ static const char *__pyx_filename;
 static const char *__pyx_f[] = {
   "py/erlpack/_unpacker.pyx",
   "stringsource",
-  "env/lib/python3.7/site-packages/Cython/Includes/cpython/type.pxd",
-  "env/lib/python3.7/site-packages/Cython/Includes/cpython/bool.pxd",
-  "env/lib/python3.7/site-packages/Cython/Includes/cpython/complex.pxd",
+  "venv/lib/python3.7/site-packages/Cython/Includes/cpython/type.pxd",
+  "venv/lib/python3.7/site-packages/Cython/Includes/cpython/bool.pxd",
+  "venv/lib/python3.7/site-packages/Cython/Includes/cpython/complex.pxd",
 };
 
 /*--- Type declarations ---*/
@@ -842,7 +842,7 @@ struct __pyx_opt_args_7erlpack_9_unpacker_17ErlangTermDecoder_decode_part {
   PyObject *offset;
 };
 
-/* "erlpack/_unpacker.pyx":334
+/* "erlpack/_unpacker.pyx":337
  *         return self.decode_part(bytes, 0)
  * 
  *     cdef object convert_atom(self, atom, encoding='latin1'):             # <<<<<<<<<<<<<<
@@ -1405,7 +1405,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_i(struct
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_j(CYTHON_UNUSED struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_k(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_l(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
-static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON_UNUSED struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
+static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_n(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset); /* proto*/
 static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(CYTHON_UNUSED struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_n, PyObject *__pyx_v_bytes, unsigned int __pyx_v_offset); /* proto*/
@@ -6126,8 +6126,9 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_l(struct
  *         length, = struct.unpack('>L', bytes[offset:offset + 4])
  */
 
-static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON_UNUSED struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset) {
+static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(struct __pyx_obj_7erlpack_9_unpacker_ErlangTermDecoder *__pyx_v_self, PyObject *__pyx_v_bytes, PyObject *__pyx_v_offset) {
   PyObject *__pyx_v_length = NULL;
+  PyObject *__pyx_v_rv = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6137,6 +6138,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON
   int __pyx_t_5;
   PyObject *__pyx_t_6 = NULL;
   PyObject *(*__pyx_t_7)(PyObject *);
+  int __pyx_t_8;
   __Pyx_RefNannySetupContext("decode_m", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
@@ -6145,7 +6147,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON
  *         """BINARY_EXT"""
  *         length, = struct.unpack('>L', bytes[offset:offset + 4])             # <<<<<<<<<<<<<<
  *         offset += 4
- *         return bytes[offset:offset + length], offset + length
+ *         rv = bytes[offset:offset + length]
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -6250,8 +6252,8 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON
  *         """BINARY_EXT"""
  *         length, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4             # <<<<<<<<<<<<<<
- *         return bytes[offset:offset + length], offset + length
- * 
+ *         rv = bytes[offset:offset + length]
+ *         if self.encoding:
  */
   __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -6261,28 +6263,84 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON
   /* "erlpack/_unpacker.pyx":229
  *         length, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4
- *         return bytes[offset:offset + length], offset + length             # <<<<<<<<<<<<<<
- * 
- *     cdef object decode_n(self, bytes, offset):
+ *         rv = bytes[offset:offset + length]             # <<<<<<<<<<<<<<
+ *         if self.encoding:
+ *             rv = rv.decode(self.encoding)
  */
-  __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = PyNumber_Add(__pyx_v_offset, __pyx_v_length); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_1, NULL, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_v_offset, __pyx_v_length); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 229, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_1);
+  __pyx_v_rv = __pyx_t_3;
   __pyx_t_3 = 0;
+
+  /* "erlpack/_unpacker.pyx":230
+ *         offset += 4
+ *         rv = bytes[offset:offset + length]
+ *         if self.encoding:             # <<<<<<<<<<<<<<
+ *             rv = rv.decode(self.encoding)
+ *         return rv, offset + length
+ */
+  __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_v_self->encoding); if (unlikely(__pyx_t_8 < 0)) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (__pyx_t_8) {
+
+    /* "erlpack/_unpacker.pyx":231
+ *         rv = bytes[offset:offset + length]
+ *         if self.encoding:
+ *             rv = rv.decode(self.encoding)             # <<<<<<<<<<<<<<
+ *         return rv, offset + length
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_rv, __pyx_n_s_decode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_6 = NULL;
+    if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_6)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_6);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+      }
+    }
+    __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_v_self->encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_self->encoding);
+    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF_SET(__pyx_v_rv, __pyx_t_3);
+    __pyx_t_3 = 0;
+
+    /* "erlpack/_unpacker.pyx":230
+ *         offset += 4
+ *         rv = bytes[offset:offset + length]
+ *         if self.encoding:             # <<<<<<<<<<<<<<
+ *             rv = rv.decode(self.encoding)
+ *         return rv, offset + length
+ */
+  }
+
+  /* "erlpack/_unpacker.pyx":232
+ *         if self.encoding:
+ *             rv = rv.decode(self.encoding)
+ *         return rv, offset + length             # <<<<<<<<<<<<<<
+ * 
+ *     cdef object decode_n(self, bytes, offset):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_3 = PyNumber_Add(__pyx_v_offset, __pyx_v_length); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(__pyx_v_rv);
+  __Pyx_GIVEREF(__pyx_v_rv);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_rv);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
+  __pyx_t_3 = 0;
+  __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
-  __pyx_r = __pyx_t_6;
-  __pyx_t_6 = 0;
   goto __pyx_L0;
 
   /* "erlpack/_unpacker.pyx":225
@@ -6304,14 +6362,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_m(CYTHON
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_length);
+  __Pyx_XDECREF(__pyx_v_rv);
   __Pyx_XDECREF(__pyx_v_offset);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":231
- *         return bytes[offset:offset + length], offset + length
+/* "erlpack/_unpacker.pyx":234
+ *         return rv, offset + length
  * 
  *     cdef object decode_n(self, bytes, offset):             # <<<<<<<<<<<<<<
  *         """SMALL_BIG_EXT"""
@@ -6329,35 +6388,35 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_n(struct
   __Pyx_RefNannySetupContext("decode_n", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":233
+  /* "erlpack/_unpacker.pyx":236
  *     cdef object decode_n(self, bytes, offset):
  *         """SMALL_BIG_EXT"""
  *         n = ord(bytes[offset:offset+1])             # <<<<<<<<<<<<<<
  *         offset += 1
  *         return self.decode_bigint(n, bytes, offset)
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_1, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_1, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Ord(__pyx_t_2); if (unlikely(__pyx_t_3 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Ord(__pyx_t_2); if (unlikely(__pyx_t_3 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_n = __pyx_t_3;
 
-  /* "erlpack/_unpacker.pyx":234
+  /* "erlpack/_unpacker.pyx":237
  *         """SMALL_BIG_EXT"""
  *         n = ord(bytes[offset:offset+1])
  *         offset += 1             # <<<<<<<<<<<<<<
  *         return self.decode_bigint(n, bytes, offset)
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "erlpack/_unpacker.pyx":235
+  /* "erlpack/_unpacker.pyx":238
  *         n = ord(bytes[offset:offset+1])
  *         offset += 1
  *         return self.decode_bigint(n, bytes, offset)             # <<<<<<<<<<<<<<
@@ -6365,18 +6424,18 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_n(struct
  *     cdef object decode_o(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyInt_From_long(__pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_long(__pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyInt_As_unsigned_int(__pyx_v_offset); if (unlikely((__pyx_t_4 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 235, __pyx_L1_error)
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_bigint(__pyx_v_self, __pyx_t_2, __pyx_v_bytes, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_unsigned_int(__pyx_v_offset); if (unlikely((__pyx_t_4 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_bigint(__pyx_v_self, __pyx_t_2, __pyx_v_bytes, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":231
- *         return bytes[offset:offset + length], offset + length
+  /* "erlpack/_unpacker.pyx":234
+ *         return rv, offset + length
  * 
  *     cdef object decode_n(self, bytes, offset):             # <<<<<<<<<<<<<<
  *         """SMALL_BIG_EXT"""
@@ -6396,7 +6455,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_n(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":237
+/* "erlpack/_unpacker.pyx":240
  *         return self.decode_bigint(n, bytes, offset)
  * 
  *     cdef object decode_o(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -6419,21 +6478,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
   __Pyx_RefNannySetupContext("decode_o", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":239
+  /* "erlpack/_unpacker.pyx":242
  *     cdef object decode_o(self, bytes, offset):
  *         """LARGE_BIG_EXT"""
  *         n, = struct.unpack('>L', bytes[offset:offset + 4])             # <<<<<<<<<<<<<<
  *         offset += 4
  *         return self.decode_bigint(n, bytes, offset)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -6451,7 +6510,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_L, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -6460,14 +6519,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_L, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -6478,7 +6537,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -6489,7 +6548,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
     if (unlikely(size != 1)) {
       if (size > 1) __Pyx_RaiseTooManyValuesError(1);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 239, __pyx_L1_error)
+      __PYX_ERR(0, 242, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -6499,19 +6558,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
     }
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 239, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
     index = 0; __pyx_t_3 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 239, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 242, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L4_unpacking_done;
@@ -6519,25 +6578,25 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 239, __pyx_L1_error)
+    __PYX_ERR(0, 242, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_n = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "erlpack/_unpacker.pyx":240
+  /* "erlpack/_unpacker.pyx":243
  *         """LARGE_BIG_EXT"""
  *         n, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4             # <<<<<<<<<<<<<<
  *         return self.decode_bigint(n, bytes, offset)
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":241
+  /* "erlpack/_unpacker.pyx":244
  *         n, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4
  *         return self.decode_bigint(n, bytes, offset)             # <<<<<<<<<<<<<<
@@ -6545,14 +6604,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
  *     @cython.boundscheck(False)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_8 = __Pyx_PyInt_As_unsigned_int(__pyx_v_offset); if (unlikely((__pyx_t_8 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_bigint(__pyx_v_self, __pyx_v_n, __pyx_v_bytes, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_As_unsigned_int(__pyx_v_offset); if (unlikely((__pyx_t_8 == (unsigned int)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_bigint(__pyx_v_self, __pyx_v_n, __pyx_v_bytes, __pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":237
+  /* "erlpack/_unpacker.pyx":240
  *         return self.decode_bigint(n, bytes, offset)
  * 
  *     cdef object decode_o(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -6577,7 +6636,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_o(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":244
+/* "erlpack/_unpacker.pyx":247
  * 
  *     @cython.boundscheck(False)
  *     cdef object decode_bigint(self, n, bytes, unsigned int offset):             # <<<<<<<<<<<<<<
@@ -6605,17 +6664,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   PyObject *(*__pyx_t_8)(PyObject *);
   __Pyx_RefNannySetupContext("decode_bigint", 0);
 
-  /* "erlpack/_unpacker.pyx":245
+  /* "erlpack/_unpacker.pyx":248
  *     @cython.boundscheck(False)
  *     cdef object decode_bigint(self, n, bytes, unsigned int offset):
  *         cdef unsigned char* cd = <unsigned char*>PyBytes_AsString(bytes)             # <<<<<<<<<<<<<<
  *         cpdef unsigned long long ull
  *         cpdef unsigned char pos = 0
  */
-  __pyx_t_1 = PyBytes_AsString(__pyx_v_bytes); if (unlikely(__pyx_t_1 == ((char *)NULL))) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_1 = PyBytes_AsString(__pyx_v_bytes); if (unlikely(__pyx_t_1 == ((char *)NULL))) __PYX_ERR(0, 248, __pyx_L1_error)
   __pyx_v_cd = ((unsigned char *)__pyx_t_1);
 
-  /* "erlpack/_unpacker.pyx":247
+  /* "erlpack/_unpacker.pyx":250
  *         cdef unsigned char* cd = <unsigned char*>PyBytes_AsString(bytes)
  *         cpdef unsigned long long ull
  *         cpdef unsigned char pos = 0             # <<<<<<<<<<<<<<
@@ -6624,44 +6683,44 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   __pyx_v_pos = 0;
 
-  /* "erlpack/_unpacker.pyx":249
+  /* "erlpack/_unpacker.pyx":252
  *         cpdef unsigned char pos = 0
  * 
  *         if offset + 1 + n > PyBytes_Size(bytes):             # <<<<<<<<<<<<<<
  *             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))
  * 
  */
-  __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_offset + 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_offset + 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Add(__pyx_t_2, __pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_t_2, __pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = PyBytes_Size(__pyx_v_bytes); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1L))) __PYX_ERR(0, 249, __pyx_L1_error)
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_4 = PyBytes_Size(__pyx_v_bytes); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1L))) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_5 = PyObject_RichCompare(__pyx_t_3, __pyx_t_2, Py_GT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 252, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (unlikely(__pyx_t_6)) {
 
-    /* "erlpack/_unpacker.pyx":250
+    /* "erlpack/_unpacker.pyx":253
  * 
  *         if offset + 1 + n > PyBytes_Size(bytes):
  *             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))             # <<<<<<<<<<<<<<
  * 
  *         sign = cd[offset]
  */
-    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_offset + 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_long((__pyx_v_offset + 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = PyNumber_Add(__pyx_t_5, __pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Add(__pyx_t_5, __pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_4 = PyObject_Length(__pyx_v_bytes); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
-    __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_4 = PyObject_Length(__pyx_v_bytes); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 253, __pyx_L1_error)
+    __pyx_t_5 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
@@ -6669,17 +6728,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_5);
     __pyx_t_2 = 0;
     __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Overflown_s_s, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyString_Format(__pyx_kp_s_Overflown_s_s, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_OverflowError, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 250, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_OverflowError, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 250, __pyx_L1_error)
+    __PYX_ERR(0, 253, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":249
+    /* "erlpack/_unpacker.pyx":252
  *         cpdef unsigned char pos = 0
  * 
  *         if offset + 1 + n > PyBytes_Size(bytes):             # <<<<<<<<<<<<<<
@@ -6688,7 +6747,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   }
 
-  /* "erlpack/_unpacker.pyx":252
+  /* "erlpack/_unpacker.pyx":255
  *             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))
  * 
  *         sign = cd[offset]             # <<<<<<<<<<<<<<
@@ -6697,7 +6756,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   __pyx_v_sign = (__pyx_v_cd[__pyx_v_offset]);
 
-  /* "erlpack/_unpacker.pyx":253
+  /* "erlpack/_unpacker.pyx":256
  * 
  *         sign = cd[offset]
  *         offset += 1             # <<<<<<<<<<<<<<
@@ -6706,7 +6765,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   __pyx_v_offset = (__pyx_v_offset + 1);
 
-  /* "erlpack/_unpacker.pyx":255
+  /* "erlpack/_unpacker.pyx":258
  *         offset += 1
  * 
  *         if sign == 0 and n <= 8:             # <<<<<<<<<<<<<<
@@ -6719,14 +6778,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
     __pyx_t_6 = __pyx_t_7;
     goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_n, __pyx_int_8, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 255, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_n, __pyx_int_8, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = __pyx_t_7;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_6) {
 
-    /* "erlpack/_unpacker.pyx":256
+    /* "erlpack/_unpacker.pyx":259
  * 
  *         if sign == 0 and n <= 8:
  *             ull = 0             # <<<<<<<<<<<<<<
@@ -6735,22 +6794,22 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
     __pyx_v_ull = 0;
 
-    /* "erlpack/_unpacker.pyx":257
+    /* "erlpack/_unpacker.pyx":260
  *         if sign == 0 and n <= 8:
  *             ull = 0
  *             for i in range(n):             # <<<<<<<<<<<<<<
  *                 ull |= <unsigned long long>(cd[offset]) << pos
  *                 pos += 8
  */
-    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (likely(PyList_CheckExact(__pyx_t_3)) || PyTuple_CheckExact(__pyx_t_3)) {
       __pyx_t_5 = __pyx_t_3; __Pyx_INCREF(__pyx_t_5); __pyx_t_4 = 0;
       __pyx_t_8 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 257, __pyx_L1_error)
+      __pyx_t_4 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 260, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 257, __pyx_L1_error)
+      __pyx_t_8 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 260, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     for (;;) {
@@ -6758,17 +6817,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 257, __pyx_L1_error)
+          __pyx_t_3 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 260, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         } else {
           if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 257, __pyx_L1_error)
+          __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 260, __pyx_L1_error)
           #else
-          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
+          __pyx_t_3 = PySequence_ITEM(__pyx_t_5, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           #endif
         }
@@ -6778,7 +6837,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 257, __pyx_L1_error)
+            else __PYX_ERR(0, 260, __pyx_L1_error)
           }
           break;
         }
@@ -6787,7 +6846,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
       __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "erlpack/_unpacker.pyx":258
+      /* "erlpack/_unpacker.pyx":261
  *             ull = 0
  *             for i in range(n):
  *                 ull |= <unsigned long long>(cd[offset]) << pos             # <<<<<<<<<<<<<<
@@ -6796,7 +6855,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
       __pyx_v_ull = (__pyx_v_ull | (((unsigned PY_LONG_LONG)(__pyx_v_cd[__pyx_v_offset])) << __pyx_v_pos));
 
-      /* "erlpack/_unpacker.pyx":259
+      /* "erlpack/_unpacker.pyx":262
  *             for i in range(n):
  *                 ull |= <unsigned long long>(cd[offset]) << pos
  *                 pos += 8             # <<<<<<<<<<<<<<
@@ -6805,7 +6864,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
       __pyx_v_pos = (__pyx_v_pos + 8);
 
-      /* "erlpack/_unpacker.pyx":260
+      /* "erlpack/_unpacker.pyx":263
  *                 ull |= <unsigned long long>(cd[offset]) << pos
  *                 pos += 8
  *                 offset += 1             # <<<<<<<<<<<<<<
@@ -6814,7 +6873,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
       __pyx_v_offset = (__pyx_v_offset + 1);
 
-      /* "erlpack/_unpacker.pyx":257
+      /* "erlpack/_unpacker.pyx":260
  *         if sign == 0 and n <= 8:
  *             ull = 0
  *             for i in range(n):             # <<<<<<<<<<<<<<
@@ -6824,7 +6883,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "erlpack/_unpacker.pyx":262
+    /* "erlpack/_unpacker.pyx":265
  *                 offset += 1
  * 
  *             return ull, offset             # <<<<<<<<<<<<<<
@@ -6832,11 +6891,11 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  *         val = 0
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_5 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(__pyx_v_ull); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(__pyx_v_ull); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_5);
@@ -6848,7 +6907,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "erlpack/_unpacker.pyx":255
+    /* "erlpack/_unpacker.pyx":258
  *         offset += 1
  * 
  *         if sign == 0 and n <= 8:             # <<<<<<<<<<<<<<
@@ -6857,7 +6916,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   }
 
-  /* "erlpack/_unpacker.pyx":264
+  /* "erlpack/_unpacker.pyx":267
  *             return ull, offset
  * 
  *         val = 0             # <<<<<<<<<<<<<<
@@ -6867,7 +6926,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   __Pyx_INCREF(__pyx_int_0);
   __pyx_v_val = __pyx_int_0;
 
-  /* "erlpack/_unpacker.pyx":265
+  /* "erlpack/_unpacker.pyx":268
  * 
  *         val = 0
  *         b = 1             # <<<<<<<<<<<<<<
@@ -6877,22 +6936,22 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   __Pyx_INCREF(__pyx_int_1);
   __pyx_v_b = __pyx_int_1;
 
-  /* "erlpack/_unpacker.pyx":266
+  /* "erlpack/_unpacker.pyx":269
  *         val = 0
  *         b = 1
  *         for i in range(n):             # <<<<<<<<<<<<<<
  *             val += cd[offset] * b
  *             b <<= 8
  */
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_n); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
     __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
     __pyx_t_8 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 269, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 266, __pyx_L1_error)
+    __pyx_t_8 = Py_TYPE(__pyx_t_3)->tp_iternext; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 269, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   for (;;) {
@@ -6900,17 +6959,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
       if (likely(PyList_CheckExact(__pyx_t_3))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 266, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 269, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 266, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 269, __pyx_L1_error)
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -6920,7 +6979,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 266, __pyx_L1_error)
+          else __PYX_ERR(0, 269, __pyx_L1_error)
         }
         break;
       }
@@ -6929,37 +6988,37 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "erlpack/_unpacker.pyx":267
+    /* "erlpack/_unpacker.pyx":270
  *         b = 1
  *         for i in range(n):
  *             val += cd[offset] * b             # <<<<<<<<<<<<<<
  *             b <<= 8
  *             offset += 1
  */
-    __pyx_t_2 = __Pyx_PyInt_From_unsigned_char((__pyx_v_cd[__pyx_v_offset])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_From_unsigned_char((__pyx_v_cd[__pyx_v_offset])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_v_b); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_val, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_val, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "erlpack/_unpacker.pyx":268
+    /* "erlpack/_unpacker.pyx":271
  *         for i in range(n):
  *             val += cd[offset] * b
  *             b <<= 8             # <<<<<<<<<<<<<<
  *             offset += 1
  *         if sign != 0:
  */
-    __pyx_t_2 = __Pyx_PyInt_LshiftObjC(__pyx_v_b, __pyx_int_8, 8, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 268, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyInt_LshiftObjC(__pyx_v_b, __pyx_int_8, 8, 1, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF_SET(__pyx_v_b, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "erlpack/_unpacker.pyx":269
+    /* "erlpack/_unpacker.pyx":272
  *             val += cd[offset] * b
  *             b <<= 8
  *             offset += 1             # <<<<<<<<<<<<<<
@@ -6968,7 +7027,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
     __pyx_v_offset = (__pyx_v_offset + 1);
 
-    /* "erlpack/_unpacker.pyx":266
+    /* "erlpack/_unpacker.pyx":269
  *         val = 0
  *         b = 1
  *         for i in range(n):             # <<<<<<<<<<<<<<
@@ -6978,7 +7037,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "erlpack/_unpacker.pyx":270
+  /* "erlpack/_unpacker.pyx":273
  *             b <<= 8
  *             offset += 1
  *         if sign != 0:             # <<<<<<<<<<<<<<
@@ -6988,19 +7047,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   __pyx_t_6 = ((__pyx_v_sign != 0) != 0);
   if (__pyx_t_6) {
 
-    /* "erlpack/_unpacker.pyx":271
+    /* "erlpack/_unpacker.pyx":274
  *             offset += 1
  *         if sign != 0:
  *             val = -val             # <<<<<<<<<<<<<<
  *         return val, offset
  * 
  */
-    __pyx_t_3 = PyNumber_Negative(__pyx_v_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Negative(__pyx_v_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF_SET(__pyx_v_val, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "erlpack/_unpacker.pyx":270
+    /* "erlpack/_unpacker.pyx":273
  *             b <<= 8
  *             offset += 1
  *         if sign != 0:             # <<<<<<<<<<<<<<
@@ -7009,7 +7068,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  */
   }
 
-  /* "erlpack/_unpacker.pyx":272
+  /* "erlpack/_unpacker.pyx":275
  *         if sign != 0:
  *             val = -val
  *         return val, offset             # <<<<<<<<<<<<<<
@@ -7017,9 +7076,9 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
  *     cdef object decode_e(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_unsigned_int(__pyx_v_offset); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_val);
   __Pyx_GIVEREF(__pyx_v_val);
@@ -7031,7 +7090,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":244
+  /* "erlpack/_unpacker.pyx":247
  * 
  *     @cython.boundscheck(False)
  *     cdef object decode_bigint(self, n, bytes, unsigned int offset):             # <<<<<<<<<<<<<<
@@ -7055,7 +7114,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_bigint(C
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":274
+/* "erlpack/_unpacker.pyx":277
  *         return val, offset
  * 
  *     cdef object decode_e(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -7082,7 +7141,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   __Pyx_RefNannySetupContext("decode_e", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":276
+  /* "erlpack/_unpacker.pyx":279
  *     cdef object decode_e(self, bytes, offset):
  *         """REFERENCE_EXT"""
  *         node, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
@@ -7091,7 +7150,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.offset = __pyx_v_offset;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -7099,7 +7158,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 276, __pyx_L1_error)
+      __PYX_ERR(0, 279, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -7112,15 +7171,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 279, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -7128,7 +7187,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 276, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L4_unpacking_done;
@@ -7136,7 +7195,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 276, __pyx_L1_error)
+    __PYX_ERR(0, 279, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_node = __pyx_t_3;
@@ -7144,30 +7203,30 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "erlpack/_unpacker.pyx":277
+  /* "erlpack/_unpacker.pyx":280
  *         """REFERENCE_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing REFERENCE_EXT, found %r instead' % node)
  *         reference_id, creation = struct.unpack('>LB', bytes[offset: offset + 5])
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "erlpack/_unpacker.pyx":278
+    /* "erlpack/_unpacker.pyx":281
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing REFERENCE_EXT, found %r instead' % node)             # <<<<<<<<<<<<<<
  *         reference_id, creation = struct.unpack('>LB', bytes[offset: offset + 5])
  *         offset += 5
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_REFE, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_REFE, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -7182,14 +7241,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 278, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 278, __pyx_L1_error)
+    __PYX_ERR(0, 281, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":277
+    /* "erlpack/_unpacker.pyx":280
  *         """REFERENCE_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
@@ -7198,21 +7257,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
  */
   }
 
-  /* "erlpack/_unpacker.pyx":279
+  /* "erlpack/_unpacker.pyx":282
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing REFERENCE_EXT, found %r instead' % node)
  *         reference_id, creation = struct.unpack('>LB', bytes[offset: offset + 5])             # <<<<<<<<<<<<<<
  *         offset += 5
  *         return Reference(node, [reference_id], creation), offset
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -7230,7 +7289,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -7239,14 +7298,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7257,7 +7316,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
@@ -7268,7 +7327,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 279, __pyx_L1_error)
+      __PYX_ERR(0, 282, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -7281,15 +7340,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_10);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -7297,7 +7356,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_10 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_10)) goto __pyx_L6_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 279, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 282, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L7_unpacking_done;
@@ -7305,7 +7364,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 279, __pyx_L1_error)
+    __PYX_ERR(0, 282, __pyx_L1_error)
     __pyx_L7_unpacking_done:;
   }
   __pyx_v_reference_id = __pyx_t_3;
@@ -7313,19 +7372,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   __pyx_v_creation = __pyx_t_10;
   __pyx_t_10 = 0;
 
-  /* "erlpack/_unpacker.pyx":280
+  /* "erlpack/_unpacker.pyx":283
  *             raise ErlangTermDecodeError('Expected atom while parsing REFERENCE_EXT, found %r instead' % node)
  *         reference_id, creation = struct.unpack('>LB', bytes[offset: offset + 5])
  *         offset += 5             # <<<<<<<<<<<<<<
  *         return Reference(node, [reference_id], creation), offset
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":281
+  /* "erlpack/_unpacker.pyx":284
  *         reference_id, creation = struct.unpack('>LB', bytes[offset: offset + 5])
  *         offset += 5
  *         return Reference(node, [reference_id], creation), offset             # <<<<<<<<<<<<<<
@@ -7333,9 +7392,9 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
  *     cdef object decode_r(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_Reference); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_Reference); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_reference_id);
   __Pyx_GIVEREF(__pyx_v_reference_id);
@@ -7355,7 +7414,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_10)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_v_node, __pyx_t_3, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7364,14 +7423,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
     PyObject *__pyx_temp[4] = {__pyx_t_5, __pyx_v_node, __pyx_t_3, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else
   #endif
   {
-    __pyx_t_4 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     if (__pyx_t_5) {
       __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_5); __pyx_t_5 = NULL;
@@ -7385,12 +7444,12 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
     __Pyx_GIVEREF(__pyx_v_creation);
     PyTuple_SET_ITEM(__pyx_t_4, 2+__pyx_t_9, __pyx_v_creation);
     __pyx_t_3 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_1);
@@ -7402,7 +7461,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   __pyx_t_10 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":274
+  /* "erlpack/_unpacker.pyx":277
  *         return val, offset
  * 
  *     cdef object decode_e(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -7429,7 +7488,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_e(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":283
+/* "erlpack/_unpacker.pyx":286
  *         return Reference(node, [reference_id], creation), offset
  * 
  *     cdef object decode_r(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -7459,21 +7518,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   __Pyx_RefNannySetupContext("decode_r", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":285
+  /* "erlpack/_unpacker.pyx":288
  *     cdef object decode_r(self, bytes, offset):
  *         """NEW_REFERENCE_EXT"""
  *         id_len, = struct.unpack('>H', bytes[offset:offset + 2])             # <<<<<<<<<<<<<<
  *         offset += 2
  *         node, offset = self.decode_part(bytes, offset)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -7491,7 +7550,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_H, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -7500,14 +7559,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_H, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -7518,7 +7577,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -7529,7 +7588,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     if (unlikely(size != 1)) {
       if (size > 1) __Pyx_RaiseTooManyValuesError(1);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 285, __pyx_L1_error)
+      __PYX_ERR(0, 288, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -7539,19 +7598,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     }
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 288, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
     index = 0; __pyx_t_3 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 285, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 288, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L4_unpacking_done;
@@ -7559,25 +7618,25 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 285, __pyx_L1_error)
+    __PYX_ERR(0, 288, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_id_len = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "erlpack/_unpacker.pyx":286
+  /* "erlpack/_unpacker.pyx":289
  *         """NEW_REFERENCE_EXT"""
  *         id_len, = struct.unpack('>H', bytes[offset:offset + 2])
  *         offset += 2             # <<<<<<<<<<<<<<
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_2, 2, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_2, 2, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":287
+  /* "erlpack/_unpacker.pyx":290
  *         id_len, = struct.unpack('>H', bytes[offset:offset + 2])
  *         offset += 2
  *         node, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
@@ -7586,7 +7645,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
  */
   __pyx_t_8.__pyx_n = 1;
   __pyx_t_8.offset = __pyx_v_offset;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -7594,7 +7653,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 287, __pyx_L1_error)
+      __PYX_ERR(0, 290, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -7607,15 +7666,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_6);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 290, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -7623,7 +7682,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_6 = __pyx_t_7(__pyx_t_4); if (unlikely(!__pyx_t_6)) goto __pyx_L5_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_4), 2) < 0) __PYX_ERR(0, 287, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_4), 2) < 0) __PYX_ERR(0, 290, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L6_unpacking_done;
@@ -7631,7 +7690,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 287, __pyx_L1_error)
+    __PYX_ERR(0, 290, __pyx_L1_error)
     __pyx_L6_unpacking_done:;
   }
   __pyx_v_node = __pyx_t_3;
@@ -7639,30 +7698,30 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "erlpack/_unpacker.pyx":288
+  /* "erlpack/_unpacker.pyx":291
  *         offset += 2
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing NEW_REFERENCE_EXT, found %r instead' % node)
  *         creation = ord(bytes[offset])
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_9 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_9 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_10 = ((!(__pyx_t_9 != 0)) != 0);
   if (unlikely(__pyx_t_10)) {
 
-    /* "erlpack/_unpacker.pyx":289
+    /* "erlpack/_unpacker.pyx":292
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing NEW_REFERENCE_EXT, found %r instead' % node)             # <<<<<<<<<<<<<<
  *         creation = ord(bytes[offset])
  *         offset += 1
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_NEW, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_NEW, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
@@ -7677,14 +7736,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_4, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 289, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 289, __pyx_L1_error)
+    __PYX_ERR(0, 292, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":288
+    /* "erlpack/_unpacker.pyx":291
  *         offset += 2
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
@@ -7693,51 +7752,51 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
  */
   }
 
-  /* "erlpack/_unpacker.pyx":290
+  /* "erlpack/_unpacker.pyx":293
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing NEW_REFERENCE_EXT, found %r instead' % node)
  *         creation = ord(bytes[offset])             # <<<<<<<<<<<<<<
  *         offset += 1
  *         reference_id = struct.unpack('>%dL' % id_len, bytes[offset:offset + (4 * id_len)])
  */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_bytes, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_bytes, __pyx_v_offset); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_1); if (unlikely(__pyx_t_11 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 290, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_Ord(__pyx_t_1); if (unlikely(__pyx_t_11 == ((long)(long)(Py_UCS4)-1))) __PYX_ERR(0, 293, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_creation = __pyx_t_11;
 
-  /* "erlpack/_unpacker.pyx":291
+  /* "erlpack/_unpacker.pyx":294
  *             raise ErlangTermDecodeError('Expected atom while parsing NEW_REFERENCE_EXT, found %r instead' % node)
  *         creation = ord(bytes[offset])
  *         offset += 1             # <<<<<<<<<<<<<<
  *         reference_id = struct.unpack('>%dL' % id_len, bytes[offset:offset + (4 * id_len)])
  *         offset += (4 * id_len)
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":292
+  /* "erlpack/_unpacker.pyx":295
  *         creation = ord(bytes[offset])
  *         offset += 1
  *         reference_id = struct.unpack('>%dL' % id_len, bytes[offset:offset + (4 * id_len)])             # <<<<<<<<<<<<<<
  *         offset += (4 * id_len)
  *         return Reference(node, reference_id, creation), offset
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_struct); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_struct); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyString_FormatSafe(__pyx_kp_s_dL, __pyx_v_id_len); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyString_FormatSafe(__pyx_kp_s_dL, __pyx_v_id_len); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_int_4, __pyx_v_id_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_int_4, __pyx_v_id_len); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyNumber_Add(__pyx_v_offset, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_v_offset, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 292, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -7755,7 +7814,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_6, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7765,7 +7824,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_6, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -7773,7 +7832,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   } else
   #endif
   {
-    __pyx_t_12 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_12 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_12);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -7784,7 +7843,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     PyTuple_SET_ITEM(__pyx_t_12, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_6 = 0;
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_12, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
@@ -7792,22 +7851,22 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   __pyx_v_reference_id = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":293
+  /* "erlpack/_unpacker.pyx":296
  *         offset += 1
  *         reference_id = struct.unpack('>%dL' % id_len, bytes[offset:offset + (4 * id_len)])
  *         offset += (4 * id_len)             # <<<<<<<<<<<<<<
  *         return Reference(node, reference_id, creation), offset
  * 
  */
-  __pyx_t_1 = PyNumber_Multiply(__pyx_int_4, __pyx_v_id_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_int_4, __pyx_v_id_len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 293, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_offset, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "erlpack/_unpacker.pyx":294
+  /* "erlpack/_unpacker.pyx":297
  *         reference_id = struct.unpack('>%dL' % id_len, bytes[offset:offset + (4 * id_len)])
  *         offset += (4 * id_len)
  *         return Reference(node, reference_id, creation), offset             # <<<<<<<<<<<<<<
@@ -7815,9 +7874,9 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
  *     cdef object decode_f(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Reference); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Reference); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_12 = __Pyx_PyInt_From_long(__pyx_v_creation); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyInt_From_long(__pyx_v_creation); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -7834,7 +7893,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_node, __pyx_v_reference_id, __pyx_t_12};
-    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -7843,14 +7902,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
     PyObject *__pyx_temp[4] = {__pyx_t_4, __pyx_v_node, __pyx_v_reference_id, __pyx_t_12};
-    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_5, 3+__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -7864,12 +7923,12 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
     __Pyx_GIVEREF(__pyx_t_12);
     PyTuple_SET_ITEM(__pyx_t_6, 2+__pyx_t_5, __pyx_t_12);
     __pyx_t_12 = 0;
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 294, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_6, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 294, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3);
@@ -7881,7 +7940,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":283
+  /* "erlpack/_unpacker.pyx":286
  *         return Reference(node, [reference_id], creation), offset
  * 
  *     cdef object decode_r(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -7909,7 +7968,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_r(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":296
+/* "erlpack/_unpacker.pyx":299
  *         return Reference(node, reference_id, creation), offset
  * 
  *     cdef object decode_f(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -7936,7 +7995,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   __Pyx_RefNannySetupContext("decode_f", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":298
+  /* "erlpack/_unpacker.pyx":301
  *     cdef object decode_f(self, bytes, offset):
  *         """PORT_EXT"""
  *         node, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
@@ -7945,7 +8004,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.offset = __pyx_v_offset;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -7953,7 +8012,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 298, __pyx_L1_error)
+      __PYX_ERR(0, 301, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -7966,15 +8025,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 298, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -7982,7 +8041,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L4_unpacking_done;
@@ -7990,7 +8049,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 298, __pyx_L1_error)
+    __PYX_ERR(0, 301, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_node = __pyx_t_3;
@@ -7998,30 +8057,30 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "erlpack/_unpacker.pyx":299
+  /* "erlpack/_unpacker.pyx":302
  *         """PORT_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing PORT_EXT, found %r instead' % node)
  *         port_id, creation = struct.unpack('>LB', bytes[offset:offset + 5])
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 299, __pyx_L1_error)
+  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "erlpack/_unpacker.pyx":300
+    /* "erlpack/_unpacker.pyx":303
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing PORT_EXT, found %r instead' % node)             # <<<<<<<<<<<<<<
  *         port_id, creation = struct.unpack('>LB', bytes[offset:offset + 5])
  *         offset += 5
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 303, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_PORT, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_PORT, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 303, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -8036,14 +8095,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 300, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 300, __pyx_L1_error)
+    __PYX_ERR(0, 303, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":299
+    /* "erlpack/_unpacker.pyx":302
  *         """PORT_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
@@ -8052,21 +8111,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
  */
   }
 
-  /* "erlpack/_unpacker.pyx":301
+  /* "erlpack/_unpacker.pyx":304
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing PORT_EXT, found %r instead' % node)
  *         port_id, creation = struct.unpack('>LB', bytes[offset:offset + 5])             # <<<<<<<<<<<<<<
  *         offset += 5
  *         return Port(node, port_id, creation), offset
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 304, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8084,7 +8143,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -8093,14 +8152,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8111,7 +8170,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
@@ -8122,7 +8181,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 301, __pyx_L1_error)
+      __PYX_ERR(0, 304, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -8135,15 +8194,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_10);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 301, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 304, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -8151,7 +8210,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_10 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_10)) goto __pyx_L6_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 301, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 304, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L7_unpacking_done;
@@ -8159,7 +8218,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 301, __pyx_L1_error)
+    __PYX_ERR(0, 304, __pyx_L1_error)
     __pyx_L7_unpacking_done:;
   }
   __pyx_v_port_id = __pyx_t_3;
@@ -8167,19 +8226,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   __pyx_v_creation = __pyx_t_10;
   __pyx_t_10 = 0;
 
-  /* "erlpack/_unpacker.pyx":302
+  /* "erlpack/_unpacker.pyx":305
  *             raise ErlangTermDecodeError('Expected atom while parsing PORT_EXT, found %r instead' % node)
  *         port_id, creation = struct.unpack('>LB', bytes[offset:offset + 5])
  *         offset += 5             # <<<<<<<<<<<<<<
  *         return Port(node, port_id, creation), offset
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_5, 5, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":303
+  /* "erlpack/_unpacker.pyx":306
  *         port_id, creation = struct.unpack('>LB', bytes[offset:offset + 5])
  *         offset += 5
  *         return Port(node, port_id, creation), offset             # <<<<<<<<<<<<<<
@@ -8187,7 +8246,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
  *     cdef object decode_g(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_Port); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_Port); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __pyx_t_3 = NULL;
   __pyx_t_9 = 0;
@@ -8204,7 +8263,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_10)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_node, __pyx_v_port_id, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -8212,13 +8271,13 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_10)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_node, __pyx_v_port_id, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_10, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 306, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -8232,12 +8291,12 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
     __Pyx_INCREF(__pyx_v_creation);
     __Pyx_GIVEREF(__pyx_v_creation);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_9, __pyx_v_creation);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_10, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 306, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 303, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 306, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_1);
@@ -8249,7 +8308,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   __pyx_t_10 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":296
+  /* "erlpack/_unpacker.pyx":299
  *         return Reference(node, reference_id, creation), offset
  * 
  *     cdef object decode_f(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -8276,7 +8335,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_f(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":305
+/* "erlpack/_unpacker.pyx":308
  *         return Port(node, port_id, creation), offset
  * 
  *     cdef object decode_g(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -8304,7 +8363,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   __Pyx_RefNannySetupContext("decode_g", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":307
+  /* "erlpack/_unpacker.pyx":310
  *     cdef object decode_g(self, bytes, offset):
  *         """PID_EXT"""
  *         node, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
@@ -8313,7 +8372,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.offset = __pyx_v_offset;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
     PyObject* sequence = __pyx_t_1;
@@ -8321,7 +8380,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 307, __pyx_L1_error)
+      __PYX_ERR(0, 310, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -8334,15 +8393,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 310, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 307, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 310, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -8350,7 +8409,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 307, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 310, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L4_unpacking_done;
@@ -8358,7 +8417,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 307, __pyx_L1_error)
+    __PYX_ERR(0, 310, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_node = __pyx_t_3;
@@ -8366,30 +8425,30 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "erlpack/_unpacker.pyx":308
+  /* "erlpack/_unpacker.pyx":311
  *         """PID_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing PID_EXT, found %r instead' % node)
  *         pid_id, serial, creation = struct.unpack('>LLB', bytes[offset:offset + 9])
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 308, __pyx_L1_error)
+  __pyx_t_7 = PyObject_IsInstance(__pyx_v_node, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "erlpack/_unpacker.pyx":309
+    /* "erlpack/_unpacker.pyx":312
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing PID_EXT, found %r instead' % node)             # <<<<<<<<<<<<<<
  *         pid_id, serial, creation = struct.unpack('>LLB', bytes[offset:offset + 9])
  *         offset += 9
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 309, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_PID, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 309, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_PID, __pyx_v_node); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -8404,14 +8463,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 309, __pyx_L1_error)
+    __PYX_ERR(0, 312, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":308
+    /* "erlpack/_unpacker.pyx":311
  *         """PID_EXT"""
  *         node, offset = self.decode_part(bytes, offset)
  *         if not isinstance(node, Atom):             # <<<<<<<<<<<<<<
@@ -8420,21 +8479,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
  */
   }
 
-  /* "erlpack/_unpacker.pyx":310
+  /* "erlpack/_unpacker.pyx":313
  *         if not isinstance(node, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing PID_EXT, found %r instead' % node)
  *         pid_id, serial, creation = struct.unpack('>LLB', bytes[offset:offset + 9])             # <<<<<<<<<<<<<<
  *         offset += 9
  *         return PID(node, pid_id, serial, creation), offset
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_struct); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_9, 9, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_9, 9, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_4, NULL, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -8452,7 +8511,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LLB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -8461,14 +8520,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_4, __pyx_kp_s_LLB, __pyx_t_5};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_9, 2+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   } else
   #endif
   {
-    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_10 = PyTuple_New(2+__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     if (__pyx_t_4) {
       __Pyx_GIVEREF(__pyx_t_4); PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_4); __pyx_t_4 = NULL;
@@ -8479,7 +8538,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_GIVEREF(__pyx_t_5);
     PyTuple_SET_ITEM(__pyx_t_10, 1+__pyx_t_9, __pyx_t_5);
     __pyx_t_5 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   }
@@ -8490,7 +8549,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     if (unlikely(size != 3)) {
       if (size > 3) __Pyx_RaiseTooManyValuesError(3);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 310, __pyx_L1_error)
+      __PYX_ERR(0, 313, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -8506,17 +8565,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_INCREF(__pyx_t_10);
     __Pyx_INCREF(__pyx_t_5);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_10 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_5 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_5 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 310, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 313, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_4)->tp_iternext;
@@ -8526,7 +8585,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_GOTREF(__pyx_t_10);
     index = 2; __pyx_t_5 = __pyx_t_6(__pyx_t_4); if (unlikely(!__pyx_t_5)) goto __pyx_L6_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_4), 3) < 0) __PYX_ERR(0, 310, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_4), 3) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     goto __pyx_L7_unpacking_done;
@@ -8534,7 +8593,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 310, __pyx_L1_error)
+    __PYX_ERR(0, 313, __pyx_L1_error)
     __pyx_L7_unpacking_done:;
   }
   __pyx_v_pid_id = __pyx_t_3;
@@ -8544,19 +8603,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   __pyx_v_creation = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "erlpack/_unpacker.pyx":311
+  /* "erlpack/_unpacker.pyx":314
  *             raise ErlangTermDecodeError('Expected atom while parsing PID_EXT, found %r instead' % node)
  *         pid_id, serial, creation = struct.unpack('>LLB', bytes[offset:offset + 9])
  *         offset += 9             # <<<<<<<<<<<<<<
  *         return PID(node, pid_id, serial, creation), offset
  * 
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_9, 9, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 311, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_9, 9, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":312
+  /* "erlpack/_unpacker.pyx":315
  *         pid_id, serial, creation = struct.unpack('>LLB', bytes[offset:offset + 9])
  *         offset += 9
  *         return PID(node, pid_id, serial, creation), offset             # <<<<<<<<<<<<<<
@@ -8564,7 +8623,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
  *     cdef object decode_q(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_PID); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_PID); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_10 = NULL;
   __pyx_t_9 = 0;
@@ -8581,7 +8640,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[5] = {__pyx_t_10, __pyx_v_node, __pyx_v_pid_id, __pyx_v_serial, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 4+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 4+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -8589,13 +8648,13 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_5)) {
     PyObject *__pyx_temp[5] = {__pyx_t_10, __pyx_v_node, __pyx_v_pid_id, __pyx_v_serial, __pyx_v_creation};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 4+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_5, __pyx_temp+1-__pyx_t_9, 4+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_3 = PyTuple_New(4+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(4+__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     if (__pyx_t_10) {
       __Pyx_GIVEREF(__pyx_t_10); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_10); __pyx_t_10 = NULL;
@@ -8612,12 +8671,12 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
     __Pyx_INCREF(__pyx_v_creation);
     __Pyx_GIVEREF(__pyx_v_creation);
     PyTuple_SET_ITEM(__pyx_t_3, 3+__pyx_t_9, __pyx_v_creation);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
@@ -8629,7 +8688,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":305
+  /* "erlpack/_unpacker.pyx":308
  *         return Port(node, port_id, creation), offset
  * 
  *     cdef object decode_g(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -8657,7 +8716,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_g(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":314
+/* "erlpack/_unpacker.pyx":317
  *         return PID(node, pid_id, serial, creation), offset
  * 
  *     cdef object decode_q(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -8683,128 +8742,12 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   __Pyx_RefNannySetupContext("decode_q", 0);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":316
+  /* "erlpack/_unpacker.pyx":319
  *     cdef object decode_q(self, bytes, offset):
  *         """EXPORT_EXT"""
  *         module, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
  *         if not isinstance(module, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
- */
-  __pyx_t_2.__pyx_n = 1;
-  __pyx_t_2.offset = __pyx_v_offset;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 316, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
-    PyObject* sequence = __pyx_t_1;
-    Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-    if (unlikely(size != 2)) {
-      if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-      else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 316, __pyx_L1_error)
-    }
-    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
-    } else {
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_4 = PyList_GET_ITEM(sequence, 1); 
-    }
-    __Pyx_INCREF(__pyx_t_3);
-    __Pyx_INCREF(__pyx_t_4);
-    #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 316, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    #endif
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  } else {
-    Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 316, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
-    index = 0; __pyx_t_3 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
-    __Pyx_GOTREF(__pyx_t_3);
-    index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
-    __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 316, __pyx_L1_error)
-    __pyx_t_6 = NULL;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    goto __pyx_L4_unpacking_done;
-    __pyx_L3_unpacking_failed:;
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_6 = NULL;
-    if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 316, __pyx_L1_error)
-    __pyx_L4_unpacking_done:;
-  }
-  __pyx_v_module = __pyx_t_3;
-  __pyx_t_3 = 0;
-  __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
-  __pyx_t_4 = 0;
-
-  /* "erlpack/_unpacker.pyx":317
- *         """EXPORT_EXT"""
- *         module, offset = self.decode_part(bytes, offset)
- *         if not isinstance(module, Atom):             # <<<<<<<<<<<<<<
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
- *         function, offset = self.decode_part(bytes, offset)
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 317, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = PyObject_IsInstance(__pyx_v_module, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 317, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
-  if (unlikely(__pyx_t_8)) {
-
-    /* "erlpack/_unpacker.pyx":318
- *         module, offset = self.decode_part(bytes, offset)
- *         if not isinstance(module, Atom):
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)             # <<<<<<<<<<<<<<
- *         function, offset = self.decode_part(bytes, offset)
- *         if not isinstance(function, Atom):
- */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 318, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_EXPO, __pyx_v_module); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_5 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-      if (likely(__pyx_t_5)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-        __Pyx_INCREF(__pyx_t_5);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_4, function);
-      }
-    }
-    __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 318, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 318, __pyx_L1_error)
-
-    /* "erlpack/_unpacker.pyx":317
- *         """EXPORT_EXT"""
- *         module, offset = self.decode_part(bytes, offset)
- *         if not isinstance(module, Atom):             # <<<<<<<<<<<<<<
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
- *         function, offset = self.decode_part(bytes, offset)
- */
-  }
-
-  /* "erlpack/_unpacker.pyx":319
- *         if not isinstance(module, Atom):
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
- *         function, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
- *         if not isinstance(function, Atom):
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.offset = __pyx_v_offset;
@@ -8820,19 +8763,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
-      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
+      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
     } else {
-      __pyx_t_4 = PyList_GET_ITEM(sequence, 0); 
-      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
+      __pyx_t_4 = PyList_GET_ITEM(sequence, 1); 
     }
-    __Pyx_INCREF(__pyx_t_4);
     __Pyx_INCREF(__pyx_t_3);
+    __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 319, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 319, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 319, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
@@ -8841,86 +8784,86 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
-    index = 0; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L6_unpacking_failed;
-    __Pyx_GOTREF(__pyx_t_4);
-    index = 1; __pyx_t_3 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L6_unpacking_failed;
+    index = 0; __pyx_t_3 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
+    index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L3_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_4);
     if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 319, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    goto __pyx_L7_unpacking_done;
-    __pyx_L6_unpacking_failed:;
+    goto __pyx_L4_unpacking_done;
+    __pyx_L3_unpacking_failed:;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
     __PYX_ERR(0, 319, __pyx_L1_error)
-    __pyx_L7_unpacking_done:;
+    __pyx_L4_unpacking_done:;
   }
-  __pyx_v_function = __pyx_t_4;
-  __pyx_t_4 = 0;
-  __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_3);
+  __pyx_v_module = __pyx_t_3;
   __pyx_t_3 = 0;
+  __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
+  __pyx_t_4 = 0;
 
   /* "erlpack/_unpacker.pyx":320
+ *         """EXPORT_EXT"""
+ *         module, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(module, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
  *         function, offset = self.decode_part(bytes, offset)
- *         if not isinstance(function, Atom):             # <<<<<<<<<<<<<<
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
- *         arity, offset = self.decode_part(bytes, offset)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = PyObject_IsInstance(__pyx_v_function, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 320, __pyx_L1_error)
+  __pyx_t_7 = PyObject_IsInstance(__pyx_v_module, __pyx_t_1); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 320, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = ((!(__pyx_t_8 != 0)) != 0);
-  if (unlikely(__pyx_t_7)) {
+  __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
+  if (unlikely(__pyx_t_8)) {
 
     /* "erlpack/_unpacker.pyx":321
+ *         module, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(module, Atom):
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)             # <<<<<<<<<<<<<<
  *         function, offset = self.decode_part(bytes, offset)
  *         if not isinstance(function, Atom):
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)             # <<<<<<<<<<<<<<
- *         arity, offset = self.decode_part(bytes, offset)
- *         if not isinstance(arity, int):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_EXPO, __pyx_v_function); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_EXPO, __pyx_v_module); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 321, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
-    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
       if (likely(__pyx_t_5)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
+        __Pyx_DECREF_SET(__pyx_t_4, function);
       }
     }
-    __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
+    __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 321, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 321, __pyx_L1_error)
 
     /* "erlpack/_unpacker.pyx":320
+ *         """EXPORT_EXT"""
+ *         module, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(module, Atom):             # <<<<<<<<<<<<<<
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
  *         function, offset = self.decode_part(bytes, offset)
- *         if not isinstance(function, Atom):             # <<<<<<<<<<<<<<
- *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
- *         arity, offset = self.decode_part(bytes, offset)
  */
   }
 
   /* "erlpack/_unpacker.pyx":322
+ *         if not isinstance(module, Atom):
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
+ *         function, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
  *         if not isinstance(function, Atom):
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
- *         arity, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
- *         if not isinstance(arity, int):
- *             raise ErlangTermDecodeError('Expected integer while parsing EXPORT_EXT, found %r instead' % arity)
  */
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.offset = __pyx_v_offset;
@@ -8936,6 +8879,122 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
+      __pyx_t_4 = PyTuple_GET_ITEM(sequence, 0); 
+      __pyx_t_3 = PyTuple_GET_ITEM(sequence, 1); 
+    } else {
+      __pyx_t_4 = PyList_GET_ITEM(sequence, 0); 
+      __pyx_t_3 = PyList_GET_ITEM(sequence, 1); 
+    }
+    __Pyx_INCREF(__pyx_t_4);
+    __Pyx_INCREF(__pyx_t_3);
+    #else
+    __pyx_t_4 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_3 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    #endif
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  } else {
+    Py_ssize_t index = -1;
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
+    index = 0; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L6_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_4);
+    index = 1; __pyx_t_3 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_3)) goto __pyx_L6_unpacking_failed;
+    __Pyx_GOTREF(__pyx_t_3);
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
+    __pyx_t_6 = NULL;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    goto __pyx_L7_unpacking_done;
+    __pyx_L6_unpacking_failed:;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_6 = NULL;
+    if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
+    __PYX_ERR(0, 322, __pyx_L1_error)
+    __pyx_L7_unpacking_done:;
+  }
+  __pyx_v_function = __pyx_t_4;
+  __pyx_t_4 = 0;
+  __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "erlpack/_unpacker.pyx":323
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
+ *         function, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(function, Atom):             # <<<<<<<<<<<<<<
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
+ *         arity, offset = self.decode_part(bytes, offset)
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_Atom); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_8 = PyObject_IsInstance(__pyx_v_function, __pyx_t_1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 323, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_7 = ((!(__pyx_t_8 != 0)) != 0);
+  if (unlikely(__pyx_t_7)) {
+
+    /* "erlpack/_unpacker.pyx":324
+ *         function, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(function, Atom):
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)             # <<<<<<<<<<<<<<
+ *         arity, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(arity, int):
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_4 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_atom_while_parsing_EXPO, __pyx_v_function); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_5 = NULL;
+    if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
+      if (likely(__pyx_t_5)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+        __Pyx_INCREF(__pyx_t_5);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_3, function);
+      }
+    }
+    __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __PYX_ERR(0, 324, __pyx_L1_error)
+
+    /* "erlpack/_unpacker.pyx":323
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % module)
+ *         function, offset = self.decode_part(bytes, offset)
+ *         if not isinstance(function, Atom):             # <<<<<<<<<<<<<<
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
+ *         arity, offset = self.decode_part(bytes, offset)
+ */
+  }
+
+  /* "erlpack/_unpacker.pyx":325
+ *         if not isinstance(function, Atom):
+ *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
+ *         arity, offset = self.decode_part(bytes, offset)             # <<<<<<<<<<<<<<
+ *         if not isinstance(arity, int):
+ *             raise ErlangTermDecodeError('Expected integer while parsing EXPORT_EXT, found %r instead' % arity)
+ */
+  __pyx_t_2.__pyx_n = 1;
+  __pyx_t_2.offset = __pyx_v_offset;
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
+    PyObject* sequence = __pyx_t_1;
+    Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+    if (unlikely(size != 2)) {
+      if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+      else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+      __PYX_ERR(0, 325, __pyx_L1_error)
+    }
+    #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    if (likely(PyTuple_CheckExact(sequence))) {
       __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
       __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1); 
     } else {
@@ -8945,15 +9004,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __Pyx_INCREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 325, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __pyx_t_5 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_6 = Py_TYPE(__pyx_t_5)->tp_iternext;
@@ -8961,7 +9020,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __Pyx_GOTREF(__pyx_t_3);
     index = 1; __pyx_t_4 = __pyx_t_6(__pyx_t_5); if (unlikely(!__pyx_t_4)) goto __pyx_L9_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 322, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_6(__pyx_t_5), 2) < 0) __PYX_ERR(0, 325, __pyx_L1_error)
     __pyx_t_6 = NULL;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     goto __pyx_L10_unpacking_done;
@@ -8969,7 +9028,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_6 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 322, __pyx_L1_error)
+    __PYX_ERR(0, 325, __pyx_L1_error)
     __pyx_L10_unpacking_done:;
   }
   __pyx_v_arity = __pyx_t_3;
@@ -8977,7 +9036,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "erlpack/_unpacker.pyx":323
+  /* "erlpack/_unpacker.pyx":326
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
  *         arity, offset = self.decode_part(bytes, offset)
  *         if not isinstance(arity, int):             # <<<<<<<<<<<<<<
@@ -8988,16 +9047,16 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   __pyx_t_8 = ((!(__pyx_t_7 != 0)) != 0);
   if (unlikely(__pyx_t_8)) {
 
-    /* "erlpack/_unpacker.pyx":324
+    /* "erlpack/_unpacker.pyx":327
  *         arity, offset = self.decode_part(bytes, offset)
  *         if not isinstance(arity, int):
  *             raise ErlangTermDecodeError('Expected integer while parsing EXPORT_EXT, found %r instead' % arity)             # <<<<<<<<<<<<<<
  *         return Export(module, function, arity), offset + 1
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_ErlangTermDecodeError); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 327, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_integer_while_parsing_E, __pyx_v_arity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 324, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyString_FormatSafe(__pyx_kp_s_Expected_integer_while_parsing_E, __pyx_v_arity); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 327, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -9012,14 +9071,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 324, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 327, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 324, __pyx_L1_error)
+    __PYX_ERR(0, 327, __pyx_L1_error)
 
-    /* "erlpack/_unpacker.pyx":323
+    /* "erlpack/_unpacker.pyx":326
  *             raise ErlangTermDecodeError('Expected atom while parsing EXPORT_EXT, found %r instead' % function)
  *         arity, offset = self.decode_part(bytes, offset)
  *         if not isinstance(arity, int):             # <<<<<<<<<<<<<<
@@ -9028,7 +9087,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
  */
   }
 
-  /* "erlpack/_unpacker.pyx":325
+  /* "erlpack/_unpacker.pyx":328
  *         if not isinstance(arity, int):
  *             raise ErlangTermDecodeError('Expected integer while parsing EXPORT_EXT, found %r instead' % arity)
  *         return Export(module, function, arity), offset + 1             # <<<<<<<<<<<<<<
@@ -9036,7 +9095,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
  *     cdef object decode_P(self, bytes, offset):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Export); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Export); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = NULL;
   __pyx_t_9 = 0;
@@ -9053,7 +9112,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_module, __pyx_v_function, __pyx_v_arity};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -9061,13 +9120,13 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_v_module, __pyx_v_function, __pyx_v_arity};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-__pyx_t_9, 3+__pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -9081,14 +9140,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
     __Pyx_INCREF(__pyx_v_arity);
     __Pyx_GIVEREF(__pyx_v_arity);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_9, __pyx_v_arity);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 325, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 328, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
@@ -9100,7 +9159,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":314
+  /* "erlpack/_unpacker.pyx":317
  *         return PID(node, pid_id, serial, creation), offset
  * 
  *     cdef object decode_q(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -9126,7 +9185,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_q(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":327
+/* "erlpack/_unpacker.pyx":330
  *         return Export(module, function, arity), offset + 1
  * 
  *     cdef object decode_P(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -9150,21 +9209,21 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   __Pyx_INCREF(__pyx_v_bytes);
   __Pyx_INCREF(__pyx_v_offset);
 
-  /* "erlpack/_unpacker.pyx":329
+  /* "erlpack/_unpacker.pyx":332
  *     cdef object decode_P(self, bytes, offset):
  *         """Compressed term"""
  *         usize, = struct.unpack('>L', bytes[offset:offset + 4])             # <<<<<<<<<<<<<<
  *         offset += 4
  *         bytes = zlib.decompress(bytes[offset:offset + usize])
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_struct); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unpack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_2, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 332, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -9182,7 +9241,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_L, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -9191,14 +9250,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_3)) {
     PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_kp_s_L, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_3, __pyx_temp+1-__pyx_t_5, 2+__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   } else
   #endif
   {
-    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(2+__pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     if (__pyx_t_2) {
       __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2); __pyx_t_2 = NULL;
@@ -9209,7 +9268,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
     __Pyx_GIVEREF(__pyx_t_4);
     PyTuple_SET_ITEM(__pyx_t_6, 1+__pyx_t_5, __pyx_t_4);
     __pyx_t_4 = 0;
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
@@ -9220,7 +9279,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
     if (unlikely(size != 1)) {
       if (size > 1) __Pyx_RaiseTooManyValuesError(1);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 329, __pyx_L1_error)
+      __PYX_ERR(0, 332, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -9230,19 +9289,19 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
     }
     __Pyx_INCREF(__pyx_t_3);
     #else
-    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 329, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 332, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = Py_TYPE(__pyx_t_6)->tp_iternext;
     index = 0; __pyx_t_3 = __pyx_t_7(__pyx_t_6); if (unlikely(!__pyx_t_3)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 329, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_7(__pyx_t_6), 1) < 0) __PYX_ERR(0, 332, __pyx_L1_error)
     __pyx_t_7 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L4_unpacking_done;
@@ -9250,39 +9309,39 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 329, __pyx_L1_error)
+    __PYX_ERR(0, 332, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __pyx_v_usize = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "erlpack/_unpacker.pyx":330
+  /* "erlpack/_unpacker.pyx":333
  *         """Compressed term"""
  *         usize, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4             # <<<<<<<<<<<<<<
  *         bytes = zlib.decompress(bytes[offset:offset + usize])
  *         return self.decode_part(bytes, 0)
  */
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_offset, __pyx_int_4, 4, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF_SET(__pyx_v_offset, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":331
+  /* "erlpack/_unpacker.pyx":334
  *         usize, = struct.unpack('>L', bytes[offset:offset + 4])
  *         offset += 4
  *         bytes = zlib.decompress(bytes[offset:offset + usize])             # <<<<<<<<<<<<<<
  *         return self.decode_part(bytes, 0)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_zlib); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_zlib); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_decompress); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_decompress); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Add(__pyx_v_offset, __pyx_v_usize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(__pyx_v_offset, __pyx_v_usize); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_3, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 331, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_bytes, 0, 0, &__pyx_v_offset, &__pyx_t_3, NULL, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -9298,13 +9357,13 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_t_4);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 331, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 334, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF_SET(__pyx_v_bytes, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "erlpack/_unpacker.pyx":332
+  /* "erlpack/_unpacker.pyx":335
  *         offset += 4
  *         bytes = zlib.decompress(bytes[offset:offset + usize])
  *         return self.decode_part(bytes, 0)             # <<<<<<<<<<<<<<
@@ -9314,13 +9373,13 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_8.__pyx_n = 1;
   __pyx_t_8.offset = __pyx_int_0;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_1 = ((struct __pyx_vtabstruct_7erlpack_9_unpacker_ErlangTermDecoder *)__pyx_v_self->__pyx_vtab)->decode_part(__pyx_v_self, __pyx_v_bytes, &__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":327
+  /* "erlpack/_unpacker.pyx":330
  *         return Export(module, function, arity), offset + 1
  * 
  *     cdef object decode_P(self, bytes, offset):             # <<<<<<<<<<<<<<
@@ -9346,7 +9405,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_decode_P(struct
   return __pyx_r;
 }
 
-/* "erlpack/_unpacker.pyx":334
+/* "erlpack/_unpacker.pyx":337
  *         return self.decode_part(bytes, 0)
  * 
  *     cdef object convert_atom(self, atom, encoding='latin1'):             # <<<<<<<<<<<<<<
@@ -9371,17 +9430,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
     }
   }
 
-  /* "erlpack/_unpacker.pyx":338
+  /* "erlpack/_unpacker.pyx":341
  *         using specified encoding. The default encoding is latin1, which
  *         is the old-style encoding."""
  *         if atom == b'true':             # <<<<<<<<<<<<<<
  *             return True
  *         elif atom == b'false':
  */
-  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_true, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 338, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_true, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 341, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "erlpack/_unpacker.pyx":339
+    /* "erlpack/_unpacker.pyx":342
  *         is the old-style encoding."""
  *         if atom == b'true':
  *             return True             # <<<<<<<<<<<<<<
@@ -9393,7 +9452,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
     __pyx_r = Py_True;
     goto __pyx_L0;
 
-    /* "erlpack/_unpacker.pyx":338
+    /* "erlpack/_unpacker.pyx":341
  *         using specified encoding. The default encoding is latin1, which
  *         is the old-style encoding."""
  *         if atom == b'true':             # <<<<<<<<<<<<<<
@@ -9402,17 +9461,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
  */
   }
 
-  /* "erlpack/_unpacker.pyx":340
+  /* "erlpack/_unpacker.pyx":343
  *         if atom == b'true':
  *             return True
  *         elif atom == b'false':             # <<<<<<<<<<<<<<
  *             return False
  *         elif atom == b'nil':
  */
-  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_false, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_false, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 343, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "erlpack/_unpacker.pyx":341
+    /* "erlpack/_unpacker.pyx":344
  *             return True
  *         elif atom == b'false':
  *             return False             # <<<<<<<<<<<<<<
@@ -9424,7 +9483,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
     __pyx_r = Py_False;
     goto __pyx_L0;
 
-    /* "erlpack/_unpacker.pyx":340
+    /* "erlpack/_unpacker.pyx":343
  *         if atom == b'true':
  *             return True
  *         elif atom == b'false':             # <<<<<<<<<<<<<<
@@ -9433,17 +9492,17 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
  */
   }
 
-  /* "erlpack/_unpacker.pyx":342
+  /* "erlpack/_unpacker.pyx":345
  *         elif atom == b'false':
  *             return False
  *         elif atom == b'nil':             # <<<<<<<<<<<<<<
  *             return None
  *         return Atom(atom.decode(encoding))
  */
-  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_nil, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PyBytes_Equals(__pyx_v_atom, __pyx_n_b_nil, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 345, __pyx_L1_error)
   if (__pyx_t_1) {
 
-    /* "erlpack/_unpacker.pyx":343
+    /* "erlpack/_unpacker.pyx":346
  *             return False
  *         elif atom == b'nil':
  *             return None             # <<<<<<<<<<<<<<
@@ -9453,7 +9512,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "erlpack/_unpacker.pyx":342
+    /* "erlpack/_unpacker.pyx":345
  *         elif atom == b'false':
  *             return False
  *         elif atom == b'nil':             # <<<<<<<<<<<<<<
@@ -9462,15 +9521,15 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
  */
   }
 
-  /* "erlpack/_unpacker.pyx":344
+  /* "erlpack/_unpacker.pyx":347
  *         elif atom == b'nil':
  *             return None
  *         return Atom(atom.decode(encoding))             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Atom); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_Atom); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_atom, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 344, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_atom, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -9484,7 +9543,7 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
   }
   __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_v_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_encoding);
   __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -9500,14 +9559,14 @@ static PyObject *__pyx_f_7erlpack_9_unpacker_17ErlangTermDecoder_convert_atom(CY
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 344, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 347, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "erlpack/_unpacker.pyx":334
+  /* "erlpack/_unpacker.pyx":337
  *         return self.decode_part(bytes, 0)
  * 
  *     cdef object convert_atom(self, atom, encoding='latin1'):             # <<<<<<<<<<<<<<
@@ -10663,8 +10722,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   #endif
   __pyx_builtin_UnicodeError = __Pyx_GetBuiltinName(__pyx_n_s_UnicodeError); if (!__pyx_builtin_UnicodeError) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_builtin_NotImplementedError = __Pyx_GetBuiltinName(__pyx_n_s_NotImplementedError); if (!__pyx_builtin_NotImplementedError) __PYX_ERR(0, 222, __pyx_L1_error)
-  __pyx_builtin_OverflowError = __Pyx_GetBuiltinName(__pyx_n_s_OverflowError); if (!__pyx_builtin_OverflowError) __PYX_ERR(0, 250, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_builtin_OverflowError = __Pyx_GetBuiltinName(__pyx_n_s_OverflowError); if (!__pyx_builtin_OverflowError) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 260, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;

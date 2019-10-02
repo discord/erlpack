@@ -226,7 +226,10 @@ cdef class ErlangTermDecoder(object):
         """BINARY_EXT"""
         length, = struct.unpack('>L', bytes[offset:offset + 4])
         offset += 4
-        return bytes[offset:offset + length], offset + length
+        rv = bytes[offset:offset + length]
+        if self.encoding:
+            rv = rv.decode(self.encoding)
+        return rv, offset + length
 
     cdef object decode_n(self, bytes, offset):
         """SMALL_BIG_EXT"""
