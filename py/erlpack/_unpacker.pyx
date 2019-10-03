@@ -227,15 +227,12 @@ cdef class ErlangTermDecoder(object):
         length, = struct.unpack('>L', bytes[offset:offset + 4])
         offset += 4
         rv = bytes[offset:offset + length]
-        # byte_elements_are_ints = isinstance(b'a'[0], int)
-        # if self.encoding:
-        #     try:
-        #         rv = rv.decode(self.encoding)
-        #     except UnicodeError:
-        #         if byte_elements_are_ints:
-        #             rv = [x for x in rv]
-        #         else:
-        #             rv = [ord(x) for x in rv]
+        old_rv = bytes[offset:offset + length]
+        if self.encoding:
+            try:
+                rv = old_rv.decode(self.encoding)
+            except UnicodeError:
+                rv = old_rv
 
         return rv, offset + length
 
