@@ -1,0 +1,11 @@
+/py/
+/ex/
+/build/
+/js/__tests__/
+.travis.yml
+MANIFEST.in
+mix.exs
+pytest.ini
+setup.cfg
+setup.py
+.gitattributes
