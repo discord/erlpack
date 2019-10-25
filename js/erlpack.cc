@@ -39,9 +39,11 @@ NAN_METHOD(Unpack) {
     info.GetReturnValue().Set(value.ToLocalChecked());
 }
 
-void Init(Handle<Object> exports) {
-    exports->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
-    exports->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
+NAN_MODULE_INIT(Init) {
+    Nan::Export(target, "pack", Pack);
+    Nan::Export(target, "unpack", Unpack);
+    // target->Set(Nan::New("pack").ToLocalChecked(), Nan::New<FunctionTemplate>(Pack)->GetFunction());
+    // target->Set(Nan::New("unpack").ToLocalChecked(), Nan::New<FunctionTemplate>(Unpack)->GetFunction());
 }
 
 NODE_MODULE(erlpack, Init);
