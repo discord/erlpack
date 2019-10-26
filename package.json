@@ -1,5 +1,6 @@
 {
   "main": "./js/index.js",
+  "types": "./js/index.d.ts",
   "name": "erlpack",
   "version": "0.1.3",
   "description": "Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for JavaScript",
@@ -14,6 +15,7 @@
   },
   "gypfile": true,
   "devDependencies": {
+    "@types/node": "^12.11.7",
     "jest-cli": "^24.9.0"
   },
   "jest": {
