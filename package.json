@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "author": "Jason Citron",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",
     "nan": "^2.14.0"
