@@ -1,8 +1,8 @@
 # Erlpack
 
-Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python and Javascript.
+Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python and JavaScript.
 
-# Javascript
+# JavaScript
 
 ## Things that can be packed:
 
@@ -65,7 +65,7 @@ v8::Local<v8::Value> ConvertToNodeBuffer(const v8::Local<v8::Object>& blinkArray
 }
 ```
 
-Then in Javascript something like:
+Then in JavaScript something like:
 
 ```js
 let packed = NativeUtils.convertToNodeBuffer(new Uint8Array(binaryPayload));
