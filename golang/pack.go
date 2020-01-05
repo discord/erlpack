@@ -158,7 +158,8 @@ func Pack(Interface interface{}) ([]byte, error) {
 				// Iterate the map.
 				for _, e := range keys {
 					v := rt.MapIndex(e)
-					err := handler(v.Interface())
+					Key := e.Interface()
+					err := handler(Key)
 					if err != nil {
 						return err
 					}

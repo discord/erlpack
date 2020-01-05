@@ -48,8 +48,8 @@ func TestPackStringNull(t *testing.T) {
 	}
 }
 
-// TestNil is used to test that nil is output correctly.
-func TestNil(t *testing.T) {
+// TestPackNil is used to test that nil is output correctly.
+func TestPackNil(t *testing.T) {
 	b, err := Pack(nil)
 	if err != nil {
 		t.Error(err)
@@ -61,8 +61,8 @@ func TestNil(t *testing.T) {
 	}
 }
 
-// TestTrue is used to test that true is output correctly.
-func TestTrue(t *testing.T) {
+// TestPackTrue is used to test that true is output correctly.
+func TestPackTrue(t *testing.T) {
 	b, err := Pack(true)
 	if err != nil {
 		t.Error(err)
@@ -74,8 +74,8 @@ func TestTrue(t *testing.T) {
 	}
 }
 
-// TestFalse is used to test that false is output correctly.
-func TestFalse(t *testing.T) {
+// TestPackFalse is used to test that false is output correctly.
+func TestPackFalse(t *testing.T) {
 	b, err := Pack(false)
 	if err != nil {
 		t.Error(err)
@@ -87,8 +87,8 @@ func TestFalse(t *testing.T) {
 	}
 }
 
-// TestEmptySlice is used to test a empty slice.
-func TestEmptySlice(t *testing.T) {
+// TestPackEmptySlice is used to test a empty slice.
+func TestPackEmptySlice(t *testing.T) {
 	b, err := Pack([]string{})
 	if err != nil {
 		t.Error(err)
@@ -100,8 +100,8 @@ func TestEmptySlice(t *testing.T) {
 	}
 }
 
-// TestEmptyArray is used to test a empty array.
-func TestEmptyArray(t *testing.T) {
+// TestPackEmptyArray is used to test a empty array.
+func TestPackEmptyArray(t *testing.T) {
 	b, err := Pack([0]string{})
 	if err != nil {
 		t.Error(err)
@@ -113,8 +113,8 @@ func TestEmptyArray(t *testing.T) {
 	}
 }
 
-// TestNilStringPointer is used to test a nil string pointer (this same logic applies for ALL pointers).
-func TestNilStringPointer(t *testing.T) {
+// TestPackNilStringPointer is used to test a nil string pointer (this same logic applies for ALL pointers).
+func TestPackNilStringPointer(t *testing.T) {
 	var p *string
 	b, err := Pack(p)
 	if err != nil {
@@ -127,8 +127,8 @@ func TestNilStringPointer(t *testing.T) {
 	}
 }
 
-// TestNonNilStringPointer is used to test a non-nil string pointer (this same logic applies for ALL pointers).
-func TestNonNilStringPointer(t *testing.T) {
+// TestPackNonNilStringPointer is used to test a non-nil string pointer (this same logic applies for ALL pointers).
+func TestPackNonNilStringPointer(t *testing.T) {
 	s := "hello world"
 	b, err := Pack(&s)
 	if err != nil {
@@ -141,8 +141,8 @@ func TestNonNilStringPointer(t *testing.T) {
 	}
 }
 
-// TestInterfaceSlice is used to test a slice of various different interfaces.
-func TestInterfaceSlice(t *testing.T) {
+// TestPackInterfaceSlice is used to test a slice of various different interfaces.
+func TestPackInterfaceSlice(t *testing.T) {
 	b, err := Pack([]interface{}{
 		1, "two", 3.1, "four", []interface{}{"five"},
 	})
@@ -156,8 +156,34 @@ func TestInterfaceSlice(t *testing.T) {
 	}
 }
 
-// TestInterfaceMap is used to test a map of various different interfaces.
-func TestInterfaceMap(t *testing.T) {
+// TestPackSmallInt is used to test a small int.
+func TestPackSmallInt(t *testing.T) {
+	b, err := Pack(3)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = assertBytes([]byte("\x83a\x03"), b)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// TestPack32BitInt is used to test a 32-bit int.
+func TestPack32BitInt(t *testing.T) {
+	b, err := Pack(1024)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = assertBytes([]byte("\x83b\x00\x00\x04\x00"), b)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// TestPackInterfaceMap is used to test a map of various different interfaces.
+func TestPackInterfaceMap(t *testing.T) {
 	b, err := Pack(map[interface{}]interface{}{
 		"a": 1, 2: 2, 3: []int{1, 2, 3},
 	})
