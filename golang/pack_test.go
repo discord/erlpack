@@ -182,16 +182,16 @@ func TestPack32BitInt(t *testing.T) {
 	}
 }
 
-// TestPackInterfaceMap is used to test a map of various different interfaces.
+// TestPackInterfaceMap is used to test a map of different interfaces.
 func TestPackInterfaceMap(t *testing.T) {
 	b, err := Pack(map[interface{}]interface{}{
-		"a": 1, 2: 2, 3: []int{1, 2, 3},
+		"a": 1,
 	})
 	if err != nil {
 		t.Error(err)
 		return
 	}
-	err = assertBytes([]byte("\x83t\x00\x00\x00\x03a\x02a\x02a\x03l\x00\x00\x00\x03a\x01a\x02a\x03jm\x00\x00\x00\x01aa\x01"), b)
+	err = assertBytes([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), b)
 	if err != nil {
 		t.Error(err)
 	}
