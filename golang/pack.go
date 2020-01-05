@@ -24,17 +24,15 @@ func createErlpackBuffer() *C.erlpack_buffer {
 }
 
 // packString is used to pack a string.
-func packString(Data string, Buffer *C.erlpack_buffer) *C.erlpack_buffer {
+func packString(Data string, Buffer *C.erlpack_buffer) {
 	cstr := C.CString(Data)
 	C.erlpack_append_binary(Buffer, cstr, C.ulong(len(Data)))
 	C.free(unsafe.Pointer(cstr))
-	return Buffer
 }
 
 // packNil is used to pack a nil.
-func packNil(Buffer *C.erlpack_buffer) *C.erlpack_buffer {
+func packNil(Buffer *C.erlpack_buffer) {
 	C.erlpack_append_nil(Buffer)
-	return Buffer
 }
 
 // finaliseBuffer is used to finalise a erlpack buffer.
