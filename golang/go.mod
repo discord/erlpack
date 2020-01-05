@@ -1,4 +1,4 @@
-module github.com/discordapp/erlpack
+module github.com/discordapp/erlpack/golang
 
 go 1.13
 
