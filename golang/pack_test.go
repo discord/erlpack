@@ -63,3 +63,31 @@ func TestNil(t *testing.T) {
 		return
 	}
 }
+
+// TestTrue is used to test that true is output correctly.
+func TestTrue(t *testing.T) {
+	b, err := Pack(true)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = assertBytes([]byte("\x83s\x04true"), b)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+}
+
+// TestFalse is used to test that false is output correctly.
+func TestFalse(t *testing.T) {
+	b, err := Pack(false)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = assertBytes([]byte("\x83s\x05false"), b)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+}

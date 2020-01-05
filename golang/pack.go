@@ -35,6 +35,15 @@ func packNil(Buffer *C.erlpack_buffer) {
 	C.erlpack_append_nil(Buffer)
 }
 
+// packBool is used to pack a boolean.
+func packBool(Data bool, Buffer *C.erlpack_buffer) {
+	if Data {
+		C.erlpack_append_true(Buffer)
+	} else {
+		C.erlpack_append_false(Buffer)
+	}
+}
+
 // finaliseBuffer is used to finalise a erlpack buffer.
 func finaliseBuffer(Buffer *C.erlpack_buffer) []byte {
 	Data := C.GoBytes(unsafe.Pointer(Buffer.buf), C.int(Buffer.length))
@@ -52,11 +61,11 @@ func Pack(Interface interface{}) ([]byte, error) {
 	handler = func(i interface{}) error {
 		switch i.(type) {
 		case nil:
-			// Pack the nil byte.
+			// Pack the nil byte and return nil.
 			packNil(buffer)
 			return nil
 		case *string:
-			// Pack a string or nil.
+			// Pack a string or nil and return nil.
 			s := i.(*string)
 			if s == nil {
 				packNil(buffer)
@@ -67,6 +76,19 @@ func Pack(Interface interface{}) ([]byte, error) {
 		case string:
 			// Pack the string and return nil.
 			packString(i.(string), buffer)
+			return nil
+		case *bool:
+			// Pack a boolean or nil and return nil.
+			b := i.(*bool)
+			if b == nil {
+				packNil(buffer)
+			} else {
+				packBool(*b, buffer)
+			}
+			return nil
+		case bool:
+			// Pack the boolean and return nil.
+			packBool(i.(bool), buffer)
 			return nil
 		default:
 			// Send a unknown type error.
