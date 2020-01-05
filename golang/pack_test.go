@@ -196,3 +196,21 @@ func TestPackInterfaceMap(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+// TestPackStruct is used to test a struct.
+func TestPackStruct(t *testing.T) {
+	type test struct {
+		A int `erlpack:"a"`
+	}
+	b, err := Pack(test{
+		A: 1,
+	})
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	err = assertBytes([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), b)
+	if err != nil {
+		t.Error(err)
+	}
+}

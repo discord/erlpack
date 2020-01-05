@@ -5,6 +5,7 @@ import "C"
 import (
 	"errors"
 	"fmt"
+	"github.com/fatih/structs"
 	"reflect"
 	"unsafe"
 )
@@ -172,6 +173,13 @@ func Pack(Interface interface{}) ([]byte, error) {
 
 				// Return nil (there were no errors).
 				return nil
+			case reflect.Struct:
+				// Create a struct parser.
+				s := structs.New(i)
+				s.TagName = "erlpack"
+
+				// Call this back with the generated map.
+				return handler(s.Map())
 			default:
 				// Send a unknown type error.
 				return errors.New(fmt.Sprintf("unknown type: %T", i))
