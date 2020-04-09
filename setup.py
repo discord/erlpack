@@ -35,7 +35,7 @@ setup(
     version='0.3.3',
     author='Jake Heinz',
     author_email='jh@discordapp.com',
-    url="http://github.com/discordapp/erlpack",
+    url="http://github.com/discord/erlpack",
     description='A high performance erlang term encoder for Python.',
     license='Apache 2.0',
     cmdclass={'build_ext': build_ext},

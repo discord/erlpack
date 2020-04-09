@@ -26,6 +26,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/discordapp/erlpack.git"
+    "url": "https://github.com/discord/erlpack.git"
   }
 }
