@@ -123,7 +123,7 @@ func packInt(Data int, pad *scratchpad) {
 }
 
 // packFloat64 is used to pack a 64-bit floating point number.
-func packFloat32(Data float64, pad *scratchpad) {
+func packFloat64(Data float64, pad *scratchpad) {
 	// Allocate the bytes.
 	a := make([]byte, 9)
 
@@ -179,9 +179,13 @@ func Pack(Interface interface{}) ([]byte, error) {
 			// Pack the int64 and return nil.
 			packInt64(i.(int64), pad)
 			return nil
+		case float32:
+			// Pack the float32 as a float64 and return nil.
+			packFloat64(float64(i.(float32)), pad)
+			return nil
 		case float64:
 			// Pack the float64 and return nil.
-			packFloat32(i.(float64), pad)
+			packFloat64(i.(float64), pad)
 			return nil
 		default:
 			rt := reflect.ValueOf(i)
