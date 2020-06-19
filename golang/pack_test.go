@@ -9,7 +9,7 @@ import (
 // assertBytes is used to assert 2 byte arrays are the same.
 func assertBytes(A []byte, B []byte) error {
 	e := func() error {
-		return errors.New(fmt.Sprintf("assert error: %v != %v", A, B))
+		return errors.New(fmt.Sprintf("assert error: %v (len %d) != %v (len %d)", A, len(A), B, len(B)))
 	}
 	if len(A) != len(B) {
 		return e()

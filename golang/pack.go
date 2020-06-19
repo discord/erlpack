@@ -1,7 +1,5 @@
 package erlpack
 
-// #include "../cpp/encoder.h"
-import "C"
 import (
 	"errors"
 	"fmt"
@@ -11,76 +9,151 @@ import (
 )
 
 // INITIAL_ALLOC is the initial allocation.
-var INITIAL_ALLOC = 1024 * 1024
+var INITIAL_ALLOC = uint(1024 * 1024)
 
-// createErlpackBuffer is used to create a new erlpack buffer.
-func createErlpackBuffer() *C.erlpack_buffer {
-	size := C.ulong(INITIAL_ALLOC)
-	buf := C.erlpack_buffer{}
-	d := C.malloc(size)
-	buf.buf = (*C.char)(d)
-	buf.length = 0
-	buf.allocated_size = size
-	C.erlpack_append_version(&buf)
-	return &buf
+func ntohl32(i uint32, a []byte, offset int) {
+	bytes := (*(*[4]byte)(unsafe.Pointer(&i)))[:]
+	for i := 0; i < 4; i++ {
+		a[i+offset] = bytes[3-i]
+	}
+}
+
+func be64toh(i uint64, a []byte, offset int) {
+	bytes := (*(*[8]byte)(unsafe.Pointer(&i)))[:]
+	for i := 0; i < 8; i++ {
+		a[i+offset] = bytes[7-i]
+	}
+}
+
+// appendListHeader is used to append the list header.
+func appendListHeader(pad *scratchpad, l uint32) {
+	// Create the initial allocation and define the header.
+	a := make([]byte, 5)
+	a[0] = 'l'
+
+	// Write the length.
+	ntohl32(l, a, 1)
+
+	// Append the header.
+	pad.endAppend(a...)
+}
+
+// appendMapHeader is used to append the map header.
+func appendMapHeader(pad *scratchpad, l uint32) {
+	// Create the initial allocation and define the header.
+	a := make([]byte, 5)
+	a[0] = 't'
+
+	// Write the length.
+	ntohl32(l, a, 1)
+
+	// Append the header.
+	pad.endAppend(a...)
 }
 
 // packString is used to pack a string.
-func packString(Data string, Buffer *C.erlpack_buffer) {
-	cstr := C.CString(Data)
-	C.erlpack_append_binary(Buffer, cstr, C.ulong(len(Data)))
-	C.free(unsafe.Pointer(cstr))
+func packString(Data string, pad *scratchpad) {
+	// Create the initial allocation and define the header.
+	a := make([]byte, 5)
+	a[0] = 'm'
+
+	// Write the length.
+	ntohl32(uint32(len(Data)), a, 1)
+
+	// Append the header.
+	pad.endAppend(a...)
+
+	// Append the data.
+	pad.endAppend([]byte(Data)...)
 }
 
 // packNil is used to pack a nil.
-func packNil(Buffer *C.erlpack_buffer) {
-	C.erlpack_append_nil(Buffer)
+func packNil(pad *scratchpad) {
+	pad.endAppend('s', 3, 'n', 'i', 'l')
 }
 
 // packInt64 is used to pack a 64-bit integer.
-func packInt64(Data int64, Buffer *C.erlpack_buffer) {
-	C.erlpack_append_long_long(Buffer, C.longlong(Data))
+func packInt64(Data int64, pad *scratchpad) {
+	// Create the initial allocation and define the header.
+	a := make([]byte, 11)
+	a[0] = 'n'
+
+	// Define the int signature.
+	if 0 > Data {
+		a[2] = 1
+	}
+
+	// Create the unsigned int64.
+	var ull uint64
+	if 0 > Data {
+		ull = uint64(Data * -1)
+	} else {
+		ull = uint64(Data)
+	}
+
+	// Defines how many bytes were encoded.
+	BytesEnc := 0
+
+	// Iterate through while ull is greater than 0.
+	for ull > 0 {
+		a[3+BytesEnc] = byte(ull & 0xFF)
+		ull >>= 8
+		BytesEnc++
+	}
+
+	// Append the data.
+	pad.endAppend(a...)
 }
 
 // packInt is used to pack a int.
-func packInt(Data int, Buffer *C.erlpack_buffer) {
+func packInt(Data int, pad *scratchpad) {
 	if Data < 256 {
 		// We can pack as a small int.
-		C.erlpack_append_small_integer(Buffer, C.uchar(Data))
+		pad.endAppend('a', byte(Data))
 	} else if Data < 2147483647 {
 		// We should pack as a standard int.
-		C.erlpack_append_integer(Buffer, C.int(Data))
+		a := make([]byte, 5)
+		a[0] = 'b'
+		ntohl32(uint32(Data), a, 1)
+		pad.endAppend(a...)
 	} else {
 		// Call packInt64 (this will only ever get here on a 64-bit system).
-		packInt64(int64(Data), Buffer)
+		packInt64(int64(Data), pad)
 	}
 }
 
 // packFloat64 is used to pack a 64-bit floating point number.
-func packFloat64(Data float64, Buffer *C.erlpack_buffer) {
-	C.erlpack_append_double(Buffer, C.double(Data))
+func packFloat32(Data float64, pad *scratchpad) {
+	// Allocate the bytes.
+	a := make([]byte, 9)
+
+	// Set the header.
+	a[0] = 'F'
+
+	// Cast the memory to a int64.
+	i := *(*uint64)(unsafe.Pointer(&Data))
+
+	// Write the integer.
+	be64toh(i, a, 1)
+
+	// Write to the pad.
+	pad.endAppend(a...)
 }
 
 // packBool is used to pack a boolean.
-func packBool(Data bool, Buffer *C.erlpack_buffer) {
+func packBool(Data bool, pad *scratchpad) {
 	if Data {
-		C.erlpack_append_true(Buffer)
+		pad.endAppend('s', 4, 't', 'r', 'u', 'e')
 	} else {
-		C.erlpack_append_false(Buffer)
+		pad.endAppend('s', 5, 'f', 'a', 'l', 's', 'e')
 	}
-}
-
-// finaliseBuffer is used to finalise a erlpack buffer.
-func finaliseBuffer(Buffer *C.erlpack_buffer) []byte {
-	Data := C.GoBytes(unsafe.Pointer(Buffer.buf), C.int(Buffer.length))
-	C.free(unsafe.Pointer(Buffer.buf))
-	return Data
 }
 
 // Pack is used to pack a interface given to it.
 func Pack(Interface interface{}) ([]byte, error) {
-	// Create a erlpack buffer.
-	buffer := createErlpackBuffer()
+	// Create a scratchpad which will be used for creating this.
+	pad := newScratchpad(INITIAL_ALLOC)
+	pad.endAppend(131)
 
 	// Add a switch for the type.
 	var handler func(i interface{}) error
@@ -88,27 +161,27 @@ func Pack(Interface interface{}) ([]byte, error) {
 		switch i.(type) {
 		case nil:
 			// Pack the nil bytes and return nil.
-			packNil(buffer)
+			packNil(pad)
 			return nil
 		case string:
 			// Pack the string and return nil.
-			packString(i.(string), buffer)
+			packString(i.(string), pad)
 			return nil
 		case bool:
 			// Pack the boolean and return nil.
-			packBool(i.(bool), buffer)
+			packBool(i.(bool), pad)
 			return nil
 		case int:
 			// Pack the integer and return nil.
-			packInt(i.(int), buffer)
+			packInt(i.(int), pad)
 			return nil
 		case int64:
 			// Pack the int64 and return nil.
-			packInt64(i.(int64), buffer)
+			packInt64(i.(int64), pad)
 			return nil
 		case float64:
 			// Pack the float64 and return nil.
-			packFloat64(i.(float64), buffer)
+			packFloat32(i.(float64), pad)
 			return nil
 		default:
 			rt := reflect.ValueOf(i)
@@ -117,7 +190,7 @@ func Pack(Interface interface{}) ([]byte, error) {
 				// Check if it's a null pointer.
 				if rt.IsNil() {
 					// It is. Add a null.
-					packNil(buffer)
+					packNil(pad)
 				} else {
 					// No it isn't. Pack the value.
 					err := handler(rt.Elem().Interface())
@@ -135,10 +208,10 @@ func Pack(Interface interface{}) ([]byte, error) {
 				// Process the length.
 				if l == 0 {
 					// Apply the null length bytes.
-					C.erlpack_append_nil_ext(buffer)
+					pad.endAppend('j')
 				} else {
 					// Iterate through the array.
-					C.erlpack_append_list_header(buffer, C.ulong(l))
+					appendListHeader(pad, uint32(l))
 					for i := 0; i < l; i++ {
 						item := rt.Index(i).Interface()
 						err := handler(item)
@@ -146,7 +219,7 @@ func Pack(Interface interface{}) ([]byte, error) {
 							return err
 						}
 					}
-					C.erlpack_append_nil_ext(buffer)
+					pad.endAppend('j')
 				}
 
 				// Return nil (there were no errors).
@@ -154,7 +227,7 @@ func Pack(Interface interface{}) ([]byte, error) {
 			case reflect.Map:
 				// Create the map header.
 				keys := rt.MapKeys()
-				C.erlpack_append_map_header(buffer, C.ulong(len(keys)))
+				appendMapHeader(pad, uint32(len(keys)))
 
 				// Iterate the map.
 				for _, e := range keys {
@@ -189,9 +262,8 @@ func Pack(Interface interface{}) ([]byte, error) {
 
 	// Runs the handler.
 	err := handler(Interface)
-	final := finaliseBuffer(buffer)
 	if err != nil {
 		return nil, err
 	}
-	return final, nil
+	return pad.bytes(), nil
 }
