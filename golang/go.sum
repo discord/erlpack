@@ -1,2 +1,2 @@
-github.com/fatih/structs v1.1.0 h1:Q7juDM0QtcnhCpeyLGQKyg4TOIghuNXrkL32pHAUMxo=
-github.com/fatih/structs v1.1.0/go.mod h1:9NiDSp5zOcgEDl+j00MP/WkGVPOlPRLejGD8Ga6PJ7M=
+github.com/jakemakesstuff/structs v0.0.0-20200620173721-9ab34a601bc6 h1:v8DgDa9Obtr/pOE8BJ+uqo3jd0gWyMAfFPL+bmC5XtQ=
+github.com/jakemakesstuff/structs v0.0.0-20200620173721-9ab34a601bc6/go.mod h1:hBRRjIOlG3mfzglb/113PjxDiv563Dw6VKTDFVEKBe4=

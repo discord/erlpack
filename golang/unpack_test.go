@@ -1,6 +1,9 @@
 package erlpack
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 // TestUnpackTrue is used to unpack the true boolean.
 func TestUnpackTrue(t *testing.T) {
@@ -52,8 +55,6 @@ func TestUnpackFalse(t *testing.T) {
 func TestUnpackNil(t *testing.T) {
 	// Test boolean pointer unpacking.
 	var x *bool
-	y := true
-	x = &y
 	err := Unpack([]byte("\x83s\x03nil"), &x)
 	if err != nil {
 		t.Fatal(err)
@@ -83,4 +84,122 @@ func TestUnpackStrings(t *testing.T) {
 	if x != "hello world" {
 		t.Fatal("unknown string")
 	}
+}
+
+// TestUnpackGenericArray is used to unpack a generic array.
+func TestUnpackGenericArray(t *testing.T) {
+	packed := []byte("\x83l\x00\x00\x00\x05a\x01m\x00\x00\x00\x03twoF\x40\x08\xcc\xcc\xcc\xcc\xcc\xcdm\x00\x00\x00\x04fourl\x00\x00\x00\x01m\x00\x00\x00\x04fivejj")
+	var a []interface{}
+	err := Unpack(packed, &a)
+	if err != nil {
+		t.Fatal(err)
+	}
+	expected := []interface{}{
+		uint8(1), []byte("two"), 3.1, []byte("four"), []interface{}{[]byte("five")},
+	}
+	if len(a) != len(expected) {
+		t.Fatal("length is different")
+	}
+	for i, v := range expected {
+		if !reflect.DeepEqual(v, a[i]) {
+			t.Fatal("unexpected result:", a[i], reflect.TypeOf(a[i]), "!=", v, reflect.TypeOf(v))
+		}
+	}
+}
+
+// TestUnpackcArray is used to unpack a array.
+func TestUnpackArray(t *testing.T) {
+	packed := []byte("\x83l\x00\x00\x00\x01a\x01")
+	var a []int
+	err := Unpack(packed, &a)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(a) != 1 {
+		t.Fatal("length is not 1")
+	}
+	if a[0] != 1 {
+		t.Fatal("should be 1")
+	}
+}
+
+// TestUnpackEmptyArray is used to unpack an empty array.
+func TestUnpackEmptyArray(t *testing.T) {
+	packed := []byte("\x83j")
+	var a []interface{}
+	err := Unpack(packed, &a)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(a) != 0 {
+		t.Fatal("length is meant to be 0")
+	}
+}
+
+// TestUnpack32BitInt is used to test a 32-bit int.
+func TestUnpack32BitInt(t *testing.T) {
+	var i int32
+	err := Unpack([]byte("\x83b\x00\x00\x04\x00"), &i)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if i != 1024 {
+		t.Fatal("unexpected result:", i)
+	}
+}
+
+// TestUnpackGenericMap is used to test a generic map.
+func TestUnpackGenericMap(t *testing.T) {
+	var x map[interface{}]interface{}
+	err := Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &x)
+	if err != nil {
+		t.Error(err)
+	}
+	r, ok := x["a"].(uint8)
+	if !ok {
+		t.Fatal("not ok")
+	}
+	if r != 1 {
+		t.Fatal("not 1")
+	}
+}
+
+// TestUnpackMap is used to test a non-generic map.
+func TestUnpackMap(t *testing.T) {
+	var x map[string]int
+	err := Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &x)
+	if err != nil {
+		t.Fatal(err)
+	}
+	r, ok := x["a"]
+	if !ok {
+		t.Fatal("not ok")
+	}
+	if r != 1 {
+		t.Fatal("not 1")
+	}
+}
+
+// TestUnpackStruct is used to test unpacking to a struct.
+func TestUnpackStruct(t *testing.T) {
+	type test struct {
+		A *int `erlpack:"a"`
+	}
+	var x test
+	err := Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &x)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if *x.A != 1 {
+		t.Fatal("not 1")
+	}
+}
+
+// BenchmarkUnpack is used to benchmark unpacking.
+func BenchmarkUnpack(b *testing.B) {
+	type test struct {
+		A *int `erlpack:"a"`
+	}
+	var x test
+	_ = Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &x)
 }

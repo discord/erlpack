@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/fatih/structs"
+	"github.com/jakemakesstuff/structs"
 	"reflect"
 	"unsafe"
 )
@@ -99,7 +99,7 @@ func packInt64(Data int64, pad *scratchpad) {
 
 	// Iterate through while ull is greater than 0.
 	for ull > 0 {
-		a[3+BytesEnc] = byte(ull & 0xFF)
+		a[3+BytesEnc] = byte(ull)
 		ull >>= 8
 		BytesEnc++
 	}
@@ -116,11 +116,12 @@ func packInt(Data int, pad *scratchpad) {
 	if Data < 256 && Data > 0 {
 		// We can pack as a small int.
 		pad.endAppend('a', byte(Data))
-	} else if 2147483647 > Data && Data > 0 {
+	} else if 2147483647 > Data && Data > -2147483647 {
 		// We should pack as a standard int.
 		a := make([]byte, 5)
 		a[0] = 'b'
-		ntohl32(uint32(Data), a, 1)
+		i32 := int32(Data)
+		ntohl32(*(*uint32)(unsafe.Pointer(&i32)), a, 1)
 		pad.endAppend(a...)
 	} else {
 		// Call packInt64 (this will only ever get here on a 64-bit system).
@@ -136,7 +137,7 @@ func packFloat64(Data float64, pad *scratchpad) {
 	// Set the header.
 	a[0] = 'F'
 
-	// Cast the memory to a int64.
+	// Cast the memory to a uint64.
 	i := *(*uint64)(unsafe.Pointer(&Data))
 
 	// Write the integer.
