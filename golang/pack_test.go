@@ -214,3 +214,8 @@ func TestPackStruct(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+// BenchmarkPack is used to benchmark packing a boolean.
+func BenchmarkPack(b *testing.B) {
+	_, _ = Pack(true)
+}

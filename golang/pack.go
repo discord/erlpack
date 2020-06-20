@@ -1,6 +1,7 @@
 package erlpack
 
 import (
+	"encoding/binary"
 	"errors"
 	"fmt"
 	"github.com/fatih/structs"
@@ -12,16 +13,18 @@ import (
 var INITIAL_ALLOC = uint(1024 * 1024)
 
 func ntohl32(i uint32, a []byte, offset int) {
-	bytes := (*(*[4]byte)(unsafe.Pointer(&i)))[:]
+	bytes := make([]byte, 4)
+	binary.BigEndian.PutUint32(bytes, i)
 	for i := 0; i < 4; i++ {
-		a[i+offset] = bytes[3-i]
+		a[i+offset] = bytes[i]
 	}
 }
 
 func be64toh(i uint64, a []byte, offset int) {
-	bytes := (*(*[8]byte)(unsafe.Pointer(&i)))[:]
+	bytes := make([]byte, 8)
+	binary.BigEndian.PutUint64(bytes, i)
 	for i := 0; i < 8; i++ {
-		a[i+offset] = bytes[7-i]
+		a[i+offset] = bytes[i]
 	}
 }
 
@@ -101,16 +104,19 @@ func packInt64(Data int64, pad *scratchpad) {
 		BytesEnc++
 	}
 
+	// Add the length.
+	a[1] = byte(BytesEnc)
+
 	// Append the data.
 	pad.endAppend(a...)
 }
 
 // packInt is used to pack a int.
 func packInt(Data int, pad *scratchpad) {
-	if Data < 256 {
+	if Data < 256 && Data > 0 {
 		// We can pack as a small int.
 		pad.endAppend('a', byte(Data))
-	} else if Data < 2147483647 {
+	} else if 2147483647 > Data && Data > 0 {
 		// We should pack as a standard int.
 		a := make([]byte, 5)
 		a[0] = 'b'
@@ -182,6 +188,11 @@ func Pack(Interface interface{}) ([]byte, error) {
 		case float32:
 			// Pack the float32 as a float64 and return nil.
 			packFloat64(float64(i.(float32)), pad)
+			return nil
+		case Atom:
+			// Pack a atom and return nil.
+			pad.endAppend('s', byte(len(i.(Atom))))
+			pad.endAppend([]byte(i.(Atom))...)
 			return nil
 		case float64:
 			// Pack the float64 and return nil.
