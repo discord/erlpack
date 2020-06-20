@@ -24,10 +24,10 @@ type constructionRules struct {
 
 func newScratchpad(initAlloc uint) *scratchpad {
 	return &scratchpad{
-		alloc: make([]byte, initAlloc),
-		rules: make([]constructionRules, 0),
+		alloc:     make([]byte, initAlloc),
+		rules:     make([]constructionRules, 0),
 		initAlloc: initAlloc,
-		used:   0,
+		used:      0,
 	}
 }
 

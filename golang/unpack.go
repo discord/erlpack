@@ -13,7 +13,7 @@ import (
 type Atom string
 
 // Used to cast the item.
-func handleItemCasting(Item, Ptr interface{}) error {
+func handleItemCasting(Item, Ptr interface{}) (bool, error) {
 	// Get the reflect value.
 	r := reflect.ValueOf(Ptr)
 
@@ -23,21 +23,27 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		ptr := reflect.New(r.Elem().Type().Elem())
 
 		// Call this function.
-		err := handleItemCasting(Item, ptr.Interface())
+		n, err := handleItemCasting(Item, ptr.Interface())
 		if err != nil {
-			return err
+			return false, err
 		}
 
 		// Set the element.
-		r.Elem().Set(ptr)
-		return nil
+		if n {
+			r.Elem().Set(reflect.Zero(r.Elem().Type()))
+		} else {
+			r.Elem().Set(ptr)
+		}
+
+		// Return not nillable (this is handled here, the base pointer shouldn't be) and no errors.
+		return false, nil
 	}
 
 	// Handle a interface.
 	switch x := Ptr.(type) {
 	case *interface{}:
 		*x = Item
-		return nil
+		return false, nil
 	}
 
 	// Handle specific type casting.
@@ -46,7 +52,7 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		switch y := Ptr.(type) {
 		case *Atom:
 			*y = x
-			return nil
+			return false, nil
 		}
 	case int64:
 		switch p := Ptr.(type) {
@@ -55,9 +61,9 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *int64:
 			*p = x
 		default:
-			return errors.New("could not de-serialize into int")
+			return false, errors.New("could not de-serialize into int")
 		}
-		return nil
+		return false, nil
 	case int32:
 		switch p := Ptr.(type) {
 		case *int:
@@ -65,17 +71,17 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *int32:
 			*p = x
 		default:
-			return errors.New("could not de-serialize into int")
+			return false, errors.New("could not de-serialize into int")
 		}
-		return nil
+		return false, nil
 	case float64:
 		switch p := Ptr.(type) {
 		case *float64:
 			*p = x
 		default:
-			return errors.New("could not de-serialize into float64")
+			return false, errors.New("could not de-serialize into float64")
 		}
-		return nil
+		return false, nil
 	case uint8:
 		switch p := Ptr.(type) {
 		case *uint:
@@ -85,18 +91,18 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *int:
 			*p = int(x)
 		default:
-			return errors.New("could not de-serialize into uint8")
+			return false, errors.New("could not de-serialize into uint8")
 		}
-		return nil
+		return false, nil
 	case string:
 		// Map key.
 		switch p := Ptr.(type) {
 		case *string:
 			*p = x
 		default:
-			return errors.New("could not de-serialize into string")
+			return false, errors.New("could not de-serialize into string")
 		}
-		return nil
+		return false, nil
 	case []byte:
 		// We should try and string-ify this if possible.
 		switch p := Ptr.(type) {
@@ -105,9 +111,9 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *[]byte:
 			*p = x
 		default:
-			return errors.New("could not de-serialize into string")
+			return false, errors.New("could not de-serialize into string")
 		}
-		return nil
+		return false, nil
 	case bool:
 		// This should cast into either a string or a boolean.
 		switch p := Ptr.(type) {
@@ -118,11 +124,11 @@ func handleItemCasting(Item, Ptr interface{}) error {
 			} else {
 				*p = "false"
 			}
-			return nil
+			return false, nil
 		case *bool:
 			// Set it to the raw value.
 			*p = x
-			return nil
+			return false, nil
 		}
 	case nil:
 		// This should zero any data types other than atoms.
@@ -130,18 +136,18 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *Atom:
 			// We should set this to "nil".
 			*p = "nil"
+			return false, nil
 		default:
 			// Zero the pointer which is provided.
-			// TODO: figure out this
+			return true, nil
 		}
-		return nil
 	case []interface{}:
 		// We should handle this array.
 		switch p := Ptr.(type) {
 		case *[]interface{}:
 			// This is simple.
 			*p = x
-			return nil
+			return false, nil
 		default:
 			// Create the new array.
 			a := reflect.MakeSlice(r.Elem().Type(), len(x), len(x))
@@ -151,9 +157,9 @@ func handleItemCasting(Item, Ptr interface{}) error {
 				indexItem := a.Index(i)
 				x := reflect.New(indexItem.Type())
 				t := x.Interface()
-				err := handleItemCasting(v, t)
+				_, err := handleItemCasting(v, t)
 				if err != nil {
-					return err
+					return false, err
 				}
 				indexItem.Set(x.Elem())
 			}
@@ -163,7 +169,7 @@ func handleItemCasting(Item, Ptr interface{}) error {
 			e.Set(a)
 
 			// Return no errors.
-			return nil
+			return false, nil
 		}
 	case map[interface{}]interface{}:
 		// Maps are complicated since they can serialize into a lot of different types.
@@ -172,7 +178,7 @@ func handleItemCasting(Item, Ptr interface{}) error {
 		case *map[interface{}]interface{}:
 			// This is the first thing we check for since it is by far the best situation.
 			*p = x
-			return nil
+			return false, nil
 		}
 
 		// Check the type of the pointer.
@@ -204,20 +210,20 @@ func handleItemCasting(Item, Ptr interface{}) error {
 					}
 					field, ok := s.FieldOk(fieldName)
 					if !ok {
-						return errors.New("failed to get field")
+						return false, errors.New("failed to get field")
 					}
 					r := reflect.New(field.Type())
 					x := r.Interface()
-					err := handleItemCasting(v, x)
+					_, err := handleItemCasting(v, x)
 					if err != nil {
-						return err
+						return false, err
 					}
 					err = field.Set(r.Elem().Interface())
 					if err != nil {
-						return err
+						return false, err
 					}
 				default:
-					return errors.New("key must be string")
+					return false, errors.New("key must be string")
 				}
 			}
 
@@ -225,7 +231,7 @@ func handleItemCasting(Item, Ptr interface{}) error {
 			r.Elem().Set(i.Elem())
 
 			// Return no errors.
-			return nil
+			return false, nil
 		case reflect.Map:
 			// Make the new map.
 			m := reflect.MakeMap(r.Elem().Type())
@@ -243,9 +249,12 @@ func handleItemCasting(Item, Ptr interface{}) error {
 				iface := reflectKey.Interface()
 
 				// Handle the item casting for the key.
-				err := handleItemCasting(k, iface)
+				n, err := handleItemCasting(k, iface)
 				if err != nil {
-					return err
+					return false, err
+				}
+				if n {
+					return false, errors.New("key cannot be nil")
 				}
 
 				// Create a new version of the value with the reflect type.
@@ -253,25 +262,27 @@ func handleItemCasting(Item, Ptr interface{}) error {
 				iface = reflectValue.Interface()
 
 				// Handle the item casting for the value.
-				err = handleItemCasting(v, iface)
+				n, err = handleItemCasting(v, iface)
 				if err != nil {
-					return err
+					return false, err
 				}
 
 				// Set the item.
-				m.SetMapIndex(reflectKey.Elem(), reflectValue.Elem())
+				if !n {
+					m.SetMapIndex(reflectKey.Elem(), reflectValue.Elem())
+				}
 			}
 
 			// Set the pointer to this map.
 			r.Elem().Set(m)
 
 			// Return no errors.
-			return nil
+			return false, nil
 		}
 	}
 
 	// Return unknown type error.
-	return errors.New("unable to unpack to pointer specified")
+	return false, errors.New("unable to unpack to pointer specified")
 }
 
 // Used to process an atom during unpacking.
@@ -491,7 +502,14 @@ func processItem(Ptr interface{}, r *bytes.Reader) error {
 	}
 
 	// Handle the item casting.
-	return handleItemCasting(Item, Ptr)
+	nillable, err := handleItemCasting(Item, Ptr)
+	if err != nil {
+		return err
+	}
+	if nillable {
+		return errors.New("nillable type used without pointer to pointer")
+	}
+	return nil
 }
 
 // Unpack is used to unpack a value to a pointer.
