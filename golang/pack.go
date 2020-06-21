@@ -195,6 +195,9 @@ func Pack(Interface interface{}) ([]byte, error) {
 			pad.endAppend('s', byte(len(i.(Atom))))
 			pad.endAppend([]byte(i.(Atom))...)
 			return nil
+		case UncastedResult:
+			// Pack a uncasted result.
+			return handler(i.(UncastedResult).item)
 		case float64:
 			// Pack the float64 and return nil.
 			packFloat64(i.(float64), pad)

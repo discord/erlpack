@@ -12,6 +12,24 @@ import (
 // Atom is used to define an atom within the codebase.
 type Atom string
 
+// UncastedResult is used to define a result which has not been casted yet.
+// You can call Cast on this to cast the item after the initial unpacking.
+type UncastedResult struct {
+	item interface{}
+}
+
+// Cast is used to cast the result to a pointer.
+func (u *UncastedResult) Cast(Ptr interface{}) error {
+	n, err := handleItemCasting(u.item, Ptr)
+	if err != nil {
+		return err
+	}
+	if n {
+		return errors.New("nillable type used without pointer to pointer")
+	}
+	return nil
+}
+
 // Used to cast the item.
 func handleItemCasting(Item, Ptr interface{}) (bool, error) {
 	// Get the reflect value.
@@ -39,10 +57,13 @@ func handleItemCasting(Item, Ptr interface{}) (bool, error) {
 		return false, nil
 	}
 
-	// Handle a interface.
+	// Handle a interface or uncasted result.
 	switch x := Ptr.(type) {
 	case *interface{}:
 		*x = Item
+		return false, nil
+	case *UncastedResult:
+		*x = UncastedResult{item: Item}
 		return false, nil
 	}
 

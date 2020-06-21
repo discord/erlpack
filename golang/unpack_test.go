@@ -195,6 +195,23 @@ func TestUnpackStruct(t *testing.T) {
 	}
 }
 
+// TestUnpackUncastedResult is used to test unpacking a uncasted result to a struct.
+func TestUnpackUncastedResult(t *testing.T) {
+	type test struct {
+		A *int `erlpack:"a"`
+	}
+	var a UncastedResult
+	err := Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &a)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var x test
+	err = a.Cast(&x)
+	if *x.A != 1 {
+		t.Fatal("not 1")
+	}
+}
+
 // BenchmarkUnpack is used to benchmark unpacking.
 func BenchmarkUnpack(b *testing.B) {
 	type test struct {
