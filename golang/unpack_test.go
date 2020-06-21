@@ -223,3 +223,21 @@ func BenchmarkUnpack(b *testing.B) {
 	var x test
 	_ = Unpack([]byte("\x83t\x00\x00\x00\x01m\x00\x00\x00\x01aa\x01"), &x)
 }
+
+// BenchmarkLargeUnpack is used to benchmark a huge item being unpacked.
+func BenchmarkLargerUnpack(b *testing.B) {
+	m := map[int]int{}
+	for i := 0; i < 10000; i++ {
+		m[i] = 1024
+	}
+	data, err := Pack(&m)
+	if err != nil {
+		b.Fatal(err)
+	}
+	b.ResetTimer()
+	m = nil
+	err = Unpack(data, &m)
+	if err != nil {
+		b.Fatal(err)
+	}
+}

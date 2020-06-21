@@ -256,7 +256,7 @@ func Pack(Interface interface{}) ([]byte, error) {
 					if err != nil {
 						return err
 					}
-					Value := v.Elem().Interface()
+					Value := v.Interface()
 					err = handler(Value)
 					if err != nil {
 						return err
