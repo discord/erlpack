@@ -207,6 +207,9 @@ func TestUnpackUncastedResult(t *testing.T) {
 	}
 	var x test
 	err = a.Cast(&x)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if *x.A != 1 {
 		t.Fatal("not 1")
 	}
