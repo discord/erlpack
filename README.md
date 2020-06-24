@@ -149,3 +149,8 @@ class User(object):
 u = User(name='Jake', age=23)
 packed = pack(u)
 ```
+
+# Go (golang)
+
+Discord has moved away from Go internally and so we do not maintain a version of erlpack in Go ourselves. However, all is
+not lost!, please check out: https://github.com/JakeMakesStuff/go-erlpack
