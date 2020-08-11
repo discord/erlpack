@@ -32,7 +32,7 @@ ext_modules = [packer, unpacker]
 
 setup(
     name='erlpack',
-    version='0.3.3',
+    version='0.3.4',
     author='Jake Heinz',
     author_email='jh@discordapp.com',
     url="http://github.com/discord/erlpack",
@@ -43,7 +43,7 @@ setup(
     package_dir={'': 'py'},
     packages=['erlpack'],
     ext_modules=ext_modules,
-    install_requires=['six==1.12.0'],
+    install_requires=['six~=1.15'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
 )
