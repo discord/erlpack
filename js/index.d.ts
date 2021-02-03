@@ -1,4 +1,4 @@
 declare module 'erlpack' {
-	export function pack(data: any): Buffer;
-	export function unpack(data: Buffer): any; 
+	export function pack(data: unknown): Buffer;
+	export function unpack<T = unknown>(data: Buffer): T; 
 }
