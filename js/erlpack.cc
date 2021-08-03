@@ -1,4 +1,5 @@
 #include <nan.h>
+#include <node.h>
 #include "encoder.h"
 #include "decoder.h"
 
