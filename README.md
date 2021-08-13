@@ -1,6 +1,7 @@
-# Erlpack
+# Erlpack But Better
 
 Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python and JavaScript.
+It appears that the main project has been abandoned, so this is a fork that will be actively maintained.
 
 # JavaScript
 
@@ -152,5 +153,4 @@ packed = pack(u)
 
 # Go (golang)
 
-Discord has moved away from Go internally and so we do not maintain a version of erlpack in Go ourselves. However, all is
-not lost!, please check out: https://github.com/JakeMakesStuff/go-erlpack
+Discord has moved away from Go internally and so we do not maintain a version of erlpack in Go ourselves. However, all is not lost!, please check out: https://github.com/JakeMakesStuff/go-erlpack

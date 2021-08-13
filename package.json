@@ -1,13 +1,17 @@
 {
   "main": "./js/index.js",
   "types": "./js/index.d.ts",
-  "name": "erlpack",
-  "version": "0.1.3",
-  "description": "Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for JavaScript",
+  "name": "erlpack-but-better",
+  "version": "1.0.0",
+  "description": "Erlpack But Better is a fast encoder and decoder for the Erlang Term Format (version 131) for JavaScript",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "install": "node-gyp rebuild"
   },
-  "author": "Jason Citron",
+  "author": "Gingka",
+  "maintainers": [
+    "Jason Citron"
+  ],
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",
@@ -26,6 +30,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/discord/erlpack.git"
-  }
+    "url": "git+https://github.com/gingkathfox/erlpack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gingkathfox/erlpack/issues"
+  },
+  "homepage": "https://github.com/gingkathfox/erlpack#readme",
+  "keywords": [
+    "erlpack",
+    "discord.js"
+  ]
 }
