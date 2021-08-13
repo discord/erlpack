@@ -11,11 +11,11 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",
-    "nan": "^2.14.0"
+    "nan": "^2.15.0"
   },
   "gypfile": true,
   "devDependencies": {
-    "@types/node": "^12.11.7",
+    "@types/node": "^16.6.1",
     "jest-cli": "^24.9.0"
   },
   "jest": {
