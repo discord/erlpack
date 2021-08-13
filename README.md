@@ -3,6 +3,9 @@
 Erlpack is a fast encoder and decoder for the Erlang Term Format (version 131) for Python and JavaScript.
 It appears that the main project has been abandoned, so this is a fork that will be actively maintained.
 
+## Installing
+`npm i gingkathfox/erlpack`
+
 # JavaScript
 
 ## Things that can be packed:
