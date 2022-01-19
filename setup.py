@@ -1,15 +1,16 @@
 from setuptools import setup
+import sys
 
-have_cython = False
-try:
+use_cython = False
+if '--use-cython' in sys.argv:
+    use_cython = True
+    sys.argv.remove('--use-cython')
     from Cython.Distutils import build_ext, Extension
-    have_cython = True
-
-except ImportError:
+else:
     from setuptools.command.build_ext import build_ext
     from setuptools.extension import Extension
 
-if have_cython:
+if use_cython:
     packer = Extension(
         "erlpack._packer",
         cython_cplus=True,
@@ -32,7 +33,7 @@ ext_modules = [packer, unpacker]
 
 setup(
     name='erlpack',
-    version='0.3.4',
+    version='0.3.5',
     author='Jake Heinz',
     author_email='jh@discordapp.com',
     url="http://github.com/discord/erlpack",
