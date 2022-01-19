@@ -904,9 +904,9 @@ static const char *__pyx_filename;
 static const char *__pyx_f[] = {
   "py/erlpack/_unpacker.pyx",
   "stringsource",
-  "erlpack/lib/python3.8/site-packages/Cython/Includes/cpython/type.pxd",
-  "erlpack/lib/python3.8/site-packages/Cython/Includes/cpython/bool.pxd",
-  "erlpack/lib/python3.8/site-packages/Cython/Includes/cpython/complex.pxd",
+  "type.pxd",
+  "bool.pxd",
+  "complex.pxd",
 };
 
 /*--- Type declarations ---*/
