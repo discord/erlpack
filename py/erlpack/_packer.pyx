@@ -48,6 +48,7 @@ cdef class ErlangTermEncoder(object):
     cdef char* _unicode_errors
     cdef char* _unicode_type
     cdef object _encode_hook
+    cdef bool _in_use
 
     def __cinit__(self):
         self.pk.buf = NULL
@@ -75,6 +76,7 @@ cdef class ErlangTermEncoder(object):
 
         self._unicode_type = unicode_type
         self._encode_hook = encode_hook
+        self._in_use = False
 
     cdef _ensure_buf(self):
         """
@@ -276,18 +278,24 @@ cdef class ErlangTermEncoder(object):
     cpdef pack(self, object obj):
         cdef int ret
         self._ensure_buf()
+        if self._in_use:
+            raise RuntimeError("Attempting to reuse an ErlangTermEncoder that is currently encoding something")
 
-        ret = erlpack_append_version(&self.pk)
-        if ret == -1:
-            raise MemoryError
+        self._in_use = True
+        try:
+            ret = erlpack_append_version(&self.pk)
+            if ret == -1:
+                raise MemoryError
 
-        ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
-        if ret == -1:
-            raise MemoryError
-        elif ret:  # should not happen.
-            raise TypeError('_pack returned code(%s)' % ret)
+            ret = self._pack(obj, DEFAULT_RECURSE_LIMIT)
+            if ret == -1:
+                raise MemoryError
+            elif ret:  # should not happen.
+                raise TypeError('_pack returned code(%s)' % ret)
 
-        buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)
-        self._free_big_buf()
+            buf = PyBytes_FromStringAndSize(self.pk.buf, self.pk.length)
+            return buf
+        finally:
+            self._free_big_buf()
+            self._in_use = False
 
-        return buf
