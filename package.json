@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "bindings": "^1.5.0",
-    "nan": "^2.15.0"
+    "nan": "^2.17.0"
   },
   "gypfile": true,
   "devDependencies": {
