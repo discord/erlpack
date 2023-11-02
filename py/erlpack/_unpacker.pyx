@@ -192,19 +192,10 @@ cdef class ErlangTermDecoder(object):
         offset += 2
         st = bytes[offset:offset + length]
         byte_elements_are_ints = isinstance(b'a'[0], int)
-        if self.encoding:
-            try:
-                st = st.decode(self.encoding)
-            except UnicodeError:
-                if byte_elements_are_ints:
-                    st = [x for x in st]
-                else:
-                    st = [ord(x) for x in st]
+        if byte_elements_are_ints:
+            st = list(st)
         else:
-            if byte_elements_are_ints:
-                st = [x for x in st]
-            else:
-                st = [ord(x) for x in st]
+            st = [ord(x) for x in st]
         return st, offset + length
 
     cdef object decode_l(self, bytes, offset):
@@ -246,8 +237,8 @@ cdef class ErlangTermDecoder(object):
     @cython.boundscheck(False)
     cdef object decode_bigint(self, n, bytes, unsigned int offset):
         cdef unsigned char* cd = <unsigned char*>PyBytes_AsString(bytes)
-        cpdef unsigned long long ull
-        cpdef unsigned char pos = 0
+        cdef unsigned long long ull
+        cdef unsigned char pos = 0
 
         if offset + 1 + n > PyBytes_Size(bytes):
             raise OverflowError("Overflown! %s %s" % (offset + 1 + n, len(bytes)))

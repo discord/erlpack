@@ -154,3 +154,16 @@ packed = pack(u)
 
 Discord has moved away from Go internally and so we do not maintain a version of erlpack in Go ourselves. However, all is
 not lost!, please check out: https://github.com/JakeMakesStuff/go-erlpack
+
+# Building
+
+## Python
+Generating the new `.cpp` files can be accomplished by running `python setup.py --use-cython build_ext --inplace`.
+
+`cython` must be installed for this to work.
+
+### Testing
+
+1. Install the development version of erlpack with `python setup.py develop`.
+2. Install `pytest`.
+3. Execute `pytest py/tests`.
