@@ -193,7 +193,7 @@ cdef class ErlangTermDecoder(object):
         st = bytes[offset:offset + length]
         byte_elements_are_ints = isinstance(b'a'[0], int)
         if byte_elements_are_ints:
-            st = [x for x in st]
+            st = list(st)
         else:
             st = [ord(x) for x in st]
         return st, offset + length
