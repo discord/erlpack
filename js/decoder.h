@@ -157,7 +157,7 @@ public:
         return (const char*)str;
     }
 
-    Local<Value> processAtom(const char* atom, uint16_t length) {
+    Local<Value> processAtom(const char* atom, uint16_t length, bool utf8) {
         if (atom == NULL) {
             return Nan::Undefined();
         }
@@ -177,19 +177,22 @@ public:
             }
         }
 
+        if (utf8) {
+            return Nan::Encode(atom, length, Nan::Encoding::UTF8);
+        }
         return Nan::New(atom, length).ToLocalChecked();
     }
 
-    Local<Value> decodeAtom() {
+    Local<Value> decodeAtom(bool utf8) {
         auto length = read16();
         const char* atom = readString(length);
-        return processAtom(atom, length);
+        return processAtom(atom, length, utf8);
     }
 
-    Local<Value> decodeSmallAtom() {
+    Local<Value> decodeSmallAtom(bool utf8) {
         auto length = read8();
         const char* atom = readString(length);
-        return processAtom(atom, length);
+        return processAtom(atom, length, utf8);
     }
 
     Local<Value> decodeFloat() {
@@ -410,9 +413,13 @@ public:
             case NEW_FLOAT_EXT:
                 return decodeNewFloat();
             case ATOM_EXT:
-                return decodeAtom();
+                return decodeAtom(false);
+            case ATOM_UTF8_EXT:
+                return decodeAtom(true);
             case SMALL_ATOM_EXT:
-                return decodeSmallAtom();
+                return decodeSmallAtom(false);
+            case SMALL_ATOM_UTF8_EXT:
+                return decodeSmallAtom(true);
             case SMALL_TUPLE_EXT:
                 return decodeSmallTuple();
             case LARGE_TUPLE_EXT:
