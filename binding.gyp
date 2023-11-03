@@ -9,8 +9,8 @@
         '<!(node -e \"require(\'nan\')\")',
       ],
       'sources': [
-        'js/encoder.h',
         'js/erlpack.cc',
+        'js/encoder.h',
         'js/decoder.h',
       ],
     },
