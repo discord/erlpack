@@ -33,7 +33,7 @@ ext_modules = [packer, unpacker]
 
 setup(
     name='erlpack',
-    version='1.0.0',
+    version='1.0.1',
     author='Jake Heinz',
     author_email='jh@discordapp.com',
     url="http://github.com/discord/erlpack",
