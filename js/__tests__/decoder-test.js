@@ -103,6 +103,10 @@ describe('unpacks', () => {
         expect(erlpack.unpack(Buffer.from('\x83d\x00\x0Dguild members', 'binary'))).toEqual("guild members");
     });
 
+    it('utf8 atoms', () => {
+        expect(erlpack.unpack(Buffer.from('\x83w\x05jos\xc3\xa9', 'binary'))).toEqual('josé');
+    });
+
     it('tuples', () => {
         expect(erlpack.unpack(Buffer.from('\x83h\x03m\x00\x00\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
         expect(erlpack.unpack(Buffer.from('\x83i\x00\x00\x00\x03m\x00\x00\x00\x06vanisha\x01a\x04', 'binary'))).toEqual(['vanish', 1, 4]);
